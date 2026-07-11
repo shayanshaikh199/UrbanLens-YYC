@@ -153,26 +153,29 @@ export function CityScene({
 
 function sunStateForHour(hour, groundSize) {
   const normalizedHour = ((hour % 24) + 24) % 24;
+  const sunrise = 5.25;
+  const sunset = 21;
   const sunriseRamp = smoothstep(4.75, 9, normalizedHour);
   const sunsetRamp = 1 - smoothstep(16, 22.25, normalizedHour);
   const daylight = Math.min(sunriseRamp, sunsetRamp);
   const morningWarmth = (1 - smoothstep(7.5, 10.5, normalizedHour)) * sunriseRamp;
   const eveningWarmth = smoothstep(15.5, 20.75, normalizedHour);
   const warmth = Math.max(morningWarmth, eveningWarmth);
-  const azimuth = normalizedHour / 24 * Math.PI * 2 - Math.PI * 0.65;
-  const radius = groundSize * 0.94;
-  const elevation = THREE.MathUtils.lerp(groundSize * 0.26, groundSize * 0.92, daylight);
+  const daytimeProgress = THREE.MathUtils.clamp((normalizedHour - sunrise) / (sunset - sunrise), 0, 1);
+  const sunArc = Math.sin(daytimeProgress * Math.PI);
+  const radius = groundSize * 0.92;
+  const isDaytime = normalizedHour >= sunrise && normalizedHour <= sunset;
   const position = [
-    Math.cos(azimuth) * radius,
-    elevation,
-    Math.sin(azimuth) * radius
+    THREE.MathUtils.lerp(-radius, radius, daytimeProgress),
+    groundSize * (0.26 + sunArc * 0.72),
+    -groundSize * 0.46
   ];
   const moonPosition = [-position[0] * 0.72, groundSize * 0.38, -position[2] * 0.72];
   const dusk = smoothstep(0.02, 0.42, warmth) * (1 - smoothstep(0.65, 0.95, daylight));
-  const dayColor = mixColor("#151c1b", "#34403e", daylight);
-  const warmSky = mixColor(dayColor, "#42311f", dusk);
-  const groundBase = mixColor("#121715", "#27312e", daylight);
-  const warmGround = mixColor(groundBase, "#3a3327", dusk * 0.65);
+  const dayColor = mixColor("#17211f", "#384541", daylight);
+  const warmSky = mixColor(dayColor, "#4a3826", dusk);
+  const groundBase = mixColor("#222821", "#465049", daylight);
+  const warmGround = mixColor(groundBase, "#514636", dusk * 0.7);
   const directWarm = mixColor("#7b93b2", "#f2dfbd", daylight);
 
   return {
@@ -189,9 +192,9 @@ function sunStateForHour(hour, groundSize) {
     groundLightColor: mixColor("#101615", "#2f352d", daylight),
     directColor: mixColor(directWarm, "#f0a866", dusk),
     directIntensity: THREE.MathUtils.lerp(0.06, 1.25, daylight),
-    moonIntensity: THREE.MathUtils.lerp(0.3, 0, daylight),
+    moonIntensity: THREE.MathUtils.lerp(0.28, 0, daylight),
     sunDiskColor: mixColor("#f4f4ef", "#f0a866", dusk),
-    sunOpacity: THREE.MathUtils.clamp(daylight * 0.95 + dusk * 0.2, 0, 0.95)
+    sunOpacity: isDaytime ? THREE.MathUtils.clamp(daylight * 0.95 + dusk * 0.2, 0, 0.95) : 0
   };
 }
 
