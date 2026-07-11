@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 
 import { CityScene } from "./components/CityScene.jsx";
 import { DataPanel } from "./components/DataPanel.jsx";
+import { ManualFilterPanel } from "./components/ManualFilterPanel.jsx";
 import { ProjectPanel } from "./components/ProjectPanel.jsx";
 import { QueryPanel } from "./components/QueryPanel.jsx";
 import { ResultsPanel } from "./components/ResultsPanel.jsx";
@@ -98,6 +99,37 @@ export default function App() {
     }
   }
 
+  async function handleManualFilters(filters) {
+    setQueryLoading(true);
+    setQueryError("");
+    try {
+      const result = await filterBuildings(filters);
+      setQueryResult({
+        query: "Manual filter",
+        method: "manual-filter",
+        filters,
+        matched_building_ids: result.matched_building_ids,
+        match_count: result.match_count
+      });
+      setProjectNotice("");
+      setSelectedBuilding(null);
+      setSelectedPermit(null);
+    } catch (err) {
+      setQueryError(err.message);
+    } finally {
+      setQueryLoading(false);
+    }
+  }
+
+  function handleClearManualFilters() {
+    if (queryResult?.method === "manual-filter") {
+      setQueryResult(null);
+      setSelectedBuilding(null);
+      setSelectedPermit(null);
+    }
+    setQueryError("");
+  }
+
   async function handleDeleteProject(project) {
     setProjectNotice("");
     try {
@@ -186,6 +218,12 @@ export default function App() {
           error={queryError}
           result={queryResult}
           icon={<Search size={16} />}
+        />
+
+        <ManualFilterPanel
+          loading={queryLoading}
+          onApply={handleManualFilters}
+          onClear={handleClearManualFilters}
         />
 
         <ProjectPanel

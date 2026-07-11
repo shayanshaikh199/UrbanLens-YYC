@@ -18,7 +18,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -218,6 +219,71 @@ h2 {
   outline: 0;
   color: #18211f;
   background: transparent;
+}
+
+.manualFilterForm {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.manualFilterForm label {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.manualFilterForm label span {
+  color: #64736f;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.manualFilterForm input,
+.manualFilterForm select {
+  min-width: 0;
+  height: 36px;
+  padding: 0 9px;
+  border: 1px solid #cfdbd6;
+  border-radius: 8px;
+  outline: 0;
+  background: #f8faf7;
+  color: #18211f;
+}
+
+.manualFilterActions {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.manualFilterActions button {
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: #18211f;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.manualFilterActions .secondaryButton {
+  border: 1px solid #c9d7d2;
+  background: #ffffff;
+  color: #33423e;
+}
+
+.manualFilterActions button:disabled {
+  cursor: not-allowed;
+  background: #9ba8a4;
+  color: #ffffff;
+}
+
+.manualFilterActions .secondaryButton:disabled {
+  border-color: #d5dfdc;
+  background: #edf2f0;
+  color: #7a8783;
 }
 
 .toggleRow {
