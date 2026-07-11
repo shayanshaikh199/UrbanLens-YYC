@@ -43,12 +43,14 @@ export function CityScene({
         id: `building-${selectedBuilding.id}`,
         x,
         y: Math.max(10, selectedBuilding.height_m * 0.42),
-        z
+        z,
+        height: selectedBuilding.height_m,
+        type: "building"
       };
     }
     if (selectedPermit?.center) {
       const [x, z] = latLngToScene(selectedPermit.center, origin);
-      return { id: `permit-${selectedPermit.id}`, x, y: 12, z };
+      return { id: `permit-${selectedPermit.id}`, x, y: 12, z, height: 8, type: "permit" };
     }
     return null;
   }, [origin, selectedBuilding, selectedPermit]);
@@ -156,13 +158,27 @@ function CameraFocus({ focus, controlsRef, cancelFocusRef = { current: () => {} 
     const focusPoint = new THREE.Vector3(focus.x, focus.y, focus.z);
     const controls = controlsRef.current;
     const currentTarget = controls?.target?.clone() ?? new THREE.Vector3(0, 30, 0);
-    const cameraShift = focusPoint.clone().sub(camera.position).multiplyScalar(0.16);
-    if (cameraShift.length() > 70) {
-      cameraShift.setLength(70);
+    const viewDirection = camera.position.clone().sub(focusPoint);
+    if (viewDirection.lengthSq() < 1) {
+      viewDirection.set(0.65, 0.42, 0.65);
+    }
+    viewDirection.normalize();
+    if (viewDirection.y < 0.18) {
+      viewDirection.y = 0.24;
+      viewDirection.normalize();
     }
 
-    cameraGoal.current.copy(camera.position).add(cameraShift);
-    targetGoal.current.copy(currentTarget).lerp(focusPoint, 0.28);
+    const comfortableDistance = focus.type === "building"
+      ? THREE.MathUtils.clamp((focus.height ?? 30) * 1.35, 92, 170)
+      : 105;
+    const currentDistance = camera.position.distanceTo(focusPoint);
+    const distanceChange = currentDistance - comfortableDistance;
+    const nextDistance = currentDistance > comfortableDistance
+      ? currentDistance - Math.min(distanceChange, 190)
+      : currentDistance + Math.min(Math.abs(distanceChange), 45);
+
+    cameraGoal.current.copy(focusPoint).addScaledVector(viewDirection, nextDistance);
+    targetGoal.current.copy(currentTarget).lerp(focusPoint, 0.72);
     lastFocusId.current = focus.id;
     active.current = true;
   }, [camera, controlsRef, focus]);
