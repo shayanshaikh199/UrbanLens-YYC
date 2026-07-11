@@ -524,31 +524,78 @@ h2 {
   font-size: 0.86rem;
 }
 
+.summaryHeader span {
+  margin-left: auto;
+  color: #71807b;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
 .miniPermitList {
   display: grid;
-  gap: 7px;
+  gap: 6px;
 }
 
 .miniPermit {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 2px 10px;
-  padding: 8px;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 10px;
   border: 1px solid #d9e3df;
-  border-radius: 8px;
+  border-radius: 9px;
   background: #f8faf7;
 }
 
-.miniPermit span,
-.miniPermit strong,
-.miniPermit small {
+.miniPermitMain {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.miniPermitMain strong,
+.miniPermitMain small,
+.permitCost {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.miniPermit small {
-  grid-column: 1 / -1;
+.miniPermitMain strong {
+  color: #172420;
+  font-size: 0.78rem;
+}
+
+.miniPermitMain small,
+.permitOverflow {
+  color: #64736f;
+  font-size: 0.72rem;
+}
+
+.permitStatusBadge {
+  flex: 0 0 auto;
+  max-width: 92px;
+  overflow: hidden;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: #eef4f1;
+  color: #40524d;
+  font-size: 0.66rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.permitCost {
+  margin-left: auto;
+  color: #172420;
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.permitOverflow {
+  margin: 0;
+  font-weight: 760;
 }
 
 .projectList {

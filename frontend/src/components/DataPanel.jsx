@@ -60,6 +60,9 @@ function Stat({ label, value }) {
 }
 
 function PermitSummary({ permits }) {
+  const visiblePermits = permits.slice(0, 3);
+  const hiddenCount = Math.max(0, permits.length - visiblePermits.length);
+
   if (!permits.length) {
     return (
       <div className="permitSummary empty">
@@ -74,16 +77,23 @@ function PermitSummary({ permits }) {
       <div className="summaryHeader">
         <ReceiptText size={15} />
         <strong>Related permits</strong>
+        <span>{permits.length}</span>
       </div>
       <div className="miniPermitList">
-        {permits.map((item) => (
+        {visiblePermits.map((item) => (
           <div key={item.id} className="miniPermit">
-            <span>{item.status || "Unknown status"}</span>
-            <strong>{currency(item.estimated_project_cost)}</strong>
-            <small>{item.permit_type}</small>
+            <span className="permitStatusBadge">{statusLabel(item.status)}</span>
+            <div className="miniPermitMain">
+              <strong>{item.permit_type || "Permit record"}</strong>
+              <small>{dateLabel(item.properties?.issued_date)}</small>
+            </div>
+            {item.estimated_project_cost ? (
+              <span className="permitCost">{currency(item.estimated_project_cost)}</span>
+            ) : null}
           </div>
         ))}
       </div>
+      {hiddenCount ? <p className="permitOverflow">+{hiddenCount} more permit records</p> : null}
     </div>
   );
 }
@@ -118,6 +128,11 @@ function currency(value) {
     currency: "CAD",
     maximumFractionDigits: 0
   }).format(value);
+}
+
+function statusLabel(value) {
+  const label = value && value !== "UNKNOWN" ? value : "Unknown";
+  return label.toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 function dateLabel(value) {
