@@ -432,13 +432,41 @@ h2 {
 
 .projectList button {
   display: grid;
-  gap: 2px;
+  gap: 4px;
   width: 100%;
   padding: 10px;
   border: 1px solid #cfdbd6;
   border-radius: 8px;
   background: #f8faf7;
   text-align: left;
+}
+
+.projectTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.projectTitleRow strong,
+.projectList button span,
+.projectList button small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTitleRow time {
+  flex: 0 0 auto;
+  color: #64736f;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.projectList button small {
+  color: #33423e;
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .resultList {
