@@ -179,6 +179,7 @@ export default function App() {
           <div>
             <p className="eyebrow">UrbanLensYYC</p>
             <h1>Calgary block intelligence</h1>
+            <p className="brandSubline">Downtown Core / Stephen Ave</p>
           </div>
           <button className="iconButton" onClick={refresh} title="Refresh cached Calgary data">
             <Database size={18} />

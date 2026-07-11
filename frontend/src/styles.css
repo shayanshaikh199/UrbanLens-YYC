@@ -720,6 +720,316 @@ h2 {
   }
 }
 
+:root {
+  color: #202622;
+  background: #d8ded8;
+  font-family:
+    "Aptos", "Segoe UI Variable", "Segoe UI", Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+  --ink: #202622;
+  --muted: #66736d;
+  --soft: #eef1ec;
+  --paper: #fbfcf8;
+  --panel: #ffffff;
+  --panel-border: #d6ded8;
+  --line: #e3e8e4;
+  --brand: #0f6f74;
+  --brand-strong: #074e54;
+  --accent: #c7852c;
+  --danger: #9c372d;
+  --shadow: 0 16px 38px rgba(31, 40, 35, 0.12);
+}
+
+body {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0)),
+    #d8ded8;
+}
+
+button,
+input,
+select {
+  letter-spacing: 0;
+}
+
+button {
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(15, 111, 116, 0.32);
+  outline-offset: 2px;
+}
+
+.appShell {
+  grid-template-columns: minmax(0, 1fr) 410px;
+}
+
+.controlRail {
+  gap: 12px;
+  padding: 18px;
+  background: linear-gradient(180deg, #fbfcf8 0%, #f1f4ef 100%);
+  border-left: 1px solid rgba(25, 36, 31, 0.12);
+  box-shadow: -20px 0 48px rgba(31, 40, 35, 0.16);
+}
+
+.controlRail::-webkit-scrollbar {
+  width: 10px;
+}
+
+.controlRail::-webkit-scrollbar-thumb {
+  border: 3px solid #f1f4ef;
+  border-radius: 999px;
+  background: #aab7b0;
+}
+
+.brandBlock {
+  padding: 2px 0 6px;
+}
+
+.eyebrow {
+  color: var(--brand);
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+h1 {
+  color: #151a17;
+  font-size: 1.44rem;
+  font-weight: 820;
+}
+
+.brandSubline {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+h2 {
+  color: #1f2925;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.iconButton {
+  border-color: #d7dfd9;
+  background: var(--panel);
+  color: var(--brand-strong);
+  box-shadow: 0 8px 18px rgba(31, 40, 35, 0.08);
+}
+
+.iconButton:hover {
+  border-color: rgba(15, 111, 116, 0.34);
+  background: #eef7f5;
+}
+
+.metric,
+.panel,
+.alert,
+.userInput,
+.toggleRow {
+  border-color: var(--panel-border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.78) inset;
+}
+
+.panel {
+  padding: 15px;
+}
+
+.panelHeader {
+  margin-bottom: 13px;
+  color: var(--brand-strong);
+}
+
+.metric {
+  padding: 11px;
+  background: #ffffff;
+}
+
+.metricIcon {
+  color: var(--brand);
+}
+
+.metric span,
+.detailList dt,
+.projectList span,
+.queryResult span,
+.stat span,
+.miniPermit small {
+  color: var(--muted);
+}
+
+.metric strong {
+  color: #151a17;
+  font-size: 1.22rem;
+  font-weight: 850;
+}
+
+.userInput,
+.toggleRow {
+  background: #ffffff;
+}
+
+.queryForm input,
+.saveForm input,
+.manualFilterForm input,
+.manualFilterForm select {
+  border-color: #d8e0da;
+  background: #f7f9f5;
+  color: var(--ink);
+}
+
+.queryForm input:focus,
+.saveForm input:focus,
+.manualFilterForm input:focus,
+.manualFilterForm select:focus {
+  border-color: rgba(15, 111, 116, 0.55);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(15, 111, 116, 0.1);
+}
+
+.queryForm button,
+.saveForm button,
+.manualFilterActions button {
+  background: var(--brand-strong);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.queryForm button:hover:not(:disabled),
+.saveForm button:hover:not(:disabled),
+.manualFilterActions button:hover:not(:disabled) {
+  background: #063f43;
+}
+
+.quickQueryGrid {
+  gap: 8px;
+}
+
+.quickQueryGrid button,
+.manualFilterActions .secondaryButton {
+  border-color: #d6ded8;
+  background: #ffffff;
+  color: #27332f;
+  font-weight: 780;
+}
+
+.quickQueryGrid button:hover:not(:disabled),
+.manualFilterActions .secondaryButton:hover:not(:disabled) {
+  border-color: rgba(15, 111, 116, 0.35);
+  background: #edf6f4;
+  color: var(--brand-strong);
+}
+
+.toggle {
+  background: #b9c3bd;
+}
+
+.toggle.isOn {
+  background: var(--brand);
+}
+
+.queryResult,
+.matchReason {
+  background: #edf6f4;
+  border: 1px solid #cfe2dd;
+}
+
+.queryResult p,
+.formSuccess,
+.matchReason span {
+  color: var(--brand-strong);
+}
+
+.selectedPanel {
+  border-color: rgba(15, 111, 116, 0.5);
+  box-shadow: 0 0 0 3px rgba(15, 111, 116, 0.1);
+}
+
+.permitPanel {
+  border-color: rgba(156, 55, 45, 0.38);
+  box-shadow: 0 0 0 3px rgba(156, 55, 45, 0.1);
+}
+
+.selectionBadge {
+  background: #edf6f4;
+  color: var(--brand-strong);
+}
+
+.permitPanel .selectionBadge {
+  background: #fff1ed;
+  color: var(--danger);
+}
+
+.stat,
+.insightMetric {
+  background: #f5f7f3;
+}
+
+.detailList dd,
+.stat strong,
+.insightMetric strong,
+.insightRow strong {
+  color: #151a17;
+}
+
+.projectCard,
+.resultItem,
+.miniPermit {
+  border-color: #d8e0da;
+  background: #ffffff;
+}
+
+.projectCard:focus-within,
+.projectCard:hover,
+.resultItem:hover {
+  border-color: rgba(15, 111, 116, 0.34);
+  box-shadow: 0 10px 24px rgba(31, 40, 35, 0.08);
+}
+
+.resultItem.isSelected {
+  border-color: rgba(15, 111, 116, 0.56);
+  background: #edf6f4;
+  box-shadow: inset 3px 0 0 var(--brand);
+}
+
+.projectDeleteButton {
+  color: var(--danger);
+}
+
+.projectDeleteButton:hover,
+.projectDeleteButton:focus-visible {
+  background: #fff1ed;
+  color: #6f2119;
+}
+
+.pinLabel {
+  border-color: rgba(32, 38, 34, 0.14);
+  background: rgba(255, 255, 255, 0.96);
+  color: #202622;
+  box-shadow: 0 12px 24px rgba(31, 40, 35, 0.18);
+}
+
+.pinLabel.isSelected {
+  border-color: rgba(156, 55, 45, 0.38);
+  background: #fff6f3;
+  color: var(--danger);
+}
+
 @media (max-width: 900px) {
   .appShell {
     grid-template-columns: 1fr;
