@@ -18,6 +18,7 @@ The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
 - [Assignment brief](docs/assignment-brief.md)
 - [Implementation blueprint](docs/implementation-blueprint.md)
 - [UML diagrams](docs/uml.md)
+- [Deployment checklist](docs/deployment-checklist.md)
 
 ## Local Setup
 
