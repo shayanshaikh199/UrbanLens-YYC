@@ -78,6 +78,12 @@ This checklist maps the assignment requirements to the current UrbanLensYYC impl
 | ZIP package | Pending | Create final ZIP after deployment URLs and exported UML are ready |
 | Optional walkthrough video | Optional | Recommended if time allows |
 
+## Optional Bonus
+
+| Requirement | Status | Implementation |
+| --- | --- | --- |
+| Sunlight or shadow study | Done | Sun study slider controls Three.js directional light and building shadows |
+
 ## Final Pre-Submission Checklist
 
 - Export UML from `docs/uml.md` as a PNG or PDF.

@@ -1052,6 +1052,39 @@ h2 {
   box-shadow: 0 8px 18px rgba(32, 37, 31, 0.12);
 }
 
+.sunPanel {
+  border-color: rgba(191, 122, 36, 0.28);
+}
+
+.sunControlHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.sunControlHeader span {
+  color: #1f2925;
+  font-size: 1rem;
+  font-weight: 850;
+}
+
+.sunSlider {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.sunTicks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  color: #747069;
+  font-size: 0.68rem;
+  font-weight: 780;
+  text-transform: uppercase;
+}
+
 @media (max-width: 900px) {
   .appShell {
     grid-template-columns: 1fr;

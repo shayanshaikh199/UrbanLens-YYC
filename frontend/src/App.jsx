@@ -8,6 +8,7 @@ import { ManualFilterPanel } from "./components/ManualFilterPanel.jsx";
 import { ProjectPanel } from "./components/ProjectPanel.jsx";
 import { QueryPanel } from "./components/QueryPanel.jsx";
 import { ResultsPanel } from "./components/ResultsPanel.jsx";
+import { SunStudyPanel } from "./components/SunStudyPanel.jsx";
 import { useMapData } from "./hooks/useMapData.js";
 import { useProjects } from "./hooks/useProjects.js";
 import { filterBuildings, runQuery } from "./services/api.js";
@@ -18,6 +19,8 @@ export default function App() {
   const [selectedPermit, setSelectedPermit] = useState(null);
   const [showPermits, setShowPermits] = useState(true);
   const [showRoads, setShowRoads] = useState(true);
+  const [sunHour, setSunHour] = useState(14);
+  const [shadowsEnabled, setShadowsEnabled] = useState(true);
   const [queryResult, setQueryResult] = useState(null);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
@@ -165,6 +168,8 @@ export default function App() {
             selectedPermit={selectedPermit}
             showPermits={showPermits}
             showRoads={showRoads}
+            sunHour={sunHour}
+            shadowsEnabled={shadowsEnabled}
             onClearSelection={() => {
               setSelectedBuilding(null);
               setSelectedPermit(null);
@@ -245,6 +250,13 @@ export default function App() {
           loading={queryLoading}
           onApply={handleManualFilters}
           onClear={handleClearManualFilters}
+        />
+
+        <SunStudyPanel
+          hour={sunHour}
+          shadowsEnabled={shadowsEnabled}
+          onHourChange={setSunHour}
+          onToggleShadows={setShadowsEnabled}
         />
 
         <ProjectPanel

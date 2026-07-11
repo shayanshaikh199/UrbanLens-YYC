@@ -17,6 +17,8 @@ export function CityScene({
   selectedPermit,
   showPermits,
   showRoads,
+  sunHour,
+  shadowsEnabled,
   onClearSelection,
   onSelectBuilding,
   onSelectPermit
@@ -34,6 +36,11 @@ export function CityScene({
     () => [groundSize * 0.36, groundSize * 0.34, groundSize * 0.48],
     [groundSize]
   );
+  const sunPosition = useMemo(
+    () => sunPositionForHour(sunHour, groundSize),
+    [groundSize, sunHour]
+  );
+  const shadowExtent = groundSize * 0.62;
   const visiblePermits = useMemo(() => {
     if (!showPermits) return [];
     const selectedId = selectedPermit?.id;
@@ -53,12 +60,20 @@ export function CityScene({
       onPointerMissed={onClearSelection}
     >
       <color attach="background" args={["#d7ddd8"]} />
-      <ambientLight intensity={0.56} />
+      <ambientLight intensity={shadowsEnabled ? 0.38 : 0.62} />
       <directionalLight
-        castShadow
-        position={[90, 190, 100]}
-        intensity={1.08}
-        shadow-mapSize={[2048, 2048]}
+        castShadow={shadowsEnabled}
+        position={sunPosition}
+        intensity={shadowsEnabled ? 1.35 : 0.92}
+        shadow-mapSize={[3072, 3072]}
+        shadow-bias={-0.00025}
+        shadow-normalBias={0.035}
+        shadow-camera-left={-shadowExtent}
+        shadow-camera-right={shadowExtent}
+        shadow-camera-top={shadowExtent}
+        shadow-camera-bottom={-shadowExtent}
+        shadow-camera-near={1}
+        shadow-camera-far={groundSize * 2}
       />
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[groundSize, groundSize]} />
@@ -105,4 +120,18 @@ export function CityScene({
       />
     </Canvas>
   );
+}
+
+function sunPositionForHour(hour, groundSize) {
+  const progress = Math.min(1, Math.max(0, (hour - 7) / 12));
+  const azimuth = THREE.MathUtils.lerp(-Math.PI * 0.82, Math.PI * 0.82, progress);
+  const noonLift = Math.sin(progress * Math.PI);
+  const elevation = THREE.MathUtils.lerp(0.22, 0.92, noonLift);
+  const radius = groundSize * 0.62;
+
+  return [
+    Math.cos(azimuth) * radius,
+    groundSize * elevation,
+    Math.sin(azimuth) * radius
+  ];
 }
