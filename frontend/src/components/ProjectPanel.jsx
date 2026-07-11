@@ -1,6 +1,8 @@
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
 
+import { filterSummary } from "../utils/filterText.js";
+
 export function ProjectPanel({ projects, loading, error, notice, disabled, username, onSave, onLoad, onDelete, icon }) {
   const [name, setName] = useState("");
   const usernameMissing = !username.trim();
@@ -57,53 +59,6 @@ export function ProjectPanel({ projects, loading, error, notice, disabled, usern
       </div>
     </section>
   );
-}
-
-function filterSummary(filters = []) {
-  if (!filters.length) return "No filters saved";
-  return filters.map((filter) => describeFilter(filter)).join(" and ");
-}
-
-function describeFilter(filter) {
-  if (filter.operator === "top") {
-    return `${filter.direction === "asc" ? "lowest" : "highest"} ${labelFor(filter.attribute)} ranking`;
-  }
-  return `${labelFor(filter.attribute)} ${operatorFor(filter.operator)} ${valueFor(filter)}`;
-}
-
-function labelFor(attribute) {
-  const labels = {
-    assessed_value: "assessed value",
-    height_m: "height",
-    land_use: "land use"
-  };
-  return labels[attribute] ?? attribute?.replaceAll("_", " ") ?? "field";
-}
-
-function operatorFor(operator) {
-  const operators = {
-    ">": "over",
-    ">=": "at least",
-    "<": "under",
-    "<=": "at most",
-    "=": "is",
-    contains: "contains"
-  };
-  return operators[operator] ?? operator;
-}
-
-function valueFor(filter) {
-  if (filter.attribute === "assessed_value" && Number.isFinite(Number(filter.value))) {
-    return new Intl.NumberFormat("en-CA", {
-      style: "currency",
-      currency: "CAD",
-      maximumFractionDigits: 0
-    }).format(filter.value);
-  }
-  if (filter.attribute === "height_m" && Number.isFinite(Number(filter.value))) {
-    return `${filter.value} m`;
-  }
-  return String(filter.value ?? "unknown");
 }
 
 function dateLabel(value) {

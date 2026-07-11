@@ -323,6 +323,15 @@ h2 {
   font-weight: 700;
 }
 
+.queryResult p {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  color: #126569;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .formError,
 .alert {
   margin: 10px 0 0;

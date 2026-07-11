@@ -1,6 +1,8 @@
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 
+import { filterSummary, resultExplanation } from "../utils/filterText.js";
+
 const QUICK_QUERIES = [
   { label: "Commercial", query: "show commercial buildings" },
   { label: "Tallest", query: "show the tallest buildings" },
@@ -56,6 +58,7 @@ export function QueryPanel({ onSubmit, loading, error, result, icon }) {
           <span>{querySource(result.method)}</span>
           <strong>{result.match_count} matches</strong>
           <small>{filterSummary(result.filters)}</small>
+          <p>{resultExplanation(result)}</p>
         </div>
       ) : null}
     </section>
@@ -64,55 +67,8 @@ export function QueryPanel({ onSubmit, loading, error, result, icon }) {
 
 function querySource(method) {
   if (method === "llm") return "Groq parsed";
+  if (method === "manual-filter") return "Manual filter";
   if (method === "saved-project") return "Saved filter";
   if (method?.includes("superlative")) return "Ranked";
   return "Rule parsed";
-}
-
-function filterSummary(filters = []) {
-  if (!filters.length) return "No filters applied";
-  return filters.map((filter) => describeFilter(filter)).join(" and ");
-}
-
-function describeFilter(filter) {
-  if (filter.operator === "top") {
-    const direction = filter.direction === "asc" ? "lowest" : "highest";
-    return `${direction} ${labelFor(filter.attribute)} results`;
-  }
-  return `${labelFor(filter.attribute)} ${operatorFor(filter.operator)} ${valueFor(filter)}`;
-}
-
-function labelFor(attribute) {
-  const labels = {
-    assessed_value: "assessed value",
-    height_m: "height",
-    land_use: "land use"
-  };
-  return labels[attribute] ?? attribute?.replaceAll("_", " ") ?? "field";
-}
-
-function operatorFor(operator) {
-  const operators = {
-    ">": "over",
-    ">=": "at least",
-    "<": "under",
-    "<=": "at most",
-    "=": "is",
-    contains: "contains"
-  };
-  return operators[operator] ?? operator;
-}
-
-function valueFor(filter) {
-  if (filter.attribute === "assessed_value" && Number.isFinite(Number(filter.value))) {
-    return new Intl.NumberFormat("en-CA", {
-      style: "currency",
-      currency: "CAD",
-      maximumFractionDigits: 0
-    }).format(filter.value);
-  }
-  if (filter.attribute === "height_m" && Number.isFinite(Number(filter.value))) {
-    return `${filter.value} m`;
-  }
-  return String(filter.value ?? "unknown");
 }
