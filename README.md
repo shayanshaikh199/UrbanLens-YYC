@@ -64,6 +64,42 @@ Built:
 6. Save the current query as a named project under a username.
 7. Load the saved project to reapply its filters and restore the highlighted results.
 
+## Key API Endpoints
+
+```text
+GET  /health
+GET  /api/status
+GET  /api/map/buildings
+GET  /api/map/permits
+POST /api/query
+POST /api/filter
+GET  /api/users/{username}/projects
+POST /api/users/{username}/projects
+GET  /api/users/{username}/projects/{project_id}
+```
+
+Example query request:
+
+```json
+{
+  "query": "show buildings in DC zoning"
+}
+```
+
+Example filter response shape:
+
+```json
+{
+  "query": "show buildings in DC zoning",
+  "method": "llm",
+  "filters": [{ "attribute": "zoning", "operator": "contains", "value": "DC", "unit": null }],
+  "matched_building_ids": ["bldg_example"],
+  "match_count": 14
+}
+```
+
+`GET /api/status` is the fastest deployment smoke check. It returns the active map area, building count, permit count, data source, and whether the Groq LLM path is configured without exposing secrets.
+
 Next:
 
 - connect production environment variables
