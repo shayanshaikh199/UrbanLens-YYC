@@ -1635,6 +1635,7 @@ body {
 
 .dockResult {
   display: flex;
+  align-items: center;
   gap: 8px;
   min-width: 0;
 }
@@ -2463,6 +2464,17 @@ select:focus-visible {
   color: #ffffff;
 }
 
+.dockResult button {
+  flex: 0 0 auto;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
 .saveNamePrompt {
   border-color: rgba(255, 255, 255, 0.18);
   border-radius: 0;
@@ -2616,12 +2628,84 @@ select:focus-visible {
 }
 
 .savedProjectsPopover {
-  width: min(300px, calc(100vw - 36px));
+  width: min(360px, calc(100vw - 36px));
 }
 
 .savedProjectsPopover .projectDeleteButton {
   border-left-color: rgba(255, 255, 255, 0.16);
   color: #ffffff;
+}
+
+.savedProjectsPopover .formSuccess,
+.savedProjectsPopover .formError {
+  margin: 0 0 8px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.74rem;
+  line-height: 1.25;
+}
+
+.savedProjectsPopover .projectCard {
+  grid-template-columns: minmax(0, 1fr) 42px;
+  min-height: 84px;
+}
+
+.savedProjectsPopover .projectLoadButton {
+  padding: 12px;
+}
+
+.savedProjectsPopover .projectTitleRow {
+  display: block;
+}
+
+.savedProjectsPopover .projectTitleRow strong {
+  display: block;
+  white-space: normal;
+  line-height: 1.25;
+}
+
+.savedProjectsPopover .projectTitleRow time {
+  display: none;
+}
+
+.savedProjectsPopover .projectLoadButton span,
+.savedProjectsPopover .projectLoadButton small {
+  display: block;
+  max-width: 100%;
+}
+
+.savedProjectsPopover .projectDeleteButton {
+  width: 42px;
+  min-width: 42px;
+}
+
+.toolsDrawer .insightMetric {
+  background: rgba(255, 255, 255, 0.9);
+  color: #111111;
+}
+
+.toolsDrawer .insightMetric span {
+  color: #666666;
+}
+
+.toolsDrawer .insightMetric strong {
+  color: #000000;
+}
+
+.toolsDrawer .insightRow {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.toolsDrawer .insightRow span {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.toolsDrawer .insightRow strong {
+  color: #ffffff;
+  white-space: normal;
 }
 
 .toolsDrawer {

@@ -307,6 +307,18 @@ export default function App() {
             <div className="dockResult">
               <strong>{queryResult.match_count} matches</strong>
               <span>{queryResult.query || "Current filter"}</span>
+              <button
+                type="button"
+                onClick={() => {
+                  setQueryResult(null);
+                  setSelectedBuilding(null);
+                  setSelectedPermit(null);
+                  setProjectNotice("");
+                }}
+                title="Clear matched buildings"
+              >
+                Clear
+              </button>
             </div>
           ) : null}
           {saveNamePromptOpen ? (
