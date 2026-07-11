@@ -1,6 +1,6 @@
 import { Building2, FileText, MapPinned, ReceiptText } from "lucide-react";
 
-export function DataPanel({ building, permit, relatedPermits = [], metadata }) {
+export function DataPanel({ building, permit, relatedPermits = [], matchSummary = "", metadata }) {
   if (building) {
     return (
       <section className="panel selectedPanel">
@@ -16,6 +16,12 @@ export function DataPanel({ building, permit, relatedPermits = [], metadata }) {
           <Row label="Zoning" value={building.zoning} />
           <Row label="Assessed" value={currency(building.assessed_value)} />
         </dl>
+        {matchSummary ? (
+          <div className="matchReason">
+            <span>Matched query</span>
+            <strong>{matchSummary}</strong>
+          </div>
+        ) : null}
         <PermitSummary permits={relatedPermits} />
       </section>
     );

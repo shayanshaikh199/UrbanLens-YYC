@@ -41,6 +41,10 @@ export default function App() {
       })
       .slice(0, 4);
   }, [permits, selectedBuilding]);
+  const selectedMatchSummary = useMemo(() => {
+    if (!selectedBuilding || !matchedIds.has(selectedBuilding.id)) return "";
+    return describeFilters(queryResult?.filters);
+  }, [matchedIds, queryResult?.filters, selectedBuilding]);
 
   async function handleQuery(query) {
     setQueryLoading(true);
@@ -186,6 +190,7 @@ export default function App() {
           building={selectedBuilding}
           permit={selectedPermit}
           relatedPermits={selectedBuildingPermits}
+          matchSummary={selectedMatchSummary}
           metadata={metadata}
         />
       </aside>
@@ -209,4 +214,51 @@ function addressKey(value = "") {
     .replace(/^#\S+\s+/, "")
     .replace(/\b(CALGARY|AB|CANADA)\b/g, "")
     .replace(/[^A-Z0-9]/g, "");
+}
+
+function describeFilters(filters = []) {
+  if (!filters.length) return "Matched the current query";
+  return filters.map((filter) => describeFilter(filter)).join(" and ");
+}
+
+function describeFilter(filter) {
+  if (filter.operator === "top") {
+    return `${filter.direction === "asc" ? "Lowest" : "Highest"} ${fieldLabel(filter.attribute)} ranking`;
+  }
+  return `${fieldLabel(filter.attribute)} ${operatorLabel(filter.operator)} ${filterValue(filter)}`;
+}
+
+function fieldLabel(attribute) {
+  const labels = {
+    assessed_value: "Assessed value",
+    height_m: "Height",
+    land_use: "Land use"
+  };
+  return labels[attribute] ?? attribute?.replaceAll("_", " ") ?? "Field";
+}
+
+function operatorLabel(operator) {
+  const labels = {
+    ">": "over",
+    ">=": "at least",
+    "<": "under",
+    "<=": "at most",
+    "=": "is",
+    contains: "contains"
+  };
+  return labels[operator] ?? operator;
+}
+
+function filterValue(filter) {
+  if (filter.attribute === "assessed_value" && Number.isFinite(Number(filter.value))) {
+    return new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0
+    }).format(filter.value);
+  }
+  if (filter.attribute === "height_m" && Number.isFinite(Number(filter.value))) {
+    return `${filter.value} m`;
+  }
+  return String(filter.value ?? "unknown");
 }
