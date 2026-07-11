@@ -8,7 +8,10 @@ export function SunStudyPanel({ hour, shadowsEnabled, onHourChange, onToggleShad
         <h2>Sun study</h2>
       </div>
       <div className="sunControlHeader">
-        <span>{timeLabel(hour)}</span>
+        <div className="sunTimeStack">
+          <span>{timeLabel(hour)}</span>
+          <small>{periodLabel(hour)}</small>
+        </div>
         <button
           className={shadowsEnabled ? "toggle isOn" : "toggle"}
           onClick={() => onToggleShadows((value) => !value)}
@@ -21,17 +24,17 @@ export function SunStudyPanel({ hour, shadowsEnabled, onHourChange, onToggleShad
       <input
         className="sunSlider"
         type="range"
-        min="7"
-        max="19"
+        min="0"
+        max="23"
         step="1"
         value={hour}
         onChange={(event) => onHourChange(Number(event.target.value))}
         aria-label="Time of day"
       />
       <div className="sunTicks" aria-hidden="true">
-        <span>7 AM</span>
+        <span>Midnight</span>
         <span>Noon</span>
-        <span>7 PM</span>
+        <span>11 PM</span>
       </div>
     </section>
   );
@@ -39,6 +42,14 @@ export function SunStudyPanel({ hour, shadowsEnabled, onHourChange, onToggleShad
 
 function timeLabel(hour) {
   const suffix = hour >= 12 ? "PM" : "AM";
-  const value = hour > 12 ? hour - 12 : hour;
+  const value = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
   return `${value}:00 ${suffix}`;
+}
+
+function periodLabel(hour) {
+  if (hour < 5 || hour >= 21) return "Night";
+  if (hour < 8) return "Sunrise";
+  if (hour < 17) return "Daylight";
+  if (hour < 20) return "Golden hour";
+  return "Dusk";
 }

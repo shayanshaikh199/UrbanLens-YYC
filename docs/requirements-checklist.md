@@ -82,7 +82,7 @@ This checklist maps the assignment requirements to the current UrbanLensYYC impl
 
 | Requirement | Status | Implementation |
 | --- | --- | --- |
-| Sunlight or shadow study | Done | Sun study slider controls Three.js directional light and building shadows |
+| Sunlight or shadow study | Done | 24-hour sun study controls Three.js lighting, night mode, and building shadows |
 
 ## Final Pre-Submission Checklist
 

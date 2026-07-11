@@ -12,7 +12,7 @@ The target product is an interactive React + Three.js map of several Calgary blo
 - manual building filters
 - username-based project save/load
 - lightweight downtown insight summaries
-- time-of-day sun and shadow study
+- 24-hour sun, shadow, and day/night study
 - UML and deployment documentation
 
 The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
@@ -96,7 +96,7 @@ Built:
 - deterministic query fallback for height, zoning, land use, value, and superlatives
 - SQLite-backed username/project persistence
 - React + Three.js frontend with 3D buildings, permit pins, query controls, matched results, manual filters, saved projects, and downtown insights
-- optional sun study control for time-of-day shadows
+- optional 24-hour sun study with day/night lighting and shadows
 
 ## Demo Workflow
 

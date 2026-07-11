@@ -1064,10 +1064,23 @@ h2 {
   margin-bottom: 10px;
 }
 
-.sunControlHeader span {
+.sunTimeStack {
+  display: grid;
+  gap: 2px;
+}
+
+.sunTimeStack span {
   color: #1f2925;
   font-size: 1rem;
   font-weight: 850;
+}
+
+.sunTimeStack small {
+  color: #7c7161;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .sunSlider {
