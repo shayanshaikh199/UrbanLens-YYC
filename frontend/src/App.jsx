@@ -272,7 +272,7 @@ export default function App() {
           <LegendItem color="#526477" label="CC-MHX" />
           <LegendItem color="#f1f0eb" label="CC-COR" />
           <LegendItem color="#6f7f8d" label="C-COR1" />
-          <LegendItem color="#232c37" label="DC" />
+          <LegendItem color="#7f93a6" label="DC" />
           <LegendItem color="#ffffff" label="Selected / match outline" />
         </div>
 
