@@ -1,25 +1,14 @@
 import { Trash2, UserRound } from "lucide-react";
-import { useState } from "react";
 
 import { filterSummary } from "../utils/filterText.js";
 
-export function ProjectPanel({ projects, loading, error, notice, disabled, username, onUsernameChange, onSave, onLoad, onDelete, icon }) {
-  const [name, setName] = useState("");
+export function ProjectPanel({ projects, loading, error, notice, username, onUsernameChange, onLoad, onDelete }) {
   const usernameMissing = !username.trim();
-  const saveDisabled = disabled || usernameMissing || !name.trim();
-
-  async function handleSave(event) {
-    event.preventDefault();
-    if (saveDisabled) return;
-    await onSave(name.trim());
-    setName("");
-  }
 
   return (
     <section className="panel">
       <div className="panelHeader">
-        {icon}
-        <h2>Projects</h2>
+        <h2>Saved searches</h2>
       </div>
       <label className="projectUserInput">
         <UserRound size={15} />
@@ -29,15 +18,6 @@ export function ProjectPanel({ projects, loading, error, notice, disabled, usern
           placeholder="Name for saved filters"
         />
       </label>
-      <form className="saveForm" onSubmit={handleSave}>
-        <input
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          placeholder="Save current filter"
-          disabled={disabled || usernameMissing}
-        />
-        <button disabled={saveDisabled}>Save</button>
-      </form>
       {notice ? <p className={notice.startsWith("Saved") || notice.startsWith("Loaded") ? "formSuccess" : "formError"}>{notice}</p> : null}
       {error ? <p className="formError">{error}</p> : null}
       <div className="projectList">

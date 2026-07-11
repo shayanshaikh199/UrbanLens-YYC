@@ -302,16 +302,13 @@ export default function App() {
                 loading={projects.loading}
                 error={projects.error}
                 notice={projectNotice}
-                disabled={!queryResult}
                 username={username}
                 onUsernameChange={setUsername}
-                onSave={handleSaveProject}
                 onLoad={(project) => {
                   handleLoadProject(project);
                   setProjectsOpen(false);
                 }}
                 onDelete={handleDeleteProject}
-                icon={<Save size={16} />}
               />
             </div>
           ) : null}
