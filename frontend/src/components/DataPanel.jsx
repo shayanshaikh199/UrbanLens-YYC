@@ -7,7 +7,7 @@ export function DataPanel({ building, permit, relatedPermits = [], matchSummary 
         <PanelHeader icon={<Building2 size={16} />} title="Selected building" onClose={onClose} />
         <div className="selectionBadge">Building selected</div>
         <div className="statRow">
-          <Stat label="Height" value={`${building.height_m} m`} />
+          <Stat label="Height" value={heightLabel(building.height_m)} />
           <Stat label="Floors" value={building.floors} />
           <Stat label="Use" value={building.land_use} />
         </div>
@@ -133,6 +133,13 @@ function currency(value) {
 function statusLabel(value) {
   const label = value && value !== "UNKNOWN" ? value : "Unknown";
   return label.toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function heightLabel(value) {
+  const meters = Number(value);
+  if (!Number.isFinite(meters)) return "Unknown";
+  const feet = meters * 3.28084;
+  return `${meters.toFixed(1)} m / ${feet.toFixed(0)} ft`;
 }
 
 function dateLabel(value) {

@@ -260,6 +260,15 @@ export default function App() {
           />
         </div>
 
+        <div className="zoningLegend" aria-label="Building color legend">
+          <span>Zoning</span>
+          <LegendItem color="#c0a06c" label="Mixed-use commercial" />
+          <LegendItem color="#8aa1a8" label="Commercial corridor" />
+          <LegendItem color="#748c94" label="High-density commercial" />
+          <LegendItem color="#b49786" label="Direct control" />
+          <LegendItem color="#d91646" label="Selected / matched" />
+        </div>
+
         <form className="mapQueryDock" onSubmit={handleDockSubmit}>
           <Search size={18} />
           <input
@@ -431,6 +440,15 @@ function Metric({ icon, label, value }) {
       <div className="metricIcon">{icon}</div>
       <span>{label}</span>
       <strong>{value}</strong>
+    </div>
+  );
+}
+
+function LegendItem({ color, label }) {
+  return (
+    <div className="legendItem">
+      <i style={{ "--legend-color": color }} />
+      <strong>{label}</strong>
     </div>
   );
 }

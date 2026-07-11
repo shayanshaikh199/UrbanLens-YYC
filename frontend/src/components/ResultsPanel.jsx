@@ -31,7 +31,8 @@ export function ResultsPanel({ buildings, selectedBuildingId, onSelectBuilding }
 
 function heightLabel(value) {
   if (!Number.isFinite(Number(value))) return "Unknown height";
-  return `${value} m`;
+  const meters = Number(value);
+  return `${meters.toFixed(1)} m / ${(meters * 3.28084).toFixed(0)} ft`;
 }
 
 function currency(value) {

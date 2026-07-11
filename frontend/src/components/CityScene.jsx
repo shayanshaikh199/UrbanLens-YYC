@@ -1,4 +1,4 @@
-import { Environment, OrbitControls, Sky } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useMemo } from "react";
 import * as THREE from "three";
@@ -60,18 +60,7 @@ export function CityScene({
       camera={{ position: cameraPosition, fov: 46 }}
       onPointerMissed={onClearSelection}
     >
-      {sun.showSky ? (
-        <Sky
-          distance={groundSize * 3}
-          sunPosition={sun.position}
-          turbidity={sun.skyTurbidity}
-          rayleigh={sun.skyRayleigh}
-          mieCoefficient={sun.mieCoefficient}
-          mieDirectionalG={sun.mieDirectionalG}
-        />
-      ) : (
-        <color attach="background" args={[sun.backgroundColor]} />
-      )}
+      <color attach="background" args={[sun.backgroundColor]} />
       <fog attach="fog" args={[sun.fogColor, groundSize * 0.72, groundSize * 1.65]} />
       <ambientLight intensity={sun.ambientIntensity} color={sun.ambientColor} />
       <hemisphereLight args={[sun.skyColor, sun.groundLightColor, sun.hemiIntensity]} />
@@ -133,7 +122,6 @@ export function CityScene({
           })
         : null}
 
-      {sun.showEnvironment ? <Environment preset="city" /> : null}
       <OrbitControls
         makeDefault
         enableDamping
@@ -159,15 +147,12 @@ export function CityScene({
 
 function sunStateForHour(hour, groundSize) {
   const normalizedHour = ((hour % 24) + 24) % 24;
-  const sunriseRamp = smoothstep(5, 8.5, normalizedHour);
-  const sunsetRamp = 1 - smoothstep(17, 21, normalizedHour);
+  const sunriseRamp = smoothstep(4.75, 9, normalizedHour);
+  const sunsetRamp = 1 - smoothstep(16, 22.25, normalizedHour);
   const daylight = Math.min(sunriseRamp, sunsetRamp);
-  const morningWarmth = 1 - smoothstep(6.5, 10, normalizedHour);
-  const eveningWarmth = smoothstep(16, 20.5, normalizedHour);
+  const morningWarmth = (1 - smoothstep(7.5, 10.5, normalizedHour)) * sunriseRamp;
+  const eveningWarmth = smoothstep(15.5, 20.75, normalizedHour);
   const warmth = Math.max(morningWarmth, eveningWarmth);
-  const twilight = daylight > 0.06 && daylight < 0.34;
-  const goldenHour = daylight >= 0.34 && warmth > 0.22;
-  const night = daylight <= 0.06;
   const azimuth = normalizedHour / 24 * Math.PI * 2 - Math.PI * 0.65;
   const radius = groundSize * 0.68;
   const elevation = THREE.MathUtils.lerp(groundSize * 0.08, groundSize * 0.92, daylight);
@@ -177,57 +162,38 @@ function sunStateForHour(hour, groundSize) {
     Math.sin(azimuth) * radius
   ];
   const moonPosition = [-position[0] * 0.72, groundSize * 0.38, -position[2] * 0.72];
-
-  if (night) {
-    return {
-      position,
-      moonPosition,
-      shadowsActive: false,
-      showEnvironment: false,
-      showSky: false,
-      backgroundColor: "#111817",
-      fogColor: "#111817",
-      groundColor: "#252d29",
-      gridPrimary: "#43504a",
-      gridSecondary: "#303a35",
-      ambientColor: "#9fb8d8",
-      ambientIntensity: 0.16,
-      hemiIntensity: 0.08,
-      skyColor: "#15213a",
-      groundLightColor: "#1d2825",
-      directColor: "#6f8dab",
-      directIntensity: 0.04,
-      moonIntensity: 0.32
-    };
-  }
+  const dusk = smoothstep(0.02, 0.42, warmth) * (1 - smoothstep(0.65, 0.95, daylight));
+  const dayColor = mixColor("#151c1b", "#34403e", daylight);
+  const warmSky = mixColor(dayColor, "#42311f", dusk);
+  const groundBase = mixColor("#121715", "#27312e", daylight);
+  const warmGround = mixColor(groundBase, "#3a3327", dusk * 0.65);
+  const directWarm = mixColor("#7b93b2", "#f2dfbd", daylight);
 
   return {
     position,
     moonPosition,
     shadowsActive: daylight > 0.16,
-    showEnvironment: daylight > 0.08,
-    showSky: true,
-    backgroundColor: "#d7ddd8",
-    fogColor: twilight ? "#b09a82" : goldenHour ? "#d2b58d" : "#d7ddd8",
-    groundColor: twilight ? "#d8d7cc" : goldenHour ? "#e3e3d8" : "#e8ece5",
-    gridPrimary: twilight ? "#8e9289" : goldenHour ? "#969b92" : "#9ca8a1",
-    gridSecondary: twilight ? "#bdc0b7" : goldenHour ? "#c3c8bf" : "#c9d0ca",
-    ambientColor: twilight || goldenHour ? "#ffe1b4" : "#fffaf0",
-    ambientIntensity: THREE.MathUtils.lerp(0.22, 0.5, daylight),
-    hemiIntensity: THREE.MathUtils.lerp(0.16, 0.42, daylight),
-    skyColor: twilight ? "#f5a85e" : goldenHour ? "#ffd194" : "#e5f0ff",
-    groundLightColor: twilight ? "#5f5748" : goldenHour ? "#776b54" : "#dfe8df",
-    directColor: twilight ? "#ff9d4d" : goldenHour ? "#ffbf73" : "#fff4db",
-    directIntensity: THREE.MathUtils.lerp(0.2, 1.55, daylight),
-    moonIntensity: 0,
-    skyTurbidity: twilight ? 13 : goldenHour ? 9 : 4.5,
-    skyRayleigh: twilight ? 1.2 : goldenHour ? 1.7 : 2.2,
-    mieCoefficient: twilight ? 0.028 : goldenHour ? 0.018 : 0.006,
-    mieDirectionalG: twilight ? 0.86 : goldenHour ? 0.8 : 0.72
+    backgroundColor: warmSky,
+    fogColor: warmSky,
+    groundColor: warmGround,
+    gridPrimary: mixColor("#2a3431", "#56605b", daylight),
+    gridSecondary: mixColor("#1c2522", "#3d4742", daylight),
+    ambientColor: mixColor("#8aa1b5", "#f4ead7", daylight),
+    ambientIntensity: THREE.MathUtils.lerp(0.14, 0.42, daylight),
+    hemiIntensity: THREE.MathUtils.lerp(0.08, 0.28, daylight),
+    skyColor: mixColor("#172338", "#d8c7a8", daylight),
+    groundLightColor: mixColor("#101615", "#2f352d", daylight),
+    directColor: mixColor(directWarm, "#f0a866", dusk),
+    directIntensity: THREE.MathUtils.lerp(0.06, 1.25, daylight),
+    moonIntensity: THREE.MathUtils.lerp(0.3, 0, daylight)
   };
 }
 
 function smoothstep(edge0, edge1, value) {
   const t = THREE.MathUtils.clamp((value - edge0) / (edge1 - edge0), 0, 1);
   return t * t * (3 - 2 * t);
+}
+
+function mixColor(from, to, amount) {
+  return new THREE.Color(from).lerp(new THREE.Color(to), THREE.MathUtils.clamp(amount, 0, 1)).getStyle();
 }

@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter+Tight:wght@400;500;600;700;800;900&display=swap");
+
 :root {
-  color: #18211f;
-  background: #dfe8e6;
+  color: #f3efe6;
+  background: #12110f;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    "Inter Tight", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -74,6 +76,8 @@ p {
 }
 
 h1 {
+  font-family:
+    "Cormorant Garamond", Georgia, "Times New Roman", serif;
   margin-bottom: 0;
   font-size: 1.38rem;
   line-height: 1.15;
@@ -1177,7 +1181,7 @@ h2 {
 }
 
 body {
-  background: #d8d6cd;
+  background: #12110f;
 }
 
 .appShell {
@@ -1431,7 +1435,7 @@ body {
   position: relative;
   display: block;
   min-height: 100vh;
-  background: #101514;
+  background: #12110f;
 }
 
 .mapFirstShell .mapStage {
@@ -1471,10 +1475,10 @@ body {
 .mapAlert,
 .mapQueryDock,
 .selectionPopup .panel {
-  border: 1px solid rgba(255, 250, 240, 0.18);
-  background: rgba(22, 28, 26, 0.82);
+  border: 1px solid rgba(224, 205, 160, 0.16);
+  background: rgba(21, 20, 17, 0.84);
   color: #fffaf0;
-  box-shadow: 0 20px 42px rgba(13, 17, 16, 0.22);
+  box-shadow: 0 20px 42px rgba(5, 5, 4, 0.34);
   backdrop-filter: blur(18px);
 }
 
@@ -1488,7 +1492,7 @@ body {
 }
 
 .mapIdentity span {
-  color: #d8c798;
+  color: #d7bd86;
   font-size: 0.68rem;
   font-weight: 850;
   text-transform: uppercase;
@@ -1513,8 +1517,8 @@ body {
   align-items: center;
   padding: 0 10px;
   border-radius: 6px;
-  background: rgba(255, 250, 240, 0.1);
-  color: #e8e1d4;
+  background: rgba(224, 205, 160, 0.1);
+  color: #e9dfcb;
   font-size: 0.76rem;
   font-weight: 800;
   white-space: nowrap;
@@ -1637,7 +1641,7 @@ body {
 }
 
 .dockResult strong {
-  color: #d8c798;
+  color: #d7bd86;
 }
 
 .saveNamePrompt {
@@ -1716,7 +1720,7 @@ body {
   height: 22px;
   place-items: center;
   border-radius: 999px;
-  background: #d8c798;
+  background: #d7bd86;
   color: #151b19;
   font-size: 0.72rem;
 }
@@ -1752,22 +1756,28 @@ body {
   position: absolute;
   z-index: 9;
   right: max(18px, env(safe-area-inset-right));
-  bottom: 88px;
-  width: min(310px, calc(100vw - 36px));
+  bottom: 92px;
+  left: max(18px, env(safe-area-inset-left));
+  width: min(700px, calc(100vw - 36px));
+  margin: 0 auto;
 }
 
 .mapSunControl .sunPanel {
-  padding: 12px;
-  border: 1px solid rgba(255, 250, 240, 0.18);
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr) auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  border: 1px solid rgba(224, 205, 160, 0.16);
   border-radius: 10px;
-  background: rgba(22, 28, 26, 0.82);
+  background: rgba(21, 20, 17, 0.88);
   color: #fffaf0;
-  box-shadow: 0 20px 42px rgba(13, 17, 16, 0.2);
+  box-shadow: 0 18px 44px rgba(5, 5, 4, 0.36);
   backdrop-filter: blur(18px);
 }
 
 .mapSunControl .panelHeader {
-  margin-bottom: 8px;
+  margin: 0;
   padding: 0;
   border-bottom: 0;
   color: #fffaf0;
@@ -1777,10 +1787,17 @@ body {
   color: #fffaf0;
   font-size: 0.78rem;
   letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .mapSunControl .sunControlHeader {
-  margin-bottom: 7px;
+  display: contents;
+  margin: 0;
+}
+
+.mapSunControl .sunTimeStack {
+  order: 3;
+  min-width: 86px;
 }
 
 .mapSunControl .sunTimeStack span {
@@ -1793,7 +1810,60 @@ body {
 }
 
 .mapSunControl .sunSlider {
+  order: 2;
   accent-color: #d8c798;
+}
+
+.mapSunControl .toggle {
+  order: 4;
+}
+
+.mapSunControl .sunTicks {
+  display: none;
+}
+
+.zoningLegend {
+  position: absolute;
+  z-index: 8;
+  left: max(18px, env(safe-area-inset-left));
+  bottom: 78px;
+  display: grid;
+  gap: 10px;
+  width: min(286px, calc(100vw - 36px));
+  padding: 16px 18px;
+  border: 1px solid rgba(224, 205, 160, 0.14);
+  border-radius: 10px;
+  background: rgba(19, 18, 16, 0.84);
+  color: #e9dfcb;
+  box-shadow: 0 20px 48px rgba(5, 5, 4, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+.zoningLegend > span {
+  color: #9f9789;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legendItem i {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--legend-color);
+}
+
+.legendItem strong {
+  color: #cfc8bc;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
 }
 
 .selectionPopup {
@@ -1822,6 +1892,10 @@ body {
   color: #fffaf0;
 }
 
+.selectionPopup .stat strong {
+  white-space: normal;
+}
+
 .selectionPopup .selectionBadge {
   background: rgba(216, 199, 152, 0.14);
   color: #e6d6ad;
@@ -1841,6 +1915,13 @@ body {
 .selectionPopup .permitSummary.empty,
 .selectionPopup .matchReason span {
   color: rgba(255, 250, 240, 0.65);
+}
+
+.selectionPopup .permitSummary.empty {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 250, 240, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.07);
 }
 
 .selectionPopup .summaryHeader {
@@ -2158,5 +2239,9 @@ body {
     bottom: 88px;
     left: 18px;
     width: auto;
+  }
+
+  .zoningLegend {
+    display: none;
   }
 }
