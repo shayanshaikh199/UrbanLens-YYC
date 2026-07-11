@@ -44,6 +44,42 @@ npm run dev
 
 The app runs at `http://localhost:5173`.
 
+## Environment Variables
+
+Backend variables are defined in `backend/.env.example`:
+
+```text
+APP_NAME=UrbanLensYYC API
+ENVIRONMENT=development
+FRONTEND_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+DATABASE_URL=sqlite:///./urbanlens.db
+GROQ_API_KEY=
+GROQ_MODEL=llama-3.3-70b-versatile
+```
+
+Frontend variables are defined in `frontend/.env.example`:
+
+```text
+VITE_API_URL=http://localhost:8000
+```
+
+Do not commit `.env` files. For production, set `GROQ_API_KEY`, `DATABASE_URL`, and `FRONTEND_ORIGINS` in the backend host, and set `VITE_API_URL` in the frontend host.
+
+## Deployment
+
+Backend:
+
+- Render can use `render.yaml`.
+- Set `GROQ_API_KEY` as a secret environment variable.
+- Set `FRONTEND_ORIGINS` to the deployed frontend URL.
+- Use `/health` and `/api/status` as smoke checks after deployment.
+
+Frontend:
+
+- Vercel can use `frontend/vercel.json`.
+- Set `VITE_API_URL` to the deployed backend URL.
+- After deployment, run a query and load/save a project to confirm frontend-backend connectivity.
+
 ## Current Status
 
 Built:
@@ -102,6 +138,5 @@ Example filter response shape:
 
 Next:
 
-- connect production environment variables
-- finish deployment setup
+- deploy backend and frontend
 - prepare final ZIP package
