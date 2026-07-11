@@ -24,11 +24,11 @@ export function BuildingMesh({ building, origin, selected, matched, onSelect }) 
   }, [building, origin]);
 
   const color = selected
-    ? "#d91646"
+    ? "#ffffff"
     : hovered
-      ? "#d8c798"
+      ? "#f2eee4"
       : zoningColor(building.zoning);
-  const emissive = selected ? "#4c0015" : matched ? "#410014" : "#000000";
+  const emissive = selected ? "#ffffff" : matched ? "#ffffff" : "#000000";
 
   return (
     <mesh
@@ -52,13 +52,13 @@ export function BuildingMesh({ building, origin, selected, matched, onSelect }) 
       <meshStandardMaterial
         color={color}
         emissive={emissive}
-        emissiveIntensity={selected ? 0.28 : matched ? 0.08 : 0.02}
-        roughness={0.82}
-        metalness={0.06}
+        emissiveIntensity={selected ? 0.12 : matched ? 0.055 : 0.01}
+        roughness={0.76}
+        metalness={0.12}
       />
       {(selected || hovered || matched) && (
         <Edges
-          color={selected || matched ? "#d91646" : "#2b2111"}
+          color={selected || matched ? "#ffffff" : "#111111"}
           threshold={selected ? 6 : 14}
         />
       )}

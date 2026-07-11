@@ -265,13 +265,13 @@ export default function App() {
 
         <div className="zoningLegend" aria-label="Building color legend">
           <span>Zoning</span>
-          <LegendItem color="#8aa1a8" label="CC-X" />
-          <LegendItem color="#748c94" label="CC-MH" />
-          <LegendItem color="#8c839b" label="CC-MHX" />
-          <LegendItem color="#c0a06c" label="CC-COR" />
-          <LegendItem color="#ac826f" label="C-COR1" />
-          <LegendItem color="#b49786" label="DC" />
-          <LegendItem color="#d91646" label="Selected / match outline" />
+          <LegendItem color="#d8d8d2" label="CC-X" />
+          <LegendItem color="#a7adb0" label="CC-MH" />
+          <LegendItem color="#707a7d" label="CC-MHX" />
+          <LegendItem color="#c0b49c" label="CC-COR" />
+          <LegendItem color="#8c8172" label="C-COR1" />
+          <LegendItem color="#4f5654" label="DC" />
+          <LegendItem color="#ffffff" label="Selected / match outline" />
         </div>
 
         <form className="mapQueryDock" onSubmit={handleDockSubmit}>
