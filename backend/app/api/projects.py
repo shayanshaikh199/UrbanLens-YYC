@@ -71,8 +71,16 @@ def list_projects(username: str, db: Session = Depends(get_db)):
 @router.post("/users/{username}/projects")
 def save_project(username: str, payload: ProjectCreate, db: Session = Depends(get_db)):
     user = _get_or_create_user(db, username)
-    project = Project(user_id=user.id, name=payload.name.strip(), query=payload.query, filters=payload.filters)
-    db.add(project)
+    project_name = payload.name.strip()
+    project = db.scalar(
+        select(Project).where(Project.user_id == user.id, Project.name == project_name)
+    )
+    if project:
+        project.query = payload.query
+        project.filters = payload.filters
+    else:
+        project = Project(user_id=user.id, name=project_name, query=payload.query, filters=payload.filters)
+        db.add(project)
     db.commit()
     db.refresh(project)
     return {
@@ -103,3 +111,18 @@ def get_project(username: str, project_id: int, db: Session = Depends(get_db)):
         "created_at": project.created_at.isoformat(),
         "updated_at": project.updated_at.isoformat(),
     }
+
+
+@router.delete("/users/{username}/projects/{project_id}")
+def delete_project(username: str, project_id: int, db: Session = Depends(get_db)):
+    user = db.scalar(select(User).where(User.username == _normalize_username(username)))
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    project = db.scalar(select(Project).where(Project.user_id == user.id, Project.id == project_id))
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    db.delete(project)
+    db.commit()
+    return {"deleted": True, "id": project_id}
