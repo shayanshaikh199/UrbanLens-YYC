@@ -58,17 +58,22 @@ def interpret_query(query: str) -> dict[str, Any]:
 
 
 def apply_filters(buildings: list[dict], filters: list[dict]) -> list[str]:
-    if not filters:
+    validated_filters = validate_filters(filters)
+    if not validated_filters:
         return []
 
-    if len(filters) == 1 and filters[0].get("operator") == "top":
-        return _top_matches(buildings, filters[0])
+    if len(validated_filters) == 1 and validated_filters[0].get("operator") == "top":
+        return _top_matches(buildings, validated_filters[0])
 
     matched = []
     for building in buildings:
-        if all(_matches_filter(building, item) for item in filters):
+        if all(_matches_filter(building, item) for item in validated_filters):
             matched.append(building["id"])
     return matched
+
+
+def validate_filters(filters: list[dict]) -> list[dict]:
+    return [_validate_filter(item) for item in filters]
 
 
 def _matches_filter(building: dict, item: dict) -> bool:
@@ -191,8 +196,16 @@ def _parse_with_groq(text: str) -> list[dict] | None:  # pragma: no cover - depe
 
 
 def _validate_filter(item: dict) -> dict:
+    if not isinstance(item, dict):
+        raise QueryError("Each filter must be an object")
     attribute = _normalize_attribute(item.get("attribute"))
     op = str(item.get("operator", "")).strip()
+    if op == "top":
+        limit = _as_number(item.get("value") or 5)
+        direction = item.get("direction", "desc")
+        if direction not in {"asc", "desc"}:
+            raise QueryError(f"Unsupported ranking direction: {direction}")
+        return {"attribute": attribute, "operator": "top", "value": int(limit), "direction": direction}
     if op not in OPERATORS:
         raise QueryError(f"Unsupported operator: {op}")
     return {"attribute": attribute, "operator": op, "value": item.get("value"), "unit": item.get("unit")}
