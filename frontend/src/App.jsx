@@ -487,8 +487,8 @@ function permitInsideBounds(permit, bounds) {
   const [lat, lng] = permit.center;
   const [south, west] = bounds.sw;
   const [north, east] = bounds.ne;
-  const latPadding = Math.max((north - south) * 0.08, 0.00035);
-  const lngPadding = Math.max((east - west) * 0.08, 0.00035);
+  const latPadding = Math.max((north - south) * 0.25, 0.00035);
+  const lngPadding = Math.max((east - west) * 0.25, 0.00035);
   return (
     lat >= south - latPadding &&
     lat <= north + latPadding &&
