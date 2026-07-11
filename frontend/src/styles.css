@@ -419,6 +419,49 @@ h2 {
   text-align: left;
 }
 
+.resultList {
+  display: grid;
+  gap: 7px;
+}
+
+.resultItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 10px;
+  width: 100%;
+  padding: 9px;
+  border: 1px solid #d3dfda;
+  border-radius: 8px;
+  background: #f8faf7;
+  color: #18211f;
+  text-align: left;
+}
+
+.resultItem.isSelected {
+  border-color: #167c80;
+  background: #ecf5f3;
+  box-shadow: inset 3px 0 0 #167c80;
+}
+
+.resultItem span,
+.resultItem strong,
+.resultItem small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resultItem span {
+  font-weight: 800;
+}
+
+.resultItem small {
+  grid-column: 1 / -1;
+  color: #64736f;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 .loadingState {
   display: flex;
   align-items: center;

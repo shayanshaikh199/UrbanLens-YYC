@@ -5,6 +5,7 @@ import { CityScene } from "./components/CityScene.jsx";
 import { DataPanel } from "./components/DataPanel.jsx";
 import { ProjectPanel } from "./components/ProjectPanel.jsx";
 import { QueryPanel } from "./components/QueryPanel.jsx";
+import { ResultsPanel } from "./components/ResultsPanel.jsx";
 import { useMapData } from "./hooks/useMapData.js";
 import { useProjects } from "./hooks/useProjects.js";
 import { filterBuildings, runQuery } from "./services/api.js";
@@ -23,6 +24,10 @@ export default function App() {
   const matchedIds = useMemo(
     () => new Set(queryResult?.matched_building_ids ?? []),
     [queryResult]
+  );
+  const matchedBuildings = useMemo(
+    () => buildings.filter((building) => matchedIds.has(building.id)),
+    [buildings, matchedIds]
   );
   const visiblePermitCount = showPermits ? Math.min(permits.length, 45) : 0;
   const selectedBuildingPermits = useMemo(() => {
@@ -166,6 +171,15 @@ export default function App() {
           onSave={handleSaveProject}
           onLoad={handleLoadProject}
           icon={<Save size={16} />}
+        />
+
+        <ResultsPanel
+          buildings={matchedBuildings}
+          selectedBuildingId={selectedBuilding?.id}
+          onSelectBuilding={(building) => {
+            setSelectedBuilding((current) => (current?.id === building.id ? null : building));
+            setSelectedPermit(null);
+          }}
         />
 
         <DataPanel
