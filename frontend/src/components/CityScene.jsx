@@ -174,8 +174,8 @@ function sunStateForHour(hour, groundSize) {
   const dusk = smoothstep(0.02, 0.42, warmth) * (1 - smoothstep(0.65, 0.95, daylight));
   const dayColor = mixColor("#17211f", "#384541", daylight);
   const warmSky = mixColor(dayColor, "#4a3826", dusk);
-  const groundBase = mixColor("#262b2b", "#555957", daylight);
-  const warmGround = mixColor(groundBase, "#625645", dusk * 0.55);
+  const groundBase = mixColor("#33251b", "#6b5944", daylight);
+  const warmGround = mixColor(groundBase, "#7b4c2d", dusk * 0.5);
   const directWarm = mixColor("#7b93b2", "#f2dfbd", daylight);
 
   return {
