@@ -1,4 +1,4 @@
-import { Building2, Database, Eye, Layers, Loader2, Menu, Save, Search, Send, UserRound, X } from "lucide-react";
+import { Building2, Database, Eye, Layers, Loader2, Menu, Save, Search, Send, X } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { CityScene } from "./components/CityScene.jsx";
@@ -25,7 +25,7 @@ export default function App() {
   const [queryResult, setQueryResult] = useState(null);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
-  const [username, setUsername] = useState("shayan");
+  const [username, setUsername] = useState("");
   const [projectNotice, setProjectNotice] = useState("");
   const projects = useProjects(username);
 
@@ -302,14 +302,15 @@ export default function App() {
           <Metric icon={<Eye size={16} />} label="Matches" value={queryResult?.match_count ?? 0} />
         </div>
 
-        <label className="userInput">
-          <UserRound size={16} />
-          <input
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            placeholder="username"
-          />
-        </label>
+        <ResultsPanel
+          buildings={matchedBuildings}
+          selectedBuildingId={selectedBuilding?.id}
+          onSelectBuilding={(building) => {
+            setSelectedBuilding((current) => (current?.id === building.id ? null : building));
+            setSelectedPermit(null);
+            setToolsOpen(false);
+          }}
+        />
 
         <div className="layerControls">
           <div className="toggleRow">
@@ -354,20 +355,11 @@ export default function App() {
           notice={projectNotice}
           disabled={!queryResult}
           username={username}
+          onUsernameChange={setUsername}
           onSave={handleSaveProject}
           onLoad={handleLoadProject}
           onDelete={handleDeleteProject}
           icon={<Save size={16} />}
-        />
-
-        <ResultsPanel
-          buildings={matchedBuildings}
-          selectedBuildingId={selectedBuilding?.id}
-          onSelectBuilding={(building) => {
-            setSelectedBuilding((current) => (current?.id === building.id ? null : building));
-            setSelectedPermit(null);
-            setToolsOpen(false);
-          }}
         />
 
         <InsightsPanel buildings={buildings} permits={permits} />

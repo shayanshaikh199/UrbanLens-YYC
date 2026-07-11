@@ -1,9 +1,9 @@
-import { Trash2 } from "lucide-react";
+import { Trash2, UserRound } from "lucide-react";
 import { useState } from "react";
 
 import { filterSummary } from "../utils/filterText.js";
 
-export function ProjectPanel({ projects, loading, error, notice, disabled, username, onSave, onLoad, onDelete, icon }) {
+export function ProjectPanel({ projects, loading, error, notice, disabled, username, onUsernameChange, onSave, onLoad, onDelete, icon }) {
   const [name, setName] = useState("");
   const usernameMissing = !username.trim();
   const saveDisabled = disabled || usernameMissing || !name.trim();
@@ -21,6 +21,14 @@ export function ProjectPanel({ projects, loading, error, notice, disabled, usern
         {icon}
         <h2>Projects</h2>
       </div>
+      <label className="projectUserInput">
+        <UserRound size={15} />
+        <input
+          value={username}
+          onChange={(event) => onUsernameChange(event.target.value)}
+          placeholder="Name for saved filters"
+        />
+      </label>
       <form className="saveForm" onSubmit={handleSave}>
         <input
           value={name}

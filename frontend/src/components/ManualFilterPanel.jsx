@@ -1,4 +1,4 @@
-import { SlidersHorizontal } from "lucide-react";
+import { ChevronDown, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 
 const LAND_USES = ["Any", "COMMERCIAL", "MIXED USE", "RESIDENTIAL"];
@@ -9,6 +9,7 @@ export function ManualFilterPanel({ loading, onApply, onClear }) {
   const [zoning, setZoning] = useState("Any");
   const [minHeight, setMinHeight] = useState("");
   const [minValue, setMinValue] = useState("");
+  const [open, setOpen] = useState(false);
 
   const filters = useMemo(
     () => buildFilters({ landUse, zoning, minHeight, minValue }),
@@ -30,12 +31,16 @@ export function ManualFilterPanel({ loading, onApply, onClear }) {
   }
 
   return (
-    <section className="panel">
-      <div className="panelHeader">
-        <SlidersHorizontal size={16} />
-        <h2>Manual filters</h2>
-      </div>
-      <form className="manualFilterForm" onSubmit={handleSubmit}>
+    <section className={open ? "panel collapsiblePanel isOpen" : "panel collapsiblePanel"}>
+      <button className="collapsibleHeader" type="button" onClick={() => setOpen((value) => !value)}>
+        <span>
+          <SlidersHorizontal size={16} />
+          Manual filters
+        </span>
+        <strong>{hasFilters ? `${filters.length} active` : "Optional"}</strong>
+        <ChevronDown size={16} />
+      </button>
+      {open ? <form className="manualFilterForm" onSubmit={handleSubmit}>
         <label>
           <span>Use</span>
           <select value={landUse} onChange={(event) => setLandUse(event.target.value)}>
@@ -85,7 +90,7 @@ export function ManualFilterPanel({ loading, onApply, onClear }) {
           </button>
           <button disabled={loading || !hasFilters}>Apply</button>
         </div>
-      </form>
+      </form> : null}
     </section>
   );
 }
