@@ -28,6 +28,19 @@ def test_llm_status_does_not_expose_key():
     assert "api_key" not in status
 
 
+def test_api_status_exposes_demo_metadata_without_secrets():
+    with TestClient(app) as client:
+        status = client.get("/api/status").json()
+
+    assert status["service"] == "urbanlens-api"
+    assert status["area_name"] == "Downtown Core / Stephen Ave, Calgary AB"
+    assert status["buildings"] > 0
+    assert status["permits"] > 0
+    assert status["llm"]["provider"] == "groq"
+    assert "key" not in status["llm"]
+    assert "api_key" not in status["llm"]
+
+
 def test_filter_endpoint_rejects_unsupported_attribute():
     with TestClient(app) as client:
         response = client.post(

@@ -3,8 +3,8 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
-from app.services.map_data import get_buildings
 from app.core.config import settings
+from app.services.map_data import get_buildings, get_permits
 from app.services.query_engine import QueryError, apply_filters, interpret_query
 
 router = APIRouter()
@@ -44,6 +44,27 @@ def llm_status():
         "configured": settings.llm_configured,
         "model": settings.groq_model if settings.llm_configured else None,
         "fallback": "deterministic-pattern-parser",
+    }
+
+
+@router.get("/status")
+def api_status():
+    buildings_payload = get_buildings()
+    permits_payload = get_permits()
+    buildings_metadata = buildings_payload["metadata"]
+    permits_metadata = permits_payload["metadata"]
+
+    return {
+        "service": "urbanlens-api",
+        "area_name": buildings_metadata["area_name"],
+        "data_source": buildings_metadata["source"],
+        "buildings": buildings_metadata["count"],
+        "permits": permits_metadata["count"],
+        "llm": {
+            "provider": "groq",
+            "configured": settings.llm_configured,
+            "model": settings.groq_model if settings.llm_configured else None,
+        },
     }
 
 
