@@ -34,13 +34,20 @@ export function CityScene({
   );
   const controlsRef = useRef(null);
   const selectedFocus = useMemo(() => {
-    if (selectedBuilding?.center) {
-      const [x, z] = latLngToScene(selectedBuilding.center, origin);
-      return { x, y: Math.max(14, selectedBuilding.height_m * 0.55), z };
+    if (selectedBuilding?.footprint?.length) {
+      const points = selectedBuilding.footprint.map((point) => latLngToScene(point, origin));
+      const x = points.reduce((sum, point) => sum + point[0], 0) / points.length;
+      const z = points.reduce((sum, point) => sum + point[1], 0) / points.length;
+      return {
+        id: `building-${selectedBuilding.id}`,
+        x,
+        y: Math.max(10, selectedBuilding.height_m * 0.42),
+        z
+      };
     }
     if (selectedPermit?.center) {
       const [x, z] = latLngToScene(selectedPermit.center, origin);
-      return { x, y: 12, z };
+      return { id: `permit-${selectedPermit.id}`, x, y: 12, z };
     }
     return null;
   }, [origin, selectedBuilding, selectedPermit]);
@@ -122,20 +129,43 @@ function CameraFocus({ focus, controlsRef, groundSize }) {
   const { camera } = useThree();
   const target = useRef(new THREE.Vector3(0, 30, 0));
   const cameraGoal = useRef(new THREE.Vector3());
+  const active = useRef(false);
+  const lastFocusId = useRef(null);
 
   useEffect(() => {
-    if (!focus) return;
+    if (!focus) {
+      active.current = false;
+      lastFocusId.current = null;
+      return;
+    }
+    if (lastFocusId.current === focus.id) return;
+
     target.current.set(focus.x, focus.y, focus.z);
-    const distance = Math.max(120, Math.min(groundSize * 0.55, 230));
-    cameraGoal.current.set(focus.x + distance * 0.52, focus.y + distance * 0.58, focus.z + distance * 0.72);
-  }, [focus, groundSize]);
+    const viewDirection = camera.position.clone().sub(target.current);
+    if (viewDirection.lengthSq() < 1) {
+      viewDirection.set(0.55, 0.45, 0.7);
+    }
+    viewDirection.normalize();
+    if (viewDirection.y < 0.28) {
+      viewDirection.y = 0.38;
+      viewDirection.normalize();
+    }
+    const currentDistance = camera.position.distanceTo(target.current);
+    const distance = Math.max(105, Math.min(currentDistance * 0.62, groundSize * 0.42, 190));
+    cameraGoal.current.copy(target.current).addScaledVector(viewDirection, distance);
+    lastFocusId.current = focus.id;
+    active.current = true;
+  }, [camera, focus, groundSize]);
 
   useFrame(() => {
-    if (!focus) return;
-    camera.position.lerp(cameraGoal.current, 0.08);
+    if (!active.current) return;
+    camera.position.lerp(cameraGoal.current, 0.1);
     if (controlsRef.current) {
-      controlsRef.current.target.lerp(target.current, 0.1);
+      controlsRef.current.target.lerp(target.current, 0.12);
       controlsRef.current.update();
+    }
+    if (camera.position.distanceTo(cameraGoal.current) < 1.2) {
+      active.current = false;
     }
   });
 

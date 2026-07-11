@@ -101,11 +101,11 @@ export default function App() {
               setSelectedPermit(null);
             }}
             onSelectBuilding={(building) => {
-              setSelectedBuilding(building);
+              setSelectedBuilding((current) => (current?.id === building.id ? null : building));
               setSelectedPermit(null);
             }}
             onSelectPermit={(permit) => {
-              setSelectedPermit(permit);
+              setSelectedPermit((current) => (current?.id === permit.id ? null : permit));
               setSelectedBuilding(null);
             }}
           />
