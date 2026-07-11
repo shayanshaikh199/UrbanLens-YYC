@@ -2,7 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.map import router as map_router
+from app.api.projects import router as projects_router
+from app.api.query import router as query_router
 from app.core.config import settings
+from app.db.session import init_db
 
 
 def create_app() -> FastAPI:
@@ -21,6 +24,12 @@ def create_app() -> FastAPI:
     )
 
     app.include_router(map_router, prefix="/api/map", tags=["map"])
+    app.include_router(query_router, prefix="/api", tags=["query"])
+    app.include_router(projects_router, prefix="/api", tags=["projects"])
+
+    @app.on_event("startup")
+    def startup() -> None:
+        init_db()
 
     @app.get("/health")
     def health() -> dict[str, str]:
