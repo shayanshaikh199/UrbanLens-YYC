@@ -41,7 +41,7 @@ export function CityScene({
     [groundSize, sunHour]
   );
   const shadowExtent = groundSize * 0.62;
-  const visualGroundSize = groundSize * 10;
+  const visualGroundSize = groundSize * 2.35;
   const shadowsActive = shadowsEnabled && sun.shadowsActive;
   const visiblePermits = useMemo(() => {
     if (!showPermits) return [];
@@ -58,11 +58,11 @@ export function CityScene({
   return (
     <Canvas
       shadows
-      camera={{ position: cameraPosition, fov: 46, far: groundSize * 14 }}
+      camera={{ position: cameraPosition, fov: 46, far: groundSize * 5 }}
       onPointerMissed={onClearSelection}
     >
       <color attach="background" args={[sun.backgroundColor]} />
-      <fog attach="fog" args={[sun.fogColor, groundSize * 2.4, groundSize * 8.5]} />
+      <fog attach="fog" args={[sun.fogColor, groundSize * 1.2, groundSize * 3.4]} />
       <ambientLight intensity={sun.ambientIntensity} color={sun.ambientColor} />
       <hemisphereLight args={[sun.skyColor, sun.groundLightColor, sun.hemiIntensity]} />
       <directionalLight
@@ -89,15 +89,14 @@ export function CityScene({
       ) : null}
       {sun.sunOpacity > 0.04 ? (
         <mesh position={sun.position}>
-          <sphereGeometry args={[groundSize * 0.038, 32, 32]} />
-          <meshBasicMaterial color={sun.sunDiskColor} transparent opacity={sun.sunOpacity} />
+          <sphereGeometry args={[groundSize * 0.045, 32, 32]} />
+          <meshBasicMaterial color={sun.sunDiskColor} transparent opacity={sun.sunOpacity} fog={false} />
         </mesh>
       ) : null}
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[visualGroundSize, visualGroundSize]} />
         <meshStandardMaterial color={sun.groundColor} roughness={0.92} />
       </mesh>
-      <gridHelper args={[visualGroundSize, 120, sun.gridPrimary, sun.gridSecondary]} position={[0, 0.03, 0]} />
 
       {showRoads ? <RoadLayer origin={origin} /> : null}
 
@@ -137,7 +136,7 @@ export function CityScene({
         screenSpacePanning={false}
         target={[0, 30, 0]}
         minDistance={90}
-        maxDistance={groundSize * 1.7}
+        maxDistance={groundSize * 1.22}
         maxPolarAngle={1.35}
         rotateSpeed={0.72}
         panSpeed={0.85}
@@ -161,8 +160,8 @@ function sunStateForHour(hour, groundSize) {
   const eveningWarmth = smoothstep(15.5, 20.75, normalizedHour);
   const warmth = Math.max(morningWarmth, eveningWarmth);
   const azimuth = normalizedHour / 24 * Math.PI * 2 - Math.PI * 0.65;
-  const radius = groundSize * 0.68;
-  const elevation = THREE.MathUtils.lerp(groundSize * 0.08, groundSize * 0.92, daylight);
+  const radius = groundSize * 0.94;
+  const elevation = THREE.MathUtils.lerp(groundSize * 0.26, groundSize * 0.92, daylight);
   const position = [
     Math.cos(azimuth) * radius,
     elevation,
@@ -183,8 +182,6 @@ function sunStateForHour(hour, groundSize) {
     backgroundColor: warmSky,
     fogColor: warmSky,
     groundColor: warmGround,
-    gridPrimary: mixColor("#2a3431", "#56605b", daylight),
-    gridSecondary: mixColor("#1c2522", "#3d4742", daylight),
     ambientColor: mixColor("#8aa1b5", "#f4ead7", daylight),
     ambientIntensity: THREE.MathUtils.lerp(0.14, 0.42, daylight),
     hemiIntensity: THREE.MathUtils.lerp(0.08, 0.28, daylight),
