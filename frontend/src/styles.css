@@ -1640,6 +1640,50 @@ body {
   color: #d8c798;
 }
 
+.saveNamePrompt {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(110px, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  margin-top: 2px;
+  padding: 8px;
+  border: 1px solid rgba(216, 199, 152, 0.24);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.08);
+}
+
+.saveNamePrompt span {
+  color: rgba(255, 250, 240, 0.72);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.saveNamePrompt input {
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 250, 240, 0.16);
+  border-radius: 7px;
+  background: rgba(255, 250, 240, 0.1);
+  font-size: 0.86rem;
+}
+
+.saveNamePrompt button {
+  height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 7px;
+  background: #d8c798;
+  color: #151b19;
+  font-weight: 850;
+}
+
+.saveNamePrompt button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
 .savedProjectsArea {
   position: absolute;
   z-index: 11;
@@ -1708,7 +1752,7 @@ body {
   position: absolute;
   z-index: 9;
   right: max(18px, env(safe-area-inset-right));
-  bottom: 104px;
+  bottom: 88px;
   width: min(310px, calc(100vw - 36px));
 }
 
@@ -1793,10 +1837,51 @@ body {
 
 .selectionPopup .detailList dt,
 .selectionPopup .stat span,
-.selectionPopup .miniPermit small,
+.selectionPopup .miniPermitMain small,
 .selectionPopup .permitSummary.empty,
 .selectionPopup .matchReason span {
   color: rgba(255, 250, 240, 0.65);
+}
+
+.selectionPopup .summaryHeader {
+  color: rgba(255, 250, 240, 0.76);
+}
+
+.selectionPopup .summaryHeader span {
+  color: rgba(255, 250, 240, 0.48);
+}
+
+.selectionPopup .miniPermit {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 8px 10px;
+  padding: 9px;
+  background: rgba(255, 250, 240, 0.07);
+}
+
+.selectionPopup .miniPermitMain strong {
+  color: #fffaf0;
+  font-size: 0.76rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.selectionPopup .permitStatusBadge {
+  max-width: 82px;
+  background: rgba(233, 244, 238, 0.95);
+  color: #40524d;
+}
+
+.selectionPopup .permitCost {
+  grid-column: 2;
+  margin-left: 0;
+  color: rgba(255, 250, 240, 0.72);
+  font-size: 0.7rem;
+}
+
+.selectionPopup .permitOverflow {
+  color: rgba(255, 250, 240, 0.58);
 }
 
 .popupCloseButton {
@@ -2070,7 +2155,7 @@ body {
 
   .mapSunControl {
     right: 18px;
-    bottom: 96px;
+    bottom: 88px;
     left: 18px;
     width: auto;
   }

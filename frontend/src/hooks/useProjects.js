@@ -11,8 +11,9 @@ export function useProjects(username) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const load = useCallback(async () => {
-    if (!username.trim()) {
+  const load = useCallback(async (usernameOverride) => {
+    const activeUsername = usernameOverride ?? username;
+    if (!activeUsername.trim()) {
       setItems([]);
       setError("");
       return;
@@ -20,7 +21,7 @@ export function useProjects(username) {
     setLoading(true);
     setError("");
     try {
-      const payload = await fetchProjects(username);
+      const payload = await fetchProjects(activeUsername);
       setItems(payload.projects);
     } catch (err) {
       setError(err.message);
@@ -33,13 +34,14 @@ export function useProjects(username) {
     load();
   }, [load]);
 
-  async function saveProject(project) {
-    if (!username.trim()) {
+  async function saveProject(project, usernameOverride) {
+    const activeUsername = usernameOverride ?? username;
+    if (!activeUsername.trim()) {
       throw new Error("Enter a username before saving projects.");
     }
     try {
-      await saveProjectRequest(username, project);
-      await load();
+      await saveProjectRequest(activeUsername, project);
+      await load(activeUsername);
     } catch (err) {
       setError(err.message);
       throw err;

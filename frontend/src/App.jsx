@@ -23,10 +23,12 @@ export default function App() {
   const [toolsOpen, setToolsOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [queryDraft, setQueryDraft] = useState("show commercial buildings");
+  const [saveNameDraft, setSaveNameDraft] = useState("");
+  const [saveNamePromptOpen, setSaveNamePromptOpen] = useState(false);
   const [queryResult, setQueryResult] = useState(null);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
-  const [username, setUsername] = useState("guest");
+  const [username, setUsername] = useState("");
   const [projectNotice, setProjectNotice] = useState("");
   const projects = useProjects(username);
 
@@ -78,16 +80,15 @@ export default function App() {
   async function handleQuickSave() {
     if (!queryResult) return;
     const source = queryResult.query || "Map filter";
-    const date = new Intl.DateTimeFormat("en-CA", {
-      month: "short",
-      day: "2-digit",
-      hour: "numeric",
-      minute: "2-digit"
-    }).format(new Date());
-    await handleSaveProject(`${source} ${date}`);
+    if (!username.trim()) {
+      setSaveNamePromptOpen(true);
+      setProjectNotice("");
+      return;
+    }
+    await handleSaveProject(source, username);
   }
 
-  async function handleSaveProject(name) {
+  async function handleSaveProject(name, usernameOverride = username) {
     if (!queryResult) return;
     setProjectNotice("");
     try {
@@ -95,11 +96,21 @@ export default function App() {
         name,
         query: queryResult.query,
         filters: queryResult.filters
-      });
+      }, usernameOverride);
       setProjectNotice(`Saved "${name}"`);
     } catch (err) {
       setProjectNotice(err.message);
     }
+  }
+
+  async function handleSaveNameSubmit(event) {
+    event.preventDefault();
+    const nextUsername = saveNameDraft.trim();
+    if (!nextUsername || !queryResult) return;
+    setUsername(nextUsername);
+    setSaveNamePromptOpen(false);
+    await handleSaveProject(queryResult.query || "Map filter", nextUsername);
+    setProjectsOpen(true);
   }
 
   async function handleLoadProject(project) {
@@ -175,7 +186,7 @@ export default function App() {
           </div>
           <div className="mapQuickStats" aria-label="Map summary">
             <span>{buildings.length} buildings</span>
-            <span>{visiblePermitCount}/{permits.length} pins</span>
+            <span>{visiblePermitCount} permit pins</span>
             <span>{queryResult?.match_count ?? 0} matches</span>
           </div>
           <button
@@ -256,6 +267,7 @@ export default function App() {
             onChange={(event) => setQueryDraft(event.target.value)}
             placeholder="Ask AI to highlight buildings, permits, zoning, height..."
             aria-label="Ask AI about the map"
+            onFocus={() => setSaveNamePromptOpen(false)}
           />
           <button className="dockRunButton" disabled={queryLoading || !queryDraft.trim()} title="Run query">
             {queryLoading ? <Loader2 className="spin" size={17} /> : <Send size={17} />}
@@ -279,6 +291,28 @@ export default function App() {
             <div className="dockResult">
               <strong>{queryResult.match_count} matches</strong>
               <span>{queryResult.query || "Current filter"}</span>
+            </div>
+          ) : null}
+          {saveNamePromptOpen ? (
+            <div className="saveNamePrompt">
+              <span>Save under</span>
+              <input
+                value={saveNameDraft}
+                onChange={(event) => setSaveNameDraft(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") handleSaveNameSubmit(event);
+                }}
+                placeholder="Your name"
+                aria-label="Name for saved searches"
+                autoFocus
+              />
+              <button
+                type="button"
+                disabled={!saveNameDraft.trim()}
+                onClick={handleSaveNameSubmit}
+              >
+                Save
+              </button>
             </div>
           ) : null}
         </form>
@@ -342,7 +376,7 @@ export default function App() {
 
         <div className="metricGrid">
           <Metric icon={<Building2 size={16} />} label="Buildings" value={buildings.length} />
-          <Metric icon={<Layers size={16} />} label="Pins" value={`${visiblePermitCount}/${permits.length}`} />
+          <Metric icon={<Layers size={16} />} label="Permit pins" value={`${visiblePermitCount} shown`} />
           <Metric icon={<Eye size={16} />} label="Matches" value={queryResult?.match_count ?? 0} />
         </div>
 

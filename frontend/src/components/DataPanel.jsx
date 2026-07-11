@@ -85,7 +85,7 @@ function PermitSummary({ permits }) {
             <span className="permitStatusBadge">{statusLabel(item.status)}</span>
             <div className="miniPermitMain">
               <strong>{item.permit_type || "Permit record"}</strong>
-              <small>{dateLabel(item.properties?.issued_date)}</small>
+              <small>{permitDateLabel(item.properties?.issued_date)}</small>
             </div>
             {item.estimated_project_cost ? (
               <span className="permitCost">{currency(item.estimated_project_cost)}</span>
@@ -144,4 +144,9 @@ function dateLabel(value) {
     month: "short",
     day: "2-digit"
   }).format(date);
+}
+
+function permitDateLabel(value) {
+  if (!value) return "No issue date";
+  return dateLabel(value);
 }
