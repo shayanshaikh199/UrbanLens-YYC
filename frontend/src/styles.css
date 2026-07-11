@@ -123,7 +123,9 @@ h2 {
 .metric span,
 .detailList dt,
 .projectList span,
-.queryResult span {
+.queryResult span,
+.stat span,
+.miniPermit small {
   color: #64736f;
   font-size: 0.78rem;
 }
@@ -169,6 +171,34 @@ h2 {
 .permitPanel .selectionBadge {
   background: #fff0ed;
   color: #9f392d;
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.permitPanel .statRow {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.stat {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 9px;
+  border-radius: 8px;
+  background: #f1f6f4;
+}
+
+.stat strong {
+  overflow: hidden;
+  color: #172420;
+  font-size: 0.86rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .userInput,
@@ -283,6 +313,57 @@ h2 {
   margin: 0;
   overflow-wrap: anywhere;
   font-weight: 700;
+}
+
+.permitSummary {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #d9e3df;
+}
+
+.permitSummary.empty {
+  display: flex;
+  align-items: center;
+  color: #64736f;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.summaryHeader {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #25322f;
+  font-size: 0.86rem;
+}
+
+.miniPermitList {
+  display: grid;
+  gap: 7px;
+}
+
+.miniPermit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px 10px;
+  padding: 8px;
+  border: 1px solid #d9e3df;
+  border-radius: 8px;
+  background: #f8faf7;
+}
+
+.miniPermit span,
+.miniPermit strong,
+.miniPermit small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.miniPermit small {
+  grid-column: 1 / -1;
 }
 
 .projectList {

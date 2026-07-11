@@ -1,6 +1,6 @@
 import { Environment, OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { useMemo } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 import { latLngToScene } from "../utils/geo.js";
@@ -12,8 +12,8 @@ export function CityScene({
   permits,
   metadata,
   matchedIds,
-  selectedBuildingId,
-  selectedPermitId,
+  selectedBuilding,
+  selectedPermit,
   showPermits,
   onClearSelection,
   onSelectBuilding,
@@ -32,6 +32,29 @@ export function CityScene({
     () => [groundSize * 0.36, groundSize * 0.34, groundSize * 0.48],
     [groundSize]
   );
+  const controlsRef = useRef(null);
+  const selectedFocus = useMemo(() => {
+    if (selectedBuilding?.center) {
+      const [x, z] = latLngToScene(selectedBuilding.center, origin);
+      return { x, y: Math.max(14, selectedBuilding.height_m * 0.55), z };
+    }
+    if (selectedPermit?.center) {
+      const [x, z] = latLngToScene(selectedPermit.center, origin);
+      return { x, y: 12, z };
+    }
+    return null;
+  }, [origin, selectedBuilding, selectedPermit]);
+  const visiblePermits = useMemo(() => {
+    if (!showPermits) return [];
+    const selectedId = selectedPermit?.id;
+    return [...permits]
+      .sort((a, b) => {
+        if (a.id === selectedId) return -1;
+        if (b.id === selectedId) return 1;
+        return (b.estimated_project_cost ?? 0) - (a.estimated_project_cost ?? 0);
+      })
+      .slice(0, 45);
+  }, [permits, selectedPermit?.id, showPermits]);
 
   return (
     <Canvas
@@ -60,7 +83,7 @@ export function CityScene({
             key={building.id}
             building={building}
             origin={origin}
-            selected={selectedBuildingId === building.id}
+            selected={selectedBuilding?.id === building.id}
             matched={matchedIds.has(building.id)}
             onSelect={onSelectBuilding}
           />
@@ -68,22 +91,24 @@ export function CityScene({
       </group>
 
       {showPermits
-        ? permits.map((permit) => {
+        ? visiblePermits.map((permit) => {
             const [x, z] = latLngToScene(permit.center, origin);
             return (
               <PermitMarker
                 key={permit.id}
                 permit={permit}
-                position={new THREE.Vector3(x, 6, z)}
-                selected={selectedPermitId === permit.id}
+                position={new THREE.Vector3(x, 4.2, z)}
+                selected={selectedPermit?.id === permit.id}
                 onSelect={onSelectPermit}
               />
             );
           })
         : null}
 
+      <CameraFocus focus={selectedFocus} controlsRef={controlsRef} groundSize={groundSize} />
       <Environment preset="city" />
       <OrbitControls
+        ref={controlsRef}
         target={[0, 30, 0]}
         minDistance={90}
         maxDistance={groundSize * 1.35}
@@ -91,4 +116,28 @@ export function CityScene({
       />
     </Canvas>
   );
+}
+
+function CameraFocus({ focus, controlsRef, groundSize }) {
+  const { camera } = useThree();
+  const target = useRef(new THREE.Vector3(0, 30, 0));
+  const cameraGoal = useRef(new THREE.Vector3());
+
+  useEffect(() => {
+    if (!focus) return;
+    target.current.set(focus.x, focus.y, focus.z);
+    const distance = Math.max(120, Math.min(groundSize * 0.55, 230));
+    cameraGoal.current.set(focus.x + distance * 0.52, focus.y + distance * 0.58, focus.z + distance * 0.72);
+  }, [focus, groundSize]);
+
+  useFrame(() => {
+    if (!focus) return;
+    camera.position.lerp(cameraGoal.current, 0.08);
+    if (controlsRef.current) {
+      controlsRef.current.target.lerp(target.current, 0.1);
+      controlsRef.current.update();
+    }
+  });
+
+  return null;
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 export function PermitMarker({ permit, position, selected, onSelect }) {
   const [hovered, setHovered] = useState(false);
   const active = hovered || selected;
-  const color = selected ? "#e14f3f" : hovered ? "#f1b34c" : "#227b7f";
+  const color = selected ? "#d94f3d" : hovered ? "#f1b34c" : statusColor(permit.status);
   const status = permit.status && permit.status !== "UNKNOWN" ? permit.status : permit.permit_type;
 
   return (
@@ -25,11 +25,11 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
           onSelect(permit);
         }}
       >
-        <cylinderGeometry args={[0.45, 0.45, 8, 12]} />
-        <meshStandardMaterial color="#17575a" roughness={0.55} />
+        <cylinderGeometry args={[0.22, 0.22, 5.8, 10]} />
+        <meshStandardMaterial color="#1a5559" roughness={0.55} />
       </mesh>
       <mesh
-        position={[0, 5.2, 0]}
+        position={[0, 3.8, 0]}
         castShadow
         onPointerOver={(event) => {
           event.stopPropagation();
@@ -45,7 +45,7 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
           onSelect(permit);
         }}
       >
-        <sphereGeometry args={[active ? 2.15 : 1.55, 18, 18]} />
+        <sphereGeometry args={[active ? 1.5 : 1.05, 18, 18]} />
         <meshStandardMaterial
           color={color}
           emissive={selected ? "#3c100c" : "#082326"}
@@ -53,8 +53,14 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
           roughness={0.42}
         />
       </mesh>
+      {selected && (
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.1, 0]}>
+          <ringGeometry args={[2.2, 2.75, 28]} />
+          <meshBasicMaterial color="#d94f3d" transparent opacity={0.48} />
+        </mesh>
+      )}
       {active && (
-        <Html position={[0, 10, 0]} center distanceFactor={18}>
+        <Html position={[0, 7, 0]} center distanceFactor={18}>
           <button className={selected ? "pinLabel isSelected" : "pinLabel"} onClick={() => onSelect(permit)}>
             {status}
           </button>
@@ -62,4 +68,12 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
       )}
     </group>
   );
+}
+
+function statusColor(status = "") {
+  const value = status.toUpperCase();
+  if (value.includes("ISSUED") || value.includes("RELEASED")) return "#2f8f64";
+  if (value.includes("PENDING") || value.includes("REVIEW")) return "#b6812d";
+  if (value.includes("REFUSED") || value.includes("CANCELLED")) return "#7b8791";
+  return "#227b7f";
 }

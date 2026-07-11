@@ -24,6 +24,18 @@ export default function App() {
     () => new Set(queryResult?.matched_building_ids ?? []),
     [queryResult]
   );
+  const visiblePermitCount = showPermits ? Math.min(permits.length, 45) : 0;
+  const selectedBuildingPermits = useMemo(() => {
+    if (!selectedBuilding) return [];
+    const buildingKey = addressKey(selectedBuilding.address);
+    if (!buildingKey) return [];
+    return permits
+      .filter((permit) => {
+        const permitKey = addressKey(permit.address);
+        return permitKey && (permitKey.includes(buildingKey) || buildingKey.includes(permitKey));
+      })
+      .slice(0, 4);
+  }, [permits, selectedBuilding]);
 
   async function handleQuery(query) {
     setQueryLoading(true);
@@ -81,8 +93,8 @@ export default function App() {
             permits={permits}
             metadata={metadata}
             matchedIds={matchedIds}
-            selectedBuildingId={selectedBuilding?.id}
-            selectedPermitId={selectedPermit?.id}
+            selectedBuilding={selectedBuilding}
+            selectedPermit={selectedPermit}
             showPermits={showPermits}
             onClearSelection={() => {
               setSelectedBuilding(null);
@@ -115,7 +127,7 @@ export default function App() {
 
         <div className="metricGrid">
           <Metric icon={<Building2 size={16} />} label="Buildings" value={buildings.length} />
-          <Metric icon={<Layers size={16} />} label="Permits" value={permits.length} />
+          <Metric icon={<Layers size={16} />} label="Pins" value={`${visiblePermitCount}/${permits.length}`} />
           <Metric icon={<Eye size={16} />} label="Matches" value={queryResult?.match_count ?? 0} />
         </div>
 
@@ -156,7 +168,12 @@ export default function App() {
           icon={<Save size={16} />}
         />
 
-        <DataPanel building={selectedBuilding} permit={selectedPermit} metadata={metadata} />
+        <DataPanel
+          building={selectedBuilding}
+          permit={selectedPermit}
+          relatedPermits={selectedBuildingPermits}
+          metadata={metadata}
+        />
       </aside>
     </main>
   );
@@ -170,4 +187,12 @@ function Metric({ icon, label, value }) {
       <strong>{value}</strong>
     </div>
   );
+}
+
+function addressKey(value = "") {
+  return String(value)
+    .toUpperCase()
+    .replace(/^#\S+\s+/, "")
+    .replace(/\b(CALGARY|AB|CANADA)\b/g, "")
+    .replace(/[^A-Z0-9]/g, "");
 }
