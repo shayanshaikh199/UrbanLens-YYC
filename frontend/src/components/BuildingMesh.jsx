@@ -1,10 +1,12 @@
-import { useMemo } from "react";
+import { Edges } from "@react-three/drei";
+import { useState, useMemo } from "react";
 import * as THREE from "three";
 
 import { latLngToScene } from "../utils/geo.js";
 import { zoningColor } from "../utils/zoning.js";
 
 export function BuildingMesh({ building, origin, selected, matched, onSelect }) {
+  const [hovered, setHovered] = useState(false);
   const geometry = useMemo(() => {
     const shape = new THREE.Shape();
     building.footprint.forEach(([lat, lng], index) => {
@@ -21,19 +23,42 @@ export function BuildingMesh({ building, origin, selected, matched, onSelect }) 
     return extrude;
   }, [building, origin]);
 
-  const color = selected ? "#f15b4a" : matched ? "#f6b84f" : zoningColor(building.zoning);
+  const color = selected
+    ? "#e14f3f"
+    : hovered
+      ? "#f1d28a"
+      : matched
+        ? "#e8a93d"
+        : zoningColor(building.zoning);
+  const emissive = selected ? "#40120d" : matched ? "#33230a" : "#000000";
 
   return (
     <mesh
       geometry={geometry}
       castShadow
       receiveShadow
+      onPointerOver={(event) => {
+        event.stopPropagation();
+        setHovered(true);
+        document.body.style.cursor = "pointer";
+      }}
+      onPointerOut={() => {
+        setHovered(false);
+        document.body.style.cursor = "";
+      }}
       onClick={(event) => {
         event.stopPropagation();
         onSelect(building);
       }}
     >
-      <meshStandardMaterial color={color} roughness={0.72} metalness={0.08} />
+      <meshStandardMaterial
+        color={color}
+        emissive={emissive}
+        emissiveIntensity={selected || matched ? 0.18 : 0}
+        roughness={0.7}
+        metalness={0.06}
+      />
+      {(selected || hovered) && <Edges color={selected ? "#4b1711" : "#705a24"} threshold={12} />}
     </mesh>
   );
 }

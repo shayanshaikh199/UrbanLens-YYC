@@ -136,12 +136,39 @@ h2 {
   padding: 14px;
 }
 
+.selectedPanel {
+  border-color: #167c80;
+  box-shadow: 0 0 0 3px rgba(22, 124, 128, 0.12);
+}
+
+.permitPanel {
+  border-color: #e14f3f;
+  box-shadow: 0 0 0 3px rgba(225, 79, 63, 0.12);
+}
+
 .panelHeader {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 12px;
   color: #25322f;
+}
+
+.selectionBadge {
+  display: inline-flex;
+  width: fit-content;
+  margin: -2px 0 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #ecf5f3;
+  color: #126569;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.permitPanel .selectionBadge {
+  background: #fff0ed;
+  color: #9f392d;
 }
 
 .userInput,
@@ -292,13 +319,24 @@ h2 {
 }
 
 .pinLabel {
-  padding: 4px 7px;
-  border: 1px solid rgba(24, 33, 31, 0.2);
+  max-width: 150px;
+  padding: 5px 8px;
+  border: 1px solid rgba(24, 33, 31, 0.18);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.94);
   color: #18211f;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(24, 33, 31, 0.15);
+}
+
+.pinLabel.isSelected {
+  border-color: rgba(225, 79, 63, 0.45);
+  background: #fff7f5;
+  color: #8a2f23;
 }
 
 .spin {

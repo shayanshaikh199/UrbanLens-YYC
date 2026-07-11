@@ -1,27 +1,65 @@
 import { Html } from "@react-three/drei";
+import { useState } from "react";
 
-export function PermitMarker({ permit, position, onSelect }) {
+export function PermitMarker({ permit, position, selected, onSelect }) {
+  const [hovered, setHovered] = useState(false);
+  const active = hovered || selected;
+  const color = selected ? "#e14f3f" : hovered ? "#f1b34c" : "#227b7f";
+  const status = permit.status && permit.status !== "UNKNOWN" ? permit.status : permit.permit_type;
+
   return (
     <group position={position}>
       <mesh
         castShadow
+        onPointerOver={(event) => {
+          event.stopPropagation();
+          setHovered(true);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={() => {
+          setHovered(false);
+          document.body.style.cursor = "";
+        }}
         onClick={(event) => {
           event.stopPropagation();
           onSelect(permit);
         }}
       >
-        <cylinderGeometry args={[1.2, 1.2, 20, 16]} />
-        <meshStandardMaterial color="#167c80" roughness={0.5} />
+        <cylinderGeometry args={[0.45, 0.45, 8, 12]} />
+        <meshStandardMaterial color="#17575a" roughness={0.55} />
       </mesh>
-      <mesh position={[0, 12, 0]} castShadow>
-        <sphereGeometry args={[3.6, 20, 20]} />
-        <meshStandardMaterial color="#f15b4a" emissive="#54130e" emissiveIntensity={0.25} />
+      <mesh
+        position={[0, 5.2, 0]}
+        castShadow
+        onPointerOver={(event) => {
+          event.stopPropagation();
+          setHovered(true);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={() => {
+          setHovered(false);
+          document.body.style.cursor = "";
+        }}
+        onClick={(event) => {
+          event.stopPropagation();
+          onSelect(permit);
+        }}
+      >
+        <sphereGeometry args={[active ? 2.15 : 1.55, 18, 18]} />
+        <meshStandardMaterial
+          color={color}
+          emissive={selected ? "#3c100c" : "#082326"}
+          emissiveIntensity={active ? 0.25 : 0.1}
+          roughness={0.42}
+        />
       </mesh>
-      <Html position={[0, 18, 0]} center distanceFactor={16}>
-        <button className="pinLabel" onClick={() => onSelect(permit)}>
-          Permit
-        </button>
-      </Html>
+      {active && (
+        <Html position={[0, 10, 0]} center distanceFactor={18}>
+          <button className={selected ? "pinLabel isSelected" : "pinLabel"} onClick={() => onSelect(permit)}>
+            {status}
+          </button>
+        </Html>
+      )}
     </group>
   );
 }

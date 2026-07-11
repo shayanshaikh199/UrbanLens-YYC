@@ -82,7 +82,12 @@ export default function App() {
             metadata={metadata}
             matchedIds={matchedIds}
             selectedBuildingId={selectedBuilding?.id}
+            selectedPermitId={selectedPermit?.id}
             showPermits={showPermits}
+            onClearSelection={() => {
+              setSelectedBuilding(null);
+              setSelectedPermit(null);
+            }}
             onSelectBuilding={(building) => {
               setSelectedBuilding(building);
               setSelectedPermit(null);

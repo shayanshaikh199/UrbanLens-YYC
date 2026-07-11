@@ -13,25 +13,35 @@ export function CityScene({
   metadata,
   matchedIds,
   selectedBuildingId,
+  selectedPermitId,
   showPermits,
+  onClearSelection,
   onSelectBuilding,
   onSelectPermit
 }) {
-  const origin = metadata?.center ?? [51.0419, -114.0645];
+  const origin = useMemo(() => metadata?.center ?? [51.0419, -114.0645], [metadata?.center]);
   const groundSize = useMemo(() => {
-    const count = Math.max(buildings.length, 1);
-    return Math.max(280, Math.sqrt(count) * 44);
-  }, [buildings.length]);
+    if (!metadata?.bounds?.sw || !metadata?.bounds?.ne) {
+      return Math.max(420, Math.sqrt(Math.max(buildings.length, 1)) * 58);
+    }
+    const [swX, swZ] = latLngToScene(metadata.bounds.sw, origin);
+    const [neX, neZ] = latLngToScene(metadata.bounds.ne, origin);
+    return Math.max(520, Math.abs(neX - swX), Math.abs(neZ - swZ)) + 180;
+  }, [buildings.length, metadata, origin]);
+  const cameraPosition = useMemo(
+    () => [groundSize * 0.36, groundSize * 0.34, groundSize * 0.48],
+    [groundSize]
+  );
 
   return (
     <Canvas
       shadows
-      camera={{ position: [120, 135, 180], fov: 42 }}
-      onPointerMissed={() => onSelectBuilding(null)}
+      camera={{ position: cameraPosition, fov: 46 }}
+      onPointerMissed={onClearSelection}
     >
       <color attach="background" args={["#dfe8e6"]} />
-      <fog attach="fog" args={["#dfe8e6", 260, 620]} />
-      <ambientLight intensity={0.45} />
+      <fog attach="fog" args={["#dfe8e6", groundSize * 0.7, groundSize * 1.8]} />
+      <ambientLight intensity={0.5} />
       <directionalLight
         castShadow
         position={[80, 180, 90]}
@@ -64,7 +74,8 @@ export function CityScene({
               <PermitMarker
                 key={permit.id}
                 permit={permit}
-                position={new THREE.Vector3(x, 18, z)}
+                position={new THREE.Vector3(x, 6, z)}
+                selected={selectedPermitId === permit.id}
                 onSelect={onSelectPermit}
               />
             );
@@ -72,7 +83,12 @@ export function CityScene({
         : null}
 
       <Environment preset="city" />
-      <OrbitControls target={[0, 18, 0]} minDistance={60} maxDistance={420} maxPolarAngle={1.35} />
+      <OrbitControls
+        target={[0, 30, 0]}
+        minDistance={90}
+        maxDistance={groundSize * 1.35}
+        maxPolarAngle={1.35}
+      />
     </Canvas>
   );
 }
