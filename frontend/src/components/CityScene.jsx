@@ -66,7 +66,7 @@ export function CityScene({
       </mesh>
       <gridHelper args={[groundSize, 24, "#9ca8a1", "#c9d0ca"]} position={[0, 0.03, 0]} />
 
-      {showRoads ? <RoadLayer origin={origin} /> : null}
+      {showRoads ? <RoadLayer origin={origin} bounds={metadata?.bounds} groundSize={groundSize} /> : null}
 
       <group>
         {buildings.map((building) => (
