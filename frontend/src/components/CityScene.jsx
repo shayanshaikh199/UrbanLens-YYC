@@ -50,20 +50,20 @@ export function CityScene({
       camera={{ position: cameraPosition, fov: 46 }}
       onPointerMissed={onClearSelection}
     >
-      <color attach="background" args={["#dfe8e6"]} />
-      <fog attach="fog" args={["#dfe8e6", groundSize * 0.7, groundSize * 1.8]} />
-      <ambientLight intensity={0.5} />
+      <color attach="background" args={["#d7ddd8"]} />
+      <fog attach="fog" args={["#d7ddd8", groundSize * 0.75, groundSize * 1.85]} />
+      <ambientLight intensity={0.56} />
       <directionalLight
         castShadow
-        position={[80, 180, 90]}
-        intensity={1.15}
+        position={[90, 190, 100]}
+        intensity={1.08}
         shadow-mapSize={[2048, 2048]}
       />
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <planeGeometry args={[groundSize, groundSize]} />
-        <meshStandardMaterial color="#eef1e8" roughness={0.9} />
+        <meshStandardMaterial color="#e8ece5" roughness={0.92} />
       </mesh>
-      <gridHelper args={[groundSize, 24, "#9fb0a9", "#c8d1cd"]} position={[0, 0.03, 0]} />
+      <gridHelper args={[groundSize, 24, "#9ca8a1", "#c9d0ca"]} position={[0, 0.03, 0]} />
 
       <group>
         {buildings.map((building) => (

@@ -4,7 +4,7 @@ import { useState } from "react";
 export function PermitMarker({ permit, position, selected, onSelect }) {
   const [hovered, setHovered] = useState(false);
   const active = hovered || selected;
-  const color = selected ? "#d94f3d" : hovered ? "#f1b34c" : statusColor(permit.status);
+  const color = selected ? "#b84332" : hovered ? "#d79c3a" : statusColor(permit.status);
   const status = permit.status && permit.status !== "UNKNOWN" ? permit.status : permit.permit_type;
 
   return (
@@ -25,8 +25,8 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
           onSelect(permit);
         }}
       >
-        <cylinderGeometry args={[0.22, 0.22, 5.8, 10]} />
-        <meshStandardMaterial color="#1a5559" roughness={0.55} />
+        <cylinderGeometry args={[0.16, 0.16, 4.8, 10]} />
+        <meshStandardMaterial color="#174f54" roughness={0.62} />
       </mesh>
       <mesh
         position={[0, 3.8, 0]}
@@ -45,18 +45,18 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
           onSelect(permit);
         }}
       >
-        <sphereGeometry args={[active ? 1.5 : 1.05, 18, 18]} />
+        <sphereGeometry args={[active ? 1.28 : 0.92, 18, 18]} />
         <meshStandardMaterial
           color={color}
-          emissive={selected ? "#3c100c" : "#082326"}
-          emissiveIntensity={active ? 0.25 : 0.1}
-          roughness={0.42}
+          emissive={selected ? "#36110d" : "#061f22"}
+          emissiveIntensity={active ? 0.2 : 0.06}
+          roughness={0.48}
         />
       </mesh>
       {selected && (
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.1, 0]}>
-          <ringGeometry args={[2.2, 2.75, 28]} />
-          <meshBasicMaterial color="#d94f3d" transparent opacity={0.48} />
+          <ringGeometry args={[1.85, 2.35, 28]} />
+          <meshBasicMaterial color="#b84332" transparent opacity={0.42} />
         </mesh>
       )}
       {active && (
@@ -72,8 +72,8 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
 
 function statusColor(status = "") {
   const value = status.toUpperCase();
-  if (value.includes("ISSUED") || value.includes("RELEASED")) return "#2f8f64";
-  if (value.includes("PENDING") || value.includes("REVIEW")) return "#b6812d";
-  if (value.includes("REFUSED") || value.includes("CANCELLED")) return "#7b8791";
-  return "#227b7f";
+  if (value.includes("ISSUED") || value.includes("RELEASED")) return "#2f7d5d";
+  if (value.includes("PENDING") || value.includes("REVIEW")) return "#a9792a";
+  if (value.includes("REFUSED") || value.includes("CANCELLED")) return "#747f86";
+  return "#1f7578";
 }
