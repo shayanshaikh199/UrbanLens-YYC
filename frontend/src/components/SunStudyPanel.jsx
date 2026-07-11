@@ -1,12 +1,6 @@
-import { SunMedium } from "lucide-react";
-
 export function SunStudyPanel({ hour, shadowsEnabled, onHourChange, onToggleShadows }) {
   return (
     <section className="panel sunPanel">
-      <div className="panelHeader">
-        <SunMedium size={16} />
-        <h2>Sun study</h2>
-      </div>
       <div className="sunControlHeader">
         <div className="sunTimeStack">
           <span>{timeLabel(hour)}</span>

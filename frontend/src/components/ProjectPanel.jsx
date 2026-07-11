@@ -10,14 +10,16 @@ export function ProjectPanel({ projects, loading, error, notice, username, onUse
       <div className="panelHeader">
         <h2>Saved searches</h2>
       </div>
-      <label className="projectUserInput">
-        <UserRound size={15} />
-        <input
-          value={username}
-          onChange={(event) => onUsernameChange(event.target.value)}
-          placeholder="Name for saved filters"
-        />
-      </label>
+      {usernameMissing ? (
+        <label className="projectUserInput">
+          <UserRound size={15} />
+          <input
+            value={username}
+            onChange={(event) => onUsernameChange(event.target.value)}
+            placeholder="Name for saved filters"
+          />
+        </label>
+      ) : null}
       {notice ? <p className={notice.startsWith("Saved") || notice.startsWith("Loaded") ? "formSuccess" : "formError"}>{notice}</p> : null}
       {error ? <p className="formError">{error}</p> : null}
       <div className="projectList">

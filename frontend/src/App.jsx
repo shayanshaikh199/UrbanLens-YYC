@@ -83,9 +83,10 @@ export default function App() {
     if (!username.trim()) {
       setSaveNamePromptOpen(true);
       setProjectNotice("");
-      return;
+      return false;
     }
     await handleSaveProject(source, username);
+    return true;
   }
 
   async function handleSaveProject(name, usernameOverride = username) {
@@ -227,10 +228,12 @@ export default function App() {
             onSelectBuilding={(building) => {
               setSelectedBuilding((current) => (current?.id === building.id ? null : building));
               setSelectedPermit(null);
+              setProjectsOpen(false);
             }}
             onSelectPermit={(permit) => {
               setSelectedPermit((current) => (current?.id === permit.id ? null : permit));
               setSelectedBuilding(null);
+              setProjectsOpen(false);
             }}
           />
         )}
@@ -262,11 +265,13 @@ export default function App() {
 
         <div className="zoningLegend" aria-label="Building color legend">
           <span>Zoning</span>
-          <LegendItem color="#c0a06c" label="Mixed-use commercial" />
-          <LegendItem color="#8aa1a8" label="Commercial corridor" />
-          <LegendItem color="#748c94" label="High-density commercial" />
-          <LegendItem color="#b49786" label="Direct control" />
-          <LegendItem color="#d91646" label="Selected / matched" />
+          <LegendItem color="#8aa1a8" label="CC-X" />
+          <LegendItem color="#748c94" label="CC-MH" />
+          <LegendItem color="#8c839b" label="CC-MHX" />
+          <LegendItem color="#c0a06c" label="CC-COR" />
+          <LegendItem color="#ac826f" label="C-COR1" />
+          <LegendItem color="#b49786" label="DC" />
+          <LegendItem color="#d91646" label="Selected / match outline" />
         </div>
 
         <form className="mapQueryDock" onSubmit={handleDockSubmit}>
@@ -287,8 +292,8 @@ export default function App() {
             type="button"
             disabled={!queryResult}
             onClick={async () => {
-              await handleQuickSave();
-              setProjectsOpen(true);
+              const didSave = await handleQuickSave();
+              if (didSave) setProjectsOpen(true);
             }}
             title="Save current filter"
           >
@@ -395,6 +400,7 @@ export default function App() {
           onSelectBuilding={(building) => {
             setSelectedBuilding((current) => (current?.id === building.id ? null : building));
             setSelectedPermit(null);
+            setProjectsOpen(false);
             setToolsOpen(false);
           }}
         />

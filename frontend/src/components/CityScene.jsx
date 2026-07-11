@@ -41,6 +41,7 @@ export function CityScene({
     [groundSize, sunHour]
   );
   const shadowExtent = groundSize * 0.62;
+  const visualGroundSize = groundSize * 2.25;
   const shadowsActive = shadowsEnabled && sun.shadowsActive;
   const visiblePermits = useMemo(() => {
     if (!showPermits) return [];
@@ -61,7 +62,7 @@ export function CityScene({
       onPointerMissed={onClearSelection}
     >
       <color attach="background" args={[sun.backgroundColor]} />
-      <fog attach="fog" args={[sun.fogColor, groundSize * 0.72, groundSize * 1.65]} />
+      <fog attach="fog" args={[sun.fogColor, groundSize * 1.1, groundSize * 2.6]} />
       <ambientLight intensity={sun.ambientIntensity} color={sun.ambientColor} />
       <hemisphereLight args={[sun.skyColor, sun.groundLightColor, sun.hemiIntensity]} />
       <directionalLight
@@ -87,10 +88,10 @@ export function CityScene({
         />
       ) : null}
       <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[groundSize, groundSize]} />
+        <planeGeometry args={[visualGroundSize, visualGroundSize]} />
         <meshStandardMaterial color={sun.groundColor} roughness={0.92} />
       </mesh>
-      <gridHelper args={[groundSize, 24, sun.gridPrimary, sun.gridSecondary]} position={[0, 0.03, 0]} />
+      <gridHelper args={[visualGroundSize, 42, sun.gridPrimary, sun.gridSecondary]} position={[0, 0.03, 0]} />
 
       {showRoads ? <RoadLayer origin={origin} /> : null}
 
