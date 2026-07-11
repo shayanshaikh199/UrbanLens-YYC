@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -8,11 +10,18 @@ from app.core.config import settings
 from app.db.session import init_db
 
 
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    init_db()
+    yield
+
+
 def create_app() -> FastAPI:
     app = FastAPI(
         title=settings.app_name,
         version="0.1.0",
         description="Calgary 3D map data API for UrbanLensYYC.",
+        lifespan=lifespan,
     )
 
     app.add_middleware(
@@ -26,10 +35,6 @@ def create_app() -> FastAPI:
     app.include_router(map_router, prefix="/api/map", tags=["map"])
     app.include_router(query_router, prefix="/api", tags=["query"])
     app.include_router(projects_router, prefix="/api", tags=["projects"])
-
-    @app.on_event("startup")
-    def startup() -> None:
-        init_db()
 
     @app.get("/health")
     def health() -> dict[str, str]:

@@ -14,6 +14,10 @@ class QueryRequest(BaseModel):
     active_filters: list[dict] = Field(default_factory=list)
 
 
+class FilterRequest(BaseModel):
+    filters: list[dict] = Field(default_factory=list)
+
+
 @router.post("/query")
 def query_map(payload: QueryRequest):
     buildings = get_buildings()["buildings"]
@@ -30,3 +34,14 @@ def query_map(payload: QueryRequest):
         "matched_building_ids": matched_ids,
         "match_count": len(matched_ids),
     }
+
+
+@router.post("/filter")
+def filter_map(payload: FilterRequest):
+    buildings = get_buildings()["buildings"]
+    try:
+        matched_ids = apply_filters(buildings, payload.filters)
+    except QueryError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    return {"matched_building_ids": matched_ids, "match_count": len(matched_ids)}

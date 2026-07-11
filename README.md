@@ -16,6 +16,43 @@ The target product is an interactive React + Three.js map of several Calgary blo
 - [Assignment brief](docs/assignment-brief.md)
 - [Implementation blueprint](docs/implementation-blueprint.md)
 
+## Local Setup
+
+### Backend
+
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python scripts/build_cache.py
+uvicorn app.main:app --reload
+```
+
+The API runs at `http://localhost:8000`.
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The app runs at `http://localhost:5173`.
+
 ## Current Status
 
-Planning and repo setup are in progress. The first implementation milestone is a Python backend that returns clean normalized building and permit JSON for a selected Calgary area.
+Built:
+
+- FastAPI backend with health, map data, query, filter, and project endpoints
+- cached Calgary building and permit datasets
+- deterministic query fallback for height, zoning, land use, value, and superlatives
+- SQLite-backed username/project persistence
+- React + Three.js frontend with 3D buildings, permit pins, query controls, and save/load UI
+
+Next:
+
+- refine the 3D scene details and interaction polish
+- add UML diagrams
+- prepare deployment configuration

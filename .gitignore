@@ -4,7 +4,10 @@
 venv/
 __pycache__/
 *.pyc
+.pytest_cache/
+*.db
 node_modules/
+.npm-cache/
 dist/
 build/
 .DS_Store
