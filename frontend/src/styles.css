@@ -1704,6 +1704,54 @@ body {
   border-bottom: 0;
 }
 
+.mapSunControl {
+  position: absolute;
+  z-index: 9;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: 104px;
+  width: min(310px, calc(100vw - 36px));
+}
+
+.mapSunControl .sunPanel {
+  padding: 12px;
+  border: 1px solid rgba(255, 250, 240, 0.18);
+  border-radius: 10px;
+  background: rgba(22, 28, 26, 0.82);
+  color: #fffaf0;
+  box-shadow: 0 20px 42px rgba(13, 17, 16, 0.2);
+  backdrop-filter: blur(18px);
+}
+
+.mapSunControl .panelHeader {
+  margin-bottom: 8px;
+  padding: 0;
+  border-bottom: 0;
+  color: #fffaf0;
+}
+
+.mapSunControl .panelHeader h2 {
+  color: #fffaf0;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+}
+
+.mapSunControl .sunControlHeader {
+  margin-bottom: 7px;
+}
+
+.mapSunControl .sunTimeStack span {
+  color: #fffaf0;
+}
+
+.mapSunControl .sunTimeStack small,
+.mapSunControl .sunTicks {
+  color: rgba(255, 250, 240, 0.64);
+}
+
+.mapSunControl .sunSlider {
+  accent-color: #d8c798;
+}
+
 .selectionPopup {
   position: absolute;
   z-index: 10;
@@ -1900,10 +1948,6 @@ body {
   font-weight: 780;
 }
 
-.toolsDrawer .sunPanel {
-  padding: 12px;
-}
-
 .collapsiblePanel {
   padding: 0 !important;
   overflow: hidden;
@@ -2021,6 +2065,13 @@ body {
 
   .selectionPopup {
     top: auto;
+    bottom: 154px;
+  }
+
+  .mapSunControl {
+    right: 18px;
     bottom: 96px;
+    left: 18px;
+    width: auto;
   }
 }

@@ -240,6 +240,15 @@ export default function App() {
           </div>
         ) : null}
 
+        <div className="mapSunControl">
+          <SunStudyPanel
+            hour={sunHour}
+            shadowsEnabled={shadowsEnabled}
+            onHourChange={setSunHour}
+            onToggleShadows={setShadowsEnabled}
+          />
+        </div>
+
         <form className="mapQueryDock" onSubmit={handleDockSubmit}>
           <Search size={18} />
           <input
@@ -377,13 +386,6 @@ export default function App() {
           loading={queryLoading}
           onApply={handleManualFilters}
           onClear={handleClearManualFilters}
-        />
-
-        <SunStudyPanel
-          hour={sunHour}
-          shadowsEnabled={shadowsEnabled}
-          onHourChange={setSunHour}
-          onToggleShadows={setShadowsEnabled}
         />
 
         <InsightsPanel buildings={buildings} permits={permits} />
