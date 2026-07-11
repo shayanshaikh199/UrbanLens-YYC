@@ -98,6 +98,16 @@ export default function App() {
     }
   }
 
+  async function handleDeleteProject(project) {
+    setProjectNotice("");
+    try {
+      await projects.deleteProject(project.id);
+      setProjectNotice(`Deleted "${project.name}"`);
+    } catch (err) {
+      setProjectNotice(err.message);
+    }
+  }
+
   return (
     <main className="appShell">
       <section className="mapStage" aria-label="3D Calgary map">
@@ -187,6 +197,7 @@ export default function App() {
           username={username}
           onSave={handleSaveProject}
           onLoad={handleLoadProject}
+          onDelete={handleDeleteProject}
           icon={<Save size={16} />}
         />
 

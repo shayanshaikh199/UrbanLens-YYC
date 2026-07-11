@@ -436,15 +436,49 @@ h2 {
   color: #64736f;
 }
 
-.projectList button {
+.projectCard {
   display: grid;
-  gap: 4px;
+  grid-template-columns: minmax(0, 1fr) 36px;
+  align-items: stretch;
   width: 100%;
-  padding: 10px;
   border: 1px solid #cfdbd6;
   border-radius: 8px;
   background: #f8faf7;
+  overflow: hidden;
+}
+
+.projectCard:focus-within,
+.projectCard:hover {
+  border-color: #94aaa4;
+  background: #ffffff;
+}
+
+.projectLoadButton {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  color: #18211f;
   text-align: left;
+}
+
+.projectDeleteButton {
+  display: grid;
+  width: 36px;
+  min-width: 36px;
+  place-items: center;
+  border: 0;
+  border-left: 1px solid #d9e3df;
+  background: transparent;
+  color: #8a2f23;
+}
+
+.projectDeleteButton:hover,
+.projectDeleteButton:focus-visible {
+  background: #fff0ed;
+  color: #5f1f17;
 }
 
 .projectTitleRow {
@@ -455,8 +489,8 @@ h2 {
 }
 
 .projectTitleRow strong,
-.projectList button span,
-.projectList button small {
+.projectLoadButton span,
+.projectLoadButton small {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -469,7 +503,7 @@ h2 {
   font-weight: 800;
 }
 
-.projectList button small {
+.projectLoadButton small {
   color: #33423e;
   font-size: 0.78rem;
   font-weight: 700;

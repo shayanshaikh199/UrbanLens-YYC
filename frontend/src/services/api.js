@@ -44,3 +44,9 @@ export function saveProject(username, project) {
     body: JSON.stringify(project)
   });
 }
+
+export function deleteProject(username, projectId) {
+  return request(`/api/users/${encodeURIComponent(username)}/projects/${projectId}`, {
+    method: "DELETE"
+  });
+}

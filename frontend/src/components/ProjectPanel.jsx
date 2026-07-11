@@ -1,6 +1,7 @@
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 
-export function ProjectPanel({ projects, loading, error, notice, disabled, username, onSave, onLoad, icon }) {
+export function ProjectPanel({ projects, loading, error, notice, disabled, username, onSave, onLoad, onDelete, icon }) {
   const [name, setName] = useState("");
   const usernameMissing = !username.trim();
   const saveDisabled = disabled || usernameMissing || !name.trim();
@@ -34,14 +35,24 @@ export function ProjectPanel({ projects, loading, error, notice, disabled, usern
         {!loading && usernameMissing ? <p>Enter a username to load saved projects</p> : null}
         {!loading && !usernameMissing && projects.length === 0 ? <p>No saved projects yet</p> : null}
         {projects.map((project) => (
-          <button key={project.id} onClick={() => onLoad(project)}>
-            <div className="projectTitleRow">
-              <strong>{project.name}</strong>
-              <time dateTime={project.updated_at}>{dateLabel(project.updated_at)}</time>
-            </div>
-            <span>{project.query || "Saved filter"}</span>
-            <small>{filterSummary(project.filters)}</small>
-          </button>
+          <article className="projectCard" key={project.id}>
+            <button className="projectLoadButton" onClick={() => onLoad(project)}>
+              <div className="projectTitleRow">
+                <strong>{project.name}</strong>
+                <time dateTime={project.updated_at}>{dateLabel(project.updated_at)}</time>
+              </div>
+              <span>{project.query || "Saved filter"}</span>
+              <small>{filterSummary(project.filters)}</small>
+            </button>
+            <button
+              className="projectDeleteButton"
+              onClick={() => onDelete(project)}
+              title={`Delete ${project.name}`}
+              aria-label={`Delete ${project.name}`}
+            >
+              <Trash2 size={15} />
+            </button>
+          </article>
         ))}
       </div>
     </section>
