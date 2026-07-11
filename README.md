@@ -11,6 +11,8 @@ The target product is an interactive React + Three.js map of several Calgary blo
 - username-based project save/load
 - UML and deployment documentation
 
+The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
+
 ## Planning Docs
 
 - [Assignment brief](docs/assignment-brief.md)

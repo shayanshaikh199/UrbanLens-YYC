@@ -11,14 +11,14 @@ PROPERTY_ASSESSMENTS = "4bsw-nn7w.json"
 BUILDING_PERMITS = "c2es-76ed.json"
 
 DEFAULT_BOUNDS = {
-    "north": 51.0444,
-    "south": 51.0398,
-    "west": -114.0678,
-    "east": -114.0608,
+    "north": 51.0477,
+    "south": 51.0440,
+    "west": -114.0758,
+    "east": -114.0660,
 }
 
-DEFAULT_CENTER = (51.0419, -114.0645)
-DEFAULT_RADIUS_M = 550
+DEFAULT_CENTER = (51.0458, -114.0710)
+DEFAULT_RADIUS_M = 600
 
 
 class CalgaryDataError(RuntimeError):

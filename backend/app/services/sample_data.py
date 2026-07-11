@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from datetime import UTC, datetime
 
-AREA_NAME = "Beltline east blocks, Calgary AB"
-CENTER = (51.0419, -114.0645)
-BOUNDS = {"sw": (51.0398, -114.0678), "ne": (51.0444, -114.0608)}
+AREA_NAME = "Downtown Core / Stephen Ave, Calgary AB"
+CENTER = (51.0458, -114.0710)
+BOUNDS = {"sw": (51.0440, -114.0758), "ne": (51.0477, -114.0660)}
 
 
 def sample_buildings() -> dict:
@@ -12,14 +12,14 @@ def sample_buildings() -> dict:
     buildings = [
         {
             "id": "bldg_1_st_110",
-            "address": "110 12 AV SE",
-            "center": (51.0412, -114.0637),
+            "address": "120 8 AV SW",
+            "center": (51.0457, -114.0705),
             "footprint": [
-                (51.0410, -114.0641),
-                (51.0410, -114.0633),
-                (51.0414, -114.0633),
-                (51.0414, -114.0641),
-                (51.0410, -114.0641),
+                (51.0455, -114.0710),
+                (51.0455, -114.0700),
+                (51.0460, -114.0700),
+                (51.0460, -114.0710),
+                (51.0455, -114.0710),
             ],
             "height_m": 42.0,
             "floors": 12,
@@ -31,14 +31,14 @@ def sample_buildings() -> dict:
         },
         {
             "id": "bldg_1_st_124",
-            "address": "124 12 AV SE",
-            "center": (51.0412, -114.0626),
+            "address": "240 8 AV SW",
+            "center": (51.0458, -114.0720),
             "footprint": [
-                (51.0409, -114.0630),
-                (51.0409, -114.0622),
-                (51.0415, -114.0622),
-                (51.0415, -114.0630),
-                (51.0409, -114.0630),
+                (51.0455, -114.0725),
+                (51.0455, -114.0716),
+                (51.0461, -114.0716),
+                (51.0461, -114.0725),
+                (51.0455, -114.0725),
             ],
             "height_m": 27.0,
             "floors": 8,
@@ -50,14 +50,14 @@ def sample_buildings() -> dict:
         },
         {
             "id": "bldg_macleod_150",
-            "address": "150 13 AV SE",
-            "center": (51.0405, -114.0617),
+            "address": "340 7 AV SW",
+            "center": (51.0466, -114.0733),
             "footprint": [
-                (51.0402, -114.0621),
-                (51.0402, -114.0613),
-                (51.0408, -114.0613),
-                (51.0408, -114.0621),
-                (51.0402, -114.0621),
+                (51.0462, -114.0738),
+                (51.0462, -114.0728),
+                (51.0470, -114.0728),
+                (51.0470, -114.0738),
+                (51.0462, -114.0738),
             ],
             "height_m": 64.0,
             "floors": 19,
@@ -87,8 +87,8 @@ def sample_permits() -> dict:
     permits = [
         {
             "id": "permit_sample_001",
-            "address": "118 12 AV SE",
-            "center": (51.04135, -114.06305),
+            "address": "136 8 AV SW",
+            "center": (51.0457, -114.0708),
             "permit_type": "Commercial Alteration",
             "status": "Issued",
             "estimated_project_cost": 450_000,
@@ -97,8 +97,8 @@ def sample_permits() -> dict:
         },
         {
             "id": "permit_sample_002",
-            "address": "142 13 AV SE",
-            "center": (51.0407, -114.0619),
+            "address": "304 8 AV SW",
+            "center": (51.0459, -114.0730),
             "permit_type": "Multi-family Residential",
             "status": "Review",
             "estimated_project_cost": 1_250_000,
