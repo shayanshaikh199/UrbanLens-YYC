@@ -50,6 +50,6 @@ function periodLabel(hour) {
   if (hour < 5 || hour >= 21) return "Night";
   if (hour < 8) return "Sunrise";
   if (hour < 17) return "Daylight";
-  if (hour < 20) return "Golden hour";
+  if (hour < 20) return "Sunset";
   return "Dusk";
 }

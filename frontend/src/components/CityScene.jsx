@@ -135,12 +135,18 @@ export function CityScene({
 
 function sunStateForHour(hour, groundSize) {
   const normalizedHour = ((hour % 24) + 24) % 24;
-  const daylight = Math.max(0, Math.sin(((normalizedHour - 6) / 12) * Math.PI));
-  const dawnDusk = normalizedHour >= 5 && normalizedHour < 8 || normalizedHour >= 17 && normalizedHour < 21;
-  const night = daylight < 0.04;
+  const sunriseRamp = smoothstep(5, 8.5, normalizedHour);
+  const sunsetRamp = 1 - smoothstep(17, 21, normalizedHour);
+  const daylight = Math.min(sunriseRamp, sunsetRamp);
+  const morningWarmth = 1 - smoothstep(6.5, 10, normalizedHour);
+  const eveningWarmth = smoothstep(16, 20.5, normalizedHour);
+  const warmth = Math.max(morningWarmth, eveningWarmth);
+  const twilight = daylight > 0.06 && daylight < 0.34;
+  const goldenHour = daylight >= 0.34 && warmth > 0.22;
+  const night = daylight <= 0.06;
   const azimuth = normalizedHour / 24 * Math.PI * 2 - Math.PI * 0.65;
   const radius = groundSize * 0.68;
-  const elevation = THREE.MathUtils.lerp(groundSize * 0.12, groundSize * 0.92, daylight);
+  const elevation = THREE.MathUtils.lerp(groundSize * 0.08, groundSize * 0.92, daylight);
   const position = [
     Math.cos(azimuth) * radius,
     elevation,
@@ -173,20 +179,25 @@ function sunStateForHour(hour, groundSize) {
   return {
     position,
     moonPosition,
-    shadowsActive: daylight > 0.14,
-    showEnvironment: daylight > 0.1,
-    backgroundColor: dawnDusk ? "#c8bda5" : "#d7ddd8",
-    fogColor: dawnDusk ? "#c8bda5" : "#d7ddd8",
-    groundColor: dawnDusk ? "#ded8c5" : "#e8ece5",
-    gridPrimary: dawnDusk ? "#9f927b" : "#9ca8a1",
-    gridSecondary: dawnDusk ? "#c2b8a1" : "#c9d0ca",
-    ambientColor: dawnDusk ? "#ffe1b4" : "#fffaf0",
-    ambientIntensity: THREE.MathUtils.lerp(0.24, 0.48, daylight),
-    hemiIntensity: THREE.MathUtils.lerp(0.2, 0.42, daylight),
-    skyColor: dawnDusk ? "#ffd194" : "#e5f0ff",
-    groundLightColor: dawnDusk ? "#776b54" : "#dfe8df",
-    directColor: dawnDusk ? "#ffbf73" : "#fff4db",
-    directIntensity: THREE.MathUtils.lerp(0.28, 1.55, daylight),
+    shadowsActive: daylight > 0.16,
+    showEnvironment: daylight > 0.08,
+    backgroundColor: twilight ? "#8e887f" : goldenHour ? "#d5b88e" : "#d7ddd8",
+    fogColor: twilight ? "#8e887f" : goldenHour ? "#d5b88e" : "#d7ddd8",
+    groundColor: twilight ? "#c2b99f" : goldenHour ? "#e1d7bd" : "#e8ece5",
+    gridPrimary: twilight ? "#8f846d" : goldenHour ? "#9f927b" : "#9ca8a1",
+    gridSecondary: twilight ? "#aaa18c" : goldenHour ? "#c2b8a1" : "#c9d0ca",
+    ambientColor: twilight || goldenHour ? "#ffe1b4" : "#fffaf0",
+    ambientIntensity: THREE.MathUtils.lerp(0.22, 0.5, daylight),
+    hemiIntensity: THREE.MathUtils.lerp(0.16, 0.42, daylight),
+    skyColor: twilight ? "#f5a85e" : goldenHour ? "#ffd194" : "#e5f0ff",
+    groundLightColor: twilight ? "#5f5748" : goldenHour ? "#776b54" : "#dfe8df",
+    directColor: twilight ? "#ff9d4d" : goldenHour ? "#ffbf73" : "#fff4db",
+    directIntensity: THREE.MathUtils.lerp(0.2, 1.55, daylight),
     moonIntensity: 0
   };
+}
+
+function smoothstep(edge0, edge1, value) {
+  const t = THREE.MathUtils.clamp((value - edge0) / (edge1 - edge0), 0, 1);
+  return t * t * (3 - 2 * t);
 }
