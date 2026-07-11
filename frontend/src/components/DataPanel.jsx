@@ -1,10 +1,10 @@
-import { Building2, FileText, MapPinned, ReceiptText } from "lucide-react";
+import { Building2, FileText, ReceiptText, X } from "lucide-react";
 
-export function DataPanel({ building, permit, relatedPermits = [], matchSummary = "", metadata }) {
+export function DataPanel({ building, permit, relatedPermits = [], matchSummary = "", onClose }) {
   if (building) {
     return (
       <section className="panel selectedPanel">
-        <PanelHeader icon={<Building2 size={16} />} title="Selected building" />
+        <PanelHeader icon={<Building2 size={16} />} title="Selected building" onClose={onClose} />
         <div className="selectionBadge">Building selected</div>
         <div className="statRow">
           <Stat label="Height" value={`${building.height_m} m`} />
@@ -30,7 +30,7 @@ export function DataPanel({ building, permit, relatedPermits = [], matchSummary 
   if (permit) {
     return (
       <section className="panel selectedPanel permitPanel">
-        <PanelHeader icon={<FileText size={16} />} title="Selected permit" />
+        <PanelHeader icon={<FileText size={16} />} title="Selected permit" onClose={onClose} />
         <div className="selectionBadge">Permit marker selected</div>
         <div className="statRow">
           <Stat label="Status" value={permit.status} />
@@ -47,16 +47,7 @@ export function DataPanel({ building, permit, relatedPermits = [], matchSummary 
     );
   }
 
-  return (
-    <section className="panel">
-      <PanelHeader icon={<MapPinned size={16} />} title="Area" />
-      <dl className="detailList">
-        <Row label="Name" value={metadata?.area_name ?? "Calgary"} />
-        <Row label="Source" value={metadata?.source ?? "cache"} />
-        <Row label="Center" value={metadata?.center?.join(", ")} />
-      </dl>
-    </section>
-  );
+  return null;
 }
 
 function Stat({ label, value }) {
@@ -97,11 +88,16 @@ function PermitSummary({ permits }) {
   );
 }
 
-function PanelHeader({ icon, title }) {
+function PanelHeader({ icon, title, onClose }) {
   return (
     <div className="panelHeader">
       {icon}
       <h2>{title}</h2>
+      {onClose ? (
+        <button className="popupCloseButton" type="button" onClick={onClose} title="Close details">
+          <X size={16} />
+        </button>
+      ) : null}
     </div>
   );
 }

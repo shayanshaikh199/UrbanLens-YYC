@@ -1,4 +1,4 @@
-import { Building2, Database, Eye, Layers, Loader2, Save, Search, UserRound } from "lucide-react";
+import { Building2, Database, Eye, Layers, Loader2, Menu, Save, Search, Send, UserRound, X } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { CityScene } from "./components/CityScene.jsx";
@@ -6,7 +6,6 @@ import { DataPanel } from "./components/DataPanel.jsx";
 import { InsightsPanel } from "./components/InsightsPanel.jsx";
 import { ManualFilterPanel } from "./components/ManualFilterPanel.jsx";
 import { ProjectPanel } from "./components/ProjectPanel.jsx";
-import { QueryPanel } from "./components/QueryPanel.jsx";
 import { ResultsPanel } from "./components/ResultsPanel.jsx";
 import { SunStudyPanel } from "./components/SunStudyPanel.jsx";
 import { useMapData } from "./hooks/useMapData.js";
@@ -21,6 +20,8 @@ export default function App() {
   const [showRoads, setShowRoads] = useState(true);
   const [sunHour, setSunHour] = useState(14);
   const [shadowsEnabled, setShadowsEnabled] = useState(true);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const [queryDraft, setQueryDraft] = useState("show commercial buildings");
   const [queryResult, setQueryResult] = useState(null);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
@@ -65,6 +66,24 @@ export default function App() {
     } finally {
       setQueryLoading(false);
     }
+  }
+
+  async function handleDockSubmit(event) {
+    event.preventDefault();
+    if (!queryDraft.trim()) return;
+    await handleQuery(queryDraft.trim());
+  }
+
+  async function handleQuickSave() {
+    if (!queryResult) return;
+    const source = queryResult.query || "Map filter";
+    const date = new Intl.DateTimeFormat("en-CA", {
+      month: "short",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "2-digit"
+    }).format(new Date());
+    await handleSaveProject(`${source} ${date}`);
   }
 
   async function handleSaveProject(name) {
@@ -146,13 +165,32 @@ export default function App() {
   }
 
   return (
-    <main className="appShell">
+    <main className={toolsOpen ? "appShell mapFirstShell hasToolsOpen" : "appShell mapFirstShell"}>
       <section className="mapStage" aria-label="3D Calgary map">
-        <div className="mapOverlay">
-          <span>Downtown Core / Stephen Ave</span>
-          <strong>{buildings.length} buildings</strong>
-          <em>{visiblePermitCount} visible permits</em>
+        <div className="mapTopBar">
+          <div className="mapIdentity">
+            <span>UrbanLensYYC</span>
+            <strong>Downtown Core / Stephen Ave</strong>
+          </div>
+          <div className="mapQuickStats" aria-label="Map summary">
+            <span>{buildings.length} buildings</span>
+            <span>{visiblePermitCount}/{permits.length} pins</span>
+            <span>{queryResult?.match_count ?? 0} matches</span>
+          </div>
+          <button
+            className="toolsButton"
+            type="button"
+            onClick={() => setToolsOpen(true)}
+            aria-expanded={toolsOpen}
+            title="Open map tools"
+          >
+            <Menu size={18} />
+            <span>Tools</span>
+          </button>
         </div>
+
+        {error ? <div className="mapAlert">{error}</div> : null}
+
         {loading ? (
           <div className="loadingState">
             <Loader2 className="spin" size={24} />
@@ -184,21 +222,79 @@ export default function App() {
             }}
           />
         )}
+
+        {selectedBuilding || selectedPermit ? (
+          <div className="selectionPopup" role="dialog" aria-label="Selected map item">
+            <DataPanel
+              building={selectedBuilding}
+              permit={selectedPermit}
+              relatedPermits={selectedBuildingPermits}
+              matchSummary={selectedMatchSummary}
+              metadata={metadata}
+              onClose={() => {
+                setSelectedBuilding(null);
+                setSelectedPermit(null);
+              }}
+            />
+          </div>
+        ) : null}
+
+        <form className="mapQueryDock" onSubmit={handleDockSubmit}>
+          <Search size={18} />
+          <input
+            value={queryDraft}
+            onChange={(event) => setQueryDraft(event.target.value)}
+            placeholder="Ask AI to highlight buildings, permits, zoning, height..."
+            aria-label="Ask AI about the map"
+          />
+          <button className="dockRunButton" disabled={queryLoading || !queryDraft.trim()} title="Run query">
+            {queryLoading ? <Loader2 className="spin" size={17} /> : <Send size={17} />}
+            <span>Run</span>
+          </button>
+          <button
+            className="dockSaveButton"
+            type="button"
+            disabled={!queryResult}
+            onClick={handleQuickSave}
+            title="Save current filter"
+          >
+            <Save size={17} />
+          </button>
+          {queryError ? <p className="dockMessage isError">{queryError}</p> : null}
+          {projectNotice ? <p className="dockMessage">{projectNotice}</p> : null}
+          {queryResult ? (
+            <div className="dockResult">
+              <strong>{queryResult.match_count} matches</strong>
+              <span>{queryResult.query || "Current filter"}</span>
+            </div>
+          ) : null}
+        </form>
       </section>
 
-      <aside className="controlRail" aria-label="UrbanLens controls">
-        <header className="brandBlock">
+      {toolsOpen ? (
+        <button
+          className="drawerScrim"
+          type="button"
+          aria-label="Close tools"
+          onClick={() => setToolsOpen(false)}
+        />
+      ) : null}
+
+      <aside className="toolsDrawer" aria-label="UrbanLens controls" aria-hidden={!toolsOpen}>
+        <header className="drawerHeader">
           <div>
             <p className="eyebrow">UrbanLensYYC</p>
-            <h1>Calgary block intelligence</h1>
-            <p className="brandSubline">Downtown Core / Stephen Ave</p>
+            <h1>Map tools</h1>
           </div>
-          <button className="iconButton" onClick={refresh} title="Refresh cached Calgary data">
-            <Database size={18} />
-          </button>
+          <div className="drawerHeaderActions">
+            <button className="iconButton" onClick={refresh} title="Refresh cached Calgary data">
+              <Database size={18} />
+            </button>
+            <button className="iconButton" onClick={() => setToolsOpen(false)} title="Close tools">
+              <X size={18} />
+            </button>
+          </div>
         </header>
-
-        {error ? <div className="alert">{error}</div> : null}
 
         <div className="metricGrid">
           <Metric icon={<Building2 size={16} />} label="Buildings" value={buildings.length} />
@@ -238,14 +334,6 @@ export default function App() {
           </div>
         </div>
 
-        <QueryPanel
-          onSubmit={handleQuery}
-          loading={queryLoading}
-          error={queryError}
-          result={queryResult}
-          icon={<Search size={16} />}
-        />
-
         <ManualFilterPanel
           loading={queryLoading}
           onApply={handleManualFilters}
@@ -278,15 +366,8 @@ export default function App() {
           onSelectBuilding={(building) => {
             setSelectedBuilding((current) => (current?.id === building.id ? null : building));
             setSelectedPermit(null);
+            setToolsOpen(false);
           }}
-        />
-
-        <DataPanel
-          building={selectedBuilding}
-          permit={selectedPermit}
-          relatedPermits={selectedBuildingPermits}
-          matchSummary={selectedMatchSummary}
-          metadata={metadata}
         />
 
         <InsightsPanel buildings={buildings} permits={permits} />
