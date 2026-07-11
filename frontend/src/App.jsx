@@ -144,6 +144,11 @@ export default function App() {
   return (
     <main className="appShell">
       <section className="mapStage" aria-label="3D Calgary map">
+        <div className="mapOverlay">
+          <span>Downtown Core / Stephen Ave</span>
+          <strong>{buildings.length} buildings</strong>
+          <em>{visiblePermitCount} visible permits</em>
+        </div>
         {loading ? (
           <div className="loadingState">
             <Loader2 className="spin" size={24} />
