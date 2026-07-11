@@ -1388,13 +1388,20 @@ body {
 }
 
 .mapFirstShell .mapStage {
+  height: 100vh;
   min-height: 100vh;
+}
+
+.mapFirstShell .mapStage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .mapFirstShell .mapStage::after {
   inset: auto 0 0;
-  height: 34vh;
-  background: linear-gradient(180deg, rgba(16, 21, 20, 0), rgba(16, 21, 20, 0.62));
+  height: 190px;
+  background: linear-gradient(180deg, rgba(16, 21, 20, 0), rgba(16, 21, 20, 0.34));
   box-shadow: none;
 }
 
