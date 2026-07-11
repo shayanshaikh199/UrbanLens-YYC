@@ -1,4 +1,4 @@
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls, Sky } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useMemo } from "react";
 import * as THREE from "three";
@@ -60,7 +60,18 @@ export function CityScene({
       camera={{ position: cameraPosition, fov: 46 }}
       onPointerMissed={onClearSelection}
     >
-      <color attach="background" args={[sun.backgroundColor]} />
+      {sun.showSky ? (
+        <Sky
+          distance={groundSize * 3}
+          sunPosition={sun.position}
+          turbidity={sun.skyTurbidity}
+          rayleigh={sun.skyRayleigh}
+          mieCoefficient={sun.mieCoefficient}
+          mieDirectionalG={sun.mieDirectionalG}
+        />
+      ) : (
+        <color attach="background" args={[sun.backgroundColor]} />
+      )}
       <fog attach="fog" args={[sun.fogColor, groundSize * 0.72, groundSize * 1.65]} />
       <ambientLight intensity={sun.ambientIntensity} color={sun.ambientColor} />
       <hemisphereLight args={[sun.skyColor, sun.groundLightColor, sun.hemiIntensity]} />
@@ -124,10 +135,23 @@ export function CityScene({
 
       {sun.showEnvironment ? <Environment preset="city" /> : null}
       <OrbitControls
+        makeDefault
+        enableDamping
+        dampingFactor={0.08}
+        enablePan
+        screenSpacePanning={false}
         target={[0, 30, 0]}
         minDistance={90}
         maxDistance={groundSize * 0.95}
         maxPolarAngle={1.35}
+        rotateSpeed={0.72}
+        panSpeed={0.85}
+        zoomSpeed={0.78}
+        mouseButtons={{
+          LEFT: THREE.MOUSE.ROTATE,
+          MIDDLE: THREE.MOUSE.DOLLY,
+          RIGHT: THREE.MOUSE.PAN
+        }}
       />
     </Canvas>
   );
@@ -160,6 +184,7 @@ function sunStateForHour(hour, groundSize) {
       moonPosition,
       shadowsActive: false,
       showEnvironment: false,
+      showSky: false,
       backgroundColor: "#111817",
       fogColor: "#111817",
       groundColor: "#252d29",
@@ -181,11 +206,12 @@ function sunStateForHour(hour, groundSize) {
     moonPosition,
     shadowsActive: daylight > 0.16,
     showEnvironment: daylight > 0.08,
-    backgroundColor: twilight ? "#8e887f" : goldenHour ? "#d5b88e" : "#d7ddd8",
-    fogColor: twilight ? "#8e887f" : goldenHour ? "#d5b88e" : "#d7ddd8",
-    groundColor: twilight ? "#c2b99f" : goldenHour ? "#e1d7bd" : "#e8ece5",
-    gridPrimary: twilight ? "#8f846d" : goldenHour ? "#9f927b" : "#9ca8a1",
-    gridSecondary: twilight ? "#aaa18c" : goldenHour ? "#c2b8a1" : "#c9d0ca",
+    showSky: true,
+    backgroundColor: "#d7ddd8",
+    fogColor: twilight ? "#b09a82" : goldenHour ? "#d2b58d" : "#d7ddd8",
+    groundColor: twilight ? "#d8d7cc" : goldenHour ? "#e3e3d8" : "#e8ece5",
+    gridPrimary: twilight ? "#8e9289" : goldenHour ? "#969b92" : "#9ca8a1",
+    gridSecondary: twilight ? "#bdc0b7" : goldenHour ? "#c3c8bf" : "#c9d0ca",
     ambientColor: twilight || goldenHour ? "#ffe1b4" : "#fffaf0",
     ambientIntensity: THREE.MathUtils.lerp(0.22, 0.5, daylight),
     hemiIntensity: THREE.MathUtils.lerp(0.16, 0.42, daylight),
@@ -193,7 +219,11 @@ function sunStateForHour(hour, groundSize) {
     groundLightColor: twilight ? "#5f5748" : goldenHour ? "#776b54" : "#dfe8df",
     directColor: twilight ? "#ff9d4d" : goldenHour ? "#ffbf73" : "#fff4db",
     directIntensity: THREE.MathUtils.lerp(0.2, 1.55, daylight),
-    moonIntensity: 0
+    moonIntensity: 0,
+    skyTurbidity: twilight ? 13 : goldenHour ? 9 : 4.5,
+    skyRayleigh: twilight ? 1.2 : goldenHour ? 1.7 : 2.2,
+    mieCoefficient: twilight ? 0.028 : goldenHour ? 0.018 : 0.006,
+    mieDirectionalG: twilight ? 0.86 : goldenHour ? 0.8 : 0.72
   };
 }
 
