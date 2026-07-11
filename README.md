@@ -7,6 +7,7 @@ The target product is an interactive React + Three.js map of several Calgary blo
 - extruded building footprints
 - clickable building details
 - Calgary building permit markers
+- cached OpenStreetMap road centerlines
 - natural-language LLM filtering
 - manual building filters
 - username-based project save/load
@@ -90,7 +91,7 @@ Frontend:
 Built:
 
 - FastAPI backend with health, map data, query, filter, and project endpoints
-- cached Calgary building and permit datasets
+- cached Calgary building, permit, and OpenStreetMap road datasets
 - deterministic query fallback for height, zoning, land use, value, and superlatives
 - SQLite-backed username/project persistence
 - React + Three.js frontend with 3D buildings, permit pins, query controls, matched results, manual filters, saved projects, and downtown insights

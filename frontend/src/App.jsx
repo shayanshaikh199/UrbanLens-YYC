@@ -212,7 +212,7 @@ export default function App() {
 
         <div className="layerControls">
           <div className="toggleRow">
-            <span>Road grid</span>
+            <span>OSM roads</span>
             <button
               className={showRoads ? "toggle isOn" : "toggle"}
               onClick={() => setShowRoads((value) => !value)}
