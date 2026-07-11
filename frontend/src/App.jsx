@@ -19,6 +19,7 @@ export default function App() {
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
   const [username, setUsername] = useState("shayan");
+  const [projectNotice, setProjectNotice] = useState("");
   const projects = useProjects(username);
 
   const matchedIds = useMemo(
@@ -62,11 +63,17 @@ export default function App() {
 
   async function handleSaveProject(name) {
     if (!queryResult) return;
-    await projects.saveProject({
-      name,
-      query: queryResult.query,
-      filters: queryResult.filters
-    });
+    setProjectNotice("");
+    try {
+      await projects.saveProject({
+        name,
+        query: queryResult.query,
+        filters: queryResult.filters
+      });
+      setProjectNotice(`Saved "${name}"`);
+    } catch (err) {
+      setProjectNotice(err.message);
+    }
   }
 
   async function handleLoadProject(project) {
@@ -81,6 +88,9 @@ export default function App() {
         matched_building_ids: result.matched_building_ids,
         match_count: result.match_count
       });
+      setProjectNotice(`Loaded "${project.name}"`);
+      setSelectedBuilding(null);
+      setSelectedPermit(null);
     } catch (err) {
       setQueryError(err.message);
     } finally {
@@ -171,7 +181,10 @@ export default function App() {
         <ProjectPanel
           projects={projects.items}
           loading={projects.loading}
+          error={projects.error}
+          notice={projectNotice}
           disabled={!queryResult}
+          username={username}
           onSave={handleSaveProject}
           onLoad={handleLoadProject}
           icon={<Save size={16} />}

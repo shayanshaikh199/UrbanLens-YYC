@@ -329,6 +329,12 @@ h2 {
   color: #8a2f23;
 }
 
+.formSuccess {
+  margin: 10px 0 0;
+  color: #126569;
+  font-weight: 800;
+}
+
 .alert {
   padding: 10px;
 }

@@ -1,11 +1,13 @@
 import { useState } from "react";
 
-export function ProjectPanel({ projects, loading, disabled, onSave, onLoad, icon }) {
+export function ProjectPanel({ projects, loading, error, notice, disabled, username, onSave, onLoad, icon }) {
   const [name, setName] = useState("");
+  const usernameMissing = !username.trim();
+  const saveDisabled = disabled || usernameMissing || !name.trim();
 
   async function handleSave(event) {
     event.preventDefault();
-    if (!name.trim()) return;
+    if (saveDisabled) return;
     await onSave(name.trim());
     setName("");
   }
@@ -21,13 +23,16 @@ export function ProjectPanel({ projects, loading, disabled, onSave, onLoad, icon
           value={name}
           onChange={(event) => setName(event.target.value)}
           placeholder="Save current filter"
-          disabled={disabled}
+          disabled={disabled || usernameMissing}
         />
-        <button disabled={disabled || !name.trim()}>Save</button>
+        <button disabled={saveDisabled}>Save</button>
       </form>
+      {notice ? <p className={notice.startsWith("Saved") || notice.startsWith("Loaded") ? "formSuccess" : "formError"}>{notice}</p> : null}
+      {error ? <p className="formError">{error}</p> : null}
       <div className="projectList">
         {loading ? <p>Loading projects</p> : null}
-        {!loading && projects.length === 0 ? <p>No saved projects yet</p> : null}
+        {!loading && usernameMissing ? <p>Enter a username to load saved projects</p> : null}
+        {!loading && !usernameMissing && projects.length === 0 ? <p>No saved projects yet</p> : null}
         {projects.map((project) => (
           <button key={project.id} onClick={() => onLoad(project)}>
             <div className="projectTitleRow">

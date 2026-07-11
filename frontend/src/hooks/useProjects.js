@@ -5,13 +5,21 @@ import { fetchProjects, saveProject as saveProjectRequest } from "../services/ap
 export function useProjects(username) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const load = useCallback(async () => {
-    if (!username.trim()) return;
+    if (!username.trim()) {
+      setItems([]);
+      setError("");
+      return;
+    }
     setLoading(true);
+    setError("");
     try {
       const payload = await fetchProjects(username);
       setItems(payload.projects);
+    } catch (err) {
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -22,9 +30,17 @@ export function useProjects(username) {
   }, [load]);
 
   async function saveProject(project) {
-    await saveProjectRequest(username, project);
-    await load();
+    if (!username.trim()) {
+      throw new Error("Enter a username before saving projects.");
+    }
+    try {
+      await saveProjectRequest(username, project);
+      await load();
+    } catch (err) {
+      setError(err.message);
+      throw err;
+    }
   }
 
-  return { items, loading, saveProject, reload: load };
+  return { items, loading, error, saveProject, reload: load };
 }
