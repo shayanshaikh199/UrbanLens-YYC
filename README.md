@@ -8,7 +8,9 @@ The target product is an interactive React + Three.js map of several Calgary blo
 - clickable building details
 - Calgary building permit markers
 - natural-language LLM filtering
+- manual building filters
 - username-based project save/load
+- lightweight downtown insight summaries
 - UML and deployment documentation
 
 The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
@@ -17,6 +19,8 @@ The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
 
 - [Assignment brief](docs/assignment-brief.md)
 - [Implementation blueprint](docs/implementation-blueprint.md)
+- [Requirements checklist](docs/requirements-checklist.md)
+- [Demo script](docs/demo-script.md)
 - [UML diagrams](docs/uml.md)
 - [Deployment checklist](docs/deployment-checklist.md)
 
@@ -89,7 +93,7 @@ Built:
 - cached Calgary building and permit datasets
 - deterministic query fallback for height, zoning, land use, value, and superlatives
 - SQLite-backed username/project persistence
-- React + Three.js frontend with 3D buildings, permit pins, query controls, matched results, and save/load UI
+- React + Three.js frontend with 3D buildings, permit pins, query controls, matched results, manual filters, saved projects, and downtown insights
 
 ## Demo Workflow
 
@@ -113,6 +117,7 @@ POST /api/filter
 GET  /api/users/{username}/projects
 POST /api/users/{username}/projects
 GET  /api/users/{username}/projects/{project_id}
+DELETE /api/users/{username}/projects/{project_id}
 ```
 
 Example query request:
@@ -140,4 +145,5 @@ Example filter response shape:
 Next:
 
 - deploy backend and frontend
+- export UML to PDF/PNG for final submission
 - prepare final ZIP package
