@@ -72,7 +72,7 @@ export function ManualFilterPanel({ loading, onApply, onClear }) {
           <input
             inputMode="numeric"
             min="0"
-            step="100000"
+            step="1"
             type="number"
             value={minValue}
             onChange={(event) => setMinValue(event.target.value)}
