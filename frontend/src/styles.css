@@ -283,13 +283,44 @@ h2 {
   background: #9ba8a4;
 }
 
+.quickQueryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 9px;
+}
+
+.quickQueryGrid button {
+  min-width: 0;
+  height: 32px;
+  border: 1px solid #c9d7d2;
+  border-radius: 8px;
+  background: #f8faf7;
+  color: #25322f;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.quickQueryGrid button:disabled {
+  cursor: not-allowed;
+  color: #7a8783;
+}
+
 .queryResult {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 10px;
   margin-top: 10px;
   padding: 9px 10px;
   border-radius: 8px;
   background: #ecf5f3;
+}
+
+.queryResult small {
+  grid-column: 1 / -1;
+  color: #33423e;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .formError,
