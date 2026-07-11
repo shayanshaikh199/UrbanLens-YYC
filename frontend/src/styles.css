@@ -2486,7 +2486,7 @@ select:focus-visible {
 }
 
 .mapSunControl .sunPanel {
-  grid-template-columns: minmax(86px, auto) minmax(190px, 1fr) auto;
+  grid-template-columns: minmax(86px, auto) minmax(190px, 1fr);
   gap: 16px;
   padding: 10px 14px;
 }
@@ -2508,10 +2508,6 @@ select:focus-visible {
 .mapSunControl .sunSlider {
   order: 2;
   accent-color: #ffffff;
-}
-
-.mapSunControl .toggle {
-  order: 3;
 }
 
 .toggle {

@@ -1,11 +1,11 @@
 const COLORS = {
-  "CC-X": "#d8d8d2",
-  "CC-MH": "#a7adb0",
-  "CC-MHX": "#707a7d",
-  "CC-COR": "#c0b49c",
-  "C-COR1": "#8c8172",
-  DC: "#4f5654",
-  UNKNOWN: "#2f3432"
+  "CC-X": "#e2e1da",
+  "CC-MH": "#c4c9c9",
+  "CC-MHX": "#a3abad",
+  "CC-COR": "#d2c6ab",
+  "C-COR1": "#b2a18b",
+  DC: "#8c9691",
+  UNKNOWN: "#757d78"
 };
 
 export function zoningColor(zoning) {

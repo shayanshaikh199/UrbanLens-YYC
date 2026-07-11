@@ -1,4 +1,4 @@
-export function SunStudyPanel({ hour, shadowsEnabled, onHourChange, onToggleShadows }) {
+export function SunStudyPanel({ hour, onHourChange }) {
   return (
     <section className="panel sunPanel">
       <div className="sunControlHeader">
@@ -6,14 +6,6 @@ export function SunStudyPanel({ hour, shadowsEnabled, onHourChange, onToggleShad
           <span>{timeLabel(hour)}</span>
           <small>{periodLabel(hour)}</small>
         </div>
-        <button
-          className={shadowsEnabled ? "toggle isOn" : "toggle"}
-          onClick={() => onToggleShadows((value) => !value)}
-          aria-pressed={shadowsEnabled}
-          title="Toggle building shadows"
-        >
-          <span />
-        </button>
       </div>
       <input
         className="sunSlider"

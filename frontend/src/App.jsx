@@ -19,7 +19,6 @@ export default function App() {
   const [showPermits, setShowPermits] = useState(true);
   const [showRoads, setShowRoads] = useState(true);
   const [sunHour, setSunHour] = useState(14);
-  const [shadowsEnabled, setShadowsEnabled] = useState(true);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
   const [queryDraft, setQueryDraft] = useState("show commercial buildings");
@@ -106,8 +105,9 @@ export default function App() {
 
   async function handleSaveNameSubmit(event) {
     event.preventDefault();
+    event.stopPropagation();
     const nextUsername = saveNameDraft.trim();
-    if (!nextUsername || !queryResult) return;
+    if (nextUsername.length < 2 || !queryResult) return;
     setUsername(nextUsername);
     setSaveNamePromptOpen(false);
     await handleSaveProject(queryResult.query || "Map filter", nextUsername);
@@ -220,7 +220,7 @@ export default function App() {
             showPermits={showPermits}
             showRoads={showRoads}
             sunHour={sunHour}
-            shadowsEnabled={shadowsEnabled}
+            shadowsEnabled
             onClearSelection={() => {
               setSelectedBuilding(null);
               setSelectedPermit(null);
@@ -257,20 +257,18 @@ export default function App() {
         <div className="mapSunControl">
           <SunStudyPanel
             hour={sunHour}
-            shadowsEnabled={shadowsEnabled}
             onHourChange={setSunHour}
-            onToggleShadows={setShadowsEnabled}
           />
         </div>
 
         <div className="zoningLegend" aria-label="Building color legend">
           <span>Zoning</span>
-          <LegendItem color="#d8d8d2" label="CC-X" />
-          <LegendItem color="#a7adb0" label="CC-MH" />
-          <LegendItem color="#707a7d" label="CC-MHX" />
-          <LegendItem color="#c0b49c" label="CC-COR" />
-          <LegendItem color="#8c8172" label="C-COR1" />
-          <LegendItem color="#4f5654" label="DC" />
+          <LegendItem color="#e2e1da" label="CC-X" />
+          <LegendItem color="#c4c9c9" label="CC-MH" />
+          <LegendItem color="#a3abad" label="CC-MHX" />
+          <LegendItem color="#d2c6ab" label="CC-COR" />
+          <LegendItem color="#b2a18b" label="C-COR1" />
+          <LegendItem color="#8c9691" label="DC" />
           <LegendItem color="#ffffff" label="Selected / match outline" />
         </div>
 
@@ -314,7 +312,8 @@ export default function App() {
                 value={saveNameDraft}
                 onChange={(event) => setSaveNameDraft(event.target.value)}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter") handleSaveNameSubmit(event);
+                  event.stopPropagation();
+                  if (event.key === "Enter") event.preventDefault();
                 }}
                 placeholder="Your name"
                 aria-label="Name for saved searches"
@@ -322,7 +321,7 @@ export default function App() {
               />
               <button
                 type="button"
-                disabled={!saveNameDraft.trim()}
+                disabled={saveNameDraft.trim().length < 2}
                 onClick={handleSaveNameSubmit}
               >
                 Save
