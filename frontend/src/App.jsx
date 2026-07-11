@@ -1,4 +1,4 @@
-import { Building2, Database, Eye, Layers, Loader2, Menu, Save, Search, Send, X } from "lucide-react";
+import { Bookmark, Building2, Database, Eye, Layers, Loader2, Menu, Save, Search, Send, X } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { CityScene } from "./components/CityScene.jsx";
@@ -21,11 +21,12 @@ export default function App() {
   const [sunHour, setSunHour] = useState(14);
   const [shadowsEnabled, setShadowsEnabled] = useState(true);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const [projectsOpen, setProjectsOpen] = useState(false);
   const [queryDraft, setQueryDraft] = useState("show commercial buildings");
   const [queryResult, setQueryResult] = useState(null);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("guest");
   const [projectNotice, setProjectNotice] = useState("");
   const projects = useProjects(username);
 
@@ -255,7 +256,10 @@ export default function App() {
             className="dockSaveButton"
             type="button"
             disabled={!queryResult}
-            onClick={handleQuickSave}
+            onClick={async () => {
+              await handleQuickSave();
+              setProjectsOpen(true);
+            }}
             title="Save current filter"
           >
             <Save size={17} />
@@ -269,6 +273,40 @@ export default function App() {
             </div>
           ) : null}
         </form>
+
+        <div className="savedProjectsArea">
+          <button
+            className="savedProjectsButton"
+            type="button"
+            onClick={() => setProjectsOpen((value) => !value)}
+            aria-expanded={projectsOpen}
+            title="Open saved searches"
+          >
+            <Bookmark size={17} />
+            <span>Saved</span>
+            {projects.items.length ? <strong>{projects.items.length}</strong> : null}
+          </button>
+          {projectsOpen ? (
+            <div className="savedProjectsPopover">
+              <ProjectPanel
+                projects={projects.items}
+                loading={projects.loading}
+                error={projects.error}
+                notice={projectNotice}
+                disabled={!queryResult}
+                username={username}
+                onUsernameChange={setUsername}
+                onSave={handleSaveProject}
+                onLoad={(project) => {
+                  handleLoadProject(project);
+                  setProjectsOpen(false);
+                }}
+                onDelete={handleDeleteProject}
+                icon={<Save size={16} />}
+              />
+            </div>
+          ) : null}
+        </div>
       </section>
 
       {toolsOpen ? (
@@ -346,20 +384,6 @@ export default function App() {
           shadowsEnabled={shadowsEnabled}
           onHourChange={setSunHour}
           onToggleShadows={setShadowsEnabled}
-        />
-
-        <ProjectPanel
-          projects={projects.items}
-          loading={projects.loading}
-          error={projects.error}
-          notice={projectNotice}
-          disabled={!queryResult}
-          username={username}
-          onUsernameChange={setUsername}
-          onSave={handleSaveProject}
-          onLoad={handleLoadProject}
-          onDelete={handleDeleteProject}
-          icon={<Save size={16} />}
         />
 
         <InsightsPanel buildings={buildings} permits={permits} />
