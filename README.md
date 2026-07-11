@@ -15,6 +15,7 @@ The target product is an interactive React + Three.js map of several Calgary blo
 
 - [Assignment brief](docs/assignment-brief.md)
 - [Implementation blueprint](docs/implementation-blueprint.md)
+- [UML diagrams](docs/uml.md)
 
 ## Local Setup
 
@@ -54,5 +55,5 @@ Built:
 Next:
 
 - refine the 3D scene details and interaction polish
-- add UML diagrams
-- prepare deployment configuration
+- connect production environment variables
+- prepare final ZIP package
