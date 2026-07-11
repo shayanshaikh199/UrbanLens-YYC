@@ -1,3 +1,6 @@
+from dataclasses import replace
+
+from app.services import query_engine
 from app.services.query_engine import apply_filters, interpret_query
 
 
@@ -7,7 +10,9 @@ BUILDINGS = [
 ]
 
 
-def test_height_query_converts_feet_to_meters():
+def test_height_query_converts_feet_to_meters(monkeypatch):
+    monkeypatch.setattr(query_engine, "settings", replace(query_engine.settings, groq_api_key=""))
+
     result = interpret_query("highlight buildings over 100 feet")
 
     assert result["method"] == "deterministic-pattern"
