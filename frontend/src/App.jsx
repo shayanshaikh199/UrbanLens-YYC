@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 
 import { CityScene } from "./components/CityScene.jsx";
 import { DataPanel } from "./components/DataPanel.jsx";
+import { InsightsPanel } from "./components/InsightsPanel.jsx";
 import { ManualFilterPanel } from "./components/ManualFilterPanel.jsx";
 import { ProjectPanel } from "./components/ProjectPanel.jsx";
 import { QueryPanel } from "./components/QueryPanel.jsx";
@@ -255,6 +256,8 @@ export default function App() {
           matchSummary={selectedMatchSummary}
           metadata={metadata}
         />
+
+        <InsightsPanel buildings={buildings} permits={permits} />
       </aside>
     </main>
   );

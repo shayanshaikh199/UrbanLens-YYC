@@ -465,6 +465,57 @@ h2 {
   font-weight: 700;
 }
 
+.insightGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.insightMetric {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background: #f1f6f4;
+}
+
+.insightMetric span,
+.insightRow span {
+  color: #64736f;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.insightMetric strong {
+  overflow: hidden;
+  color: #172420;
+  font-size: 0.9rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.insightList {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.insightRow {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.insightRow strong {
+  overflow: hidden;
+  color: #172420;
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .summaryHeader {
   display: flex;
   align-items: center;
