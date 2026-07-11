@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { latLngToScene } from "../utils/geo.js";
 import { BuildingMesh } from "./BuildingMesh.jsx";
 import { PermitMarker } from "./PermitMarker.jsx";
+import { RoadLayer } from "./RoadLayer.jsx";
 
 export function CityScene({
   buildings,
@@ -15,6 +16,7 @@ export function CityScene({
   selectedBuilding,
   selectedPermit,
   showPermits,
+  showRoads,
   onClearSelection,
   onSelectBuilding,
   onSelectPermit
@@ -64,6 +66,8 @@ export function CityScene({
         <meshStandardMaterial color="#e8ece5" roughness={0.92} />
       </mesh>
       <gridHelper args={[groundSize, 24, "#9ca8a1", "#c9d0ca"]} position={[0, 0.03, 0]} />
+
+      {showRoads ? <RoadLayer origin={origin} /> : null}
 
       <group>
         {buildings.map((building) => (

@@ -17,6 +17,7 @@ export default function App() {
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   const [selectedPermit, setSelectedPermit] = useState(null);
   const [showPermits, setShowPermits] = useState(true);
+  const [showRoads, setShowRoads] = useState(true);
   const [queryResult, setQueryResult] = useState(null);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
@@ -163,6 +164,7 @@ export default function App() {
             selectedBuilding={selectedBuilding}
             selectedPermit={selectedPermit}
             showPermits={showPermits}
+            showRoads={showRoads}
             onClearSelection={() => {
               setSelectedBuilding(null);
               setSelectedPermit(null);
@@ -208,15 +210,27 @@ export default function App() {
           />
         </label>
 
-        <div className="toggleRow">
-          <span>Permit layer</span>
-          <button
-            className={showPermits ? "toggle isOn" : "toggle"}
-            onClick={() => setShowPermits((value) => !value)}
-            aria-pressed={showPermits}
-          >
-            <span />
-          </button>
+        <div className="layerControls">
+          <div className="toggleRow">
+            <span>Road grid</span>
+            <button
+              className={showRoads ? "toggle isOn" : "toggle"}
+              onClick={() => setShowRoads((value) => !value)}
+              aria-pressed={showRoads}
+            >
+              <span />
+            </button>
+          </div>
+          <div className="toggleRow">
+            <span>Permit layer</span>
+            <button
+              className={showPermits ? "toggle isOn" : "toggle"}
+              onClick={() => setShowPermits((value) => !value)}
+              aria-pressed={showPermits}
+            >
+              <span />
+            </button>
+          </div>
         </div>
 
         <QueryPanel
