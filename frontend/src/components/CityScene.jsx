@@ -172,11 +172,11 @@ function sunStateForHour(hour, groundSize) {
   ];
   const moonPosition = [-position[0] * 0.72, groundSize * 0.38, -position[2] * 0.72];
   const dusk = smoothstep(0.02, 0.42, warmth) * (1 - smoothstep(0.65, 0.95, daylight));
-  const dayColor = mixColor("#17211f", "#384541", daylight);
-  const warmSky = mixColor(dayColor, "#4a3826", dusk);
-  const groundBase = mixColor("#33251b", "#6b5944", daylight);
-  const warmGround = mixColor(groundBase, "#7b4c2d", dusk * 0.5);
-  const directWarm = mixColor("#7b93b2", "#f2dfbd", daylight);
+  const dayColor = mixColor("#d4d8d8", "#f2f2ef", daylight);
+  const warmSky = mixColor(dayColor, "#dfd4c8", dusk * 0.75);
+  const groundBase = mixColor("#777977", "#d6d6d1", daylight);
+  const warmGround = mixColor(groundBase, "#c9b9a2", dusk * 0.45);
+  const directWarm = mixColor("#9aa7b4", "#ffffff", daylight);
 
   return {
     position,
@@ -185,13 +185,13 @@ function sunStateForHour(hour, groundSize) {
     backgroundColor: warmSky,
     fogColor: warmSky,
     groundColor: warmGround,
-    ambientColor: mixColor("#8aa1b5", "#f4ead7", daylight),
-    ambientIntensity: THREE.MathUtils.lerp(0.14, 0.42, daylight),
-    hemiIntensity: THREE.MathUtils.lerp(0.08, 0.28, daylight),
-    skyColor: mixColor("#172338", "#d8c7a8", daylight),
-    groundLightColor: mixColor("#101615", "#2f352d", daylight),
-    directColor: mixColor(directWarm, "#f0a866", dusk),
-    directIntensity: THREE.MathUtils.lerp(0.06, 1.25, daylight),
+    ambientColor: mixColor("#a7b4c1", "#ffffff", daylight),
+    ambientIntensity: THREE.MathUtils.lerp(0.22, 0.54, daylight),
+    hemiIntensity: THREE.MathUtils.lerp(0.14, 0.42, daylight),
+    skyColor: mixColor("#c8ced4", "#ffffff", daylight),
+    groundLightColor: mixColor("#6f736f", "#cfcfc8", daylight),
+    directColor: mixColor(directWarm, "#f6c28d", dusk),
+    directIntensity: THREE.MathUtils.lerp(0.08, 1.35, daylight),
     moonIntensity: THREE.MathUtils.lerp(0.28, 0, daylight),
     sunDiskColor: mixColor("#f4f4ef", "#f0a866", dusk),
     sunOpacity: isDaytime ? THREE.MathUtils.clamp(daylight * 0.95 + dusk * 0.2, 0, 0.95) : 0

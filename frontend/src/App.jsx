@@ -267,12 +267,12 @@ export default function App() {
 
         <div className="zoningLegend" aria-label="Building color legend">
           <span>Zoning</span>
-          <LegendItem color="#2dd4bf" label="CC-X" />
-          <LegendItem color="#60a5fa" label="CC-MH" />
-          <LegendItem color="#a3e635" label="CC-MHX" />
-          <LegendItem color="#fb7185" label="CC-COR" />
-          <LegendItem color="#c084fc" label="C-COR1" />
-          <LegendItem color="#facc15" label="DC" />
+          <LegendItem color="#d9dee4" label="CC-X" />
+          <LegendItem color="#9fb0c0" label="CC-MH" />
+          <LegendItem color="#526477" label="CC-MHX" />
+          <LegendItem color="#f1f0eb" label="CC-COR" />
+          <LegendItem color="#6f7f8d" label="C-COR1" />
+          <LegendItem color="#232c37" label="DC" />
           <LegendItem color="#ffffff" label="Selected / match outline" />
         </div>
 

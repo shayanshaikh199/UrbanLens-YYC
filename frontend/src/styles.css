@@ -2649,6 +2649,13 @@ select:focus-visible {
   color: #ffffff;
 }
 
+.toolsDrawer .manualFilterForm select option,
+.manualFilterForm select option {
+  background: #ffffff;
+  color: #111111;
+  font-weight: 500;
+}
+
 .drawerHeader h1,
 .toolsDrawer .panelHeader h2,
 .toolsDrawer .metric strong,
