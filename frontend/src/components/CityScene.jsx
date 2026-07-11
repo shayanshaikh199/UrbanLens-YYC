@@ -53,7 +53,6 @@ export function CityScene({
       onPointerMissed={onClearSelection}
     >
       <color attach="background" args={["#d7ddd8"]} />
-      <fog attach="fog" args={["#d7ddd8", groundSize * 0.75, groundSize * 1.85]} />
       <ambientLight intensity={0.56} />
       <directionalLight
         castShadow
@@ -101,7 +100,7 @@ export function CityScene({
       <OrbitControls
         target={[0, 30, 0]}
         minDistance={90}
-        maxDistance={groundSize * 1.35}
+        maxDistance={groundSize * 0.95}
         maxPolarAngle={1.35}
       />
     </Canvas>

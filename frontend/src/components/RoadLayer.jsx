@@ -1,5 +1,6 @@
 import { Html, Line } from "@react-three/drei";
 import { useMemo } from "react";
+import * as THREE from "three";
 
 import { latLngToScene } from "../utils/geo.js";
 
@@ -99,7 +100,7 @@ export function RoadLayer({ origin }) {
         ...road,
         points: road.path.map((point) => {
           const [x, z] = latLngToScene(point, origin);
-          return [x, 0.18, z];
+          return [x, 0.11, z];
         })
       })),
     [origin]
@@ -109,14 +110,8 @@ export function RoadLayer({ origin }) {
     <group>
       {roads.map((road) => (
         <group key={road.id}>
-          <Line
-            points={road.points}
-            color={road.kind === "avenue" ? "#776f61" : "#8a8378"}
-            lineWidth={road.kind === "avenue" ? 7 : 5}
-            transparent
-            opacity={0.68}
-          />
-          <Line points={road.points} color="#f3efe4" lineWidth={1.25} transparent opacity={0.55} />
+          <RoadBand road={road} />
+          <Line points={road.points} color="#f4ecdb" lineWidth={1.15} transparent opacity={0.46} />
           {road.label ? <RoadLabel road={road} /> : null}
         </group>
       ))}
@@ -124,12 +119,64 @@ export function RoadLayer({ origin }) {
   );
 }
 
+function RoadBand({ road }) {
+  const geometry = useMemo(() => bandGeometry(road.points, road.kind === "avenue" ? 9.5 : 7.5), [road]);
+
+  return (
+    <mesh geometry={geometry} renderOrder={1}>
+      <meshBasicMaterial
+        color={road.kind === "avenue" ? "#8c806e" : "#9b9285"}
+        transparent
+        opacity={0.82}
+        side={THREE.DoubleSide}
+        depthWrite={false}
+      />
+    </mesh>
+  );
+}
+
 function RoadLabel({ road }) {
   const middle = road.points[Math.floor(road.points.length / 2)];
 
   return (
-    <Html position={[middle[0], 0.55, middle[2]]} center distanceFactor={36}>
+    <Html position={[middle[0], 0.7, middle[2]]} center distanceFactor={44}>
       <span className="roadLabel">{road.name}</span>
     </Html>
   );
+}
+
+function bandGeometry(points, width) {
+  const [start, end] = points;
+  const dx = end[0] - start[0];
+  const dz = end[2] - start[2];
+  const length = Math.hypot(dx, dz) || 1;
+  const nx = (-dz / length) * (width / 2);
+  const nz = (dx / length) * (width / 2);
+  const y = start[1];
+
+  const vertices = new Float32Array([
+    start[0] + nx,
+    y,
+    start[2] + nz,
+    start[0] - nx,
+    y,
+    start[2] - nz,
+    end[0] + nx,
+    y,
+    end[2] + nz,
+    end[0] + nx,
+    y,
+    end[2] + nz,
+    start[0] - nx,
+    y,
+    start[2] - nz,
+    end[0] - nx,
+    y,
+    end[2] - nz
+  ]);
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
+  geometry.computeVertexNormals();
+  return geometry;
 }
