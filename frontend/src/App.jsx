@@ -39,18 +39,22 @@ export default function App() {
     () => buildings.filter((building) => matchedIds.has(building.id)),
     [buildings, matchedIds]
   );
-  const visiblePermitCount = showPermits ? Math.min(permits.length, 45) : 0;
+  const areaPermits = useMemo(
+    () => permits.filter((permit) => permitInsideBounds(permit, metadata?.bounds)),
+    [metadata?.bounds, permits]
+  );
+  const visiblePermitCount = showPermits ? Math.min(areaPermits.length, 45) : 0;
   const selectedBuildingPermits = useMemo(() => {
     if (!selectedBuilding) return [];
     const buildingKey = addressKey(selectedBuilding.address);
     if (!buildingKey) return [];
-    return permits
+    return areaPermits
       .filter((permit) => {
         const permitKey = addressKey(permit.address);
         return permitKey && (permitKey.includes(buildingKey) || buildingKey.includes(permitKey));
       })
       .slice(0, 4);
-  }, [permits, selectedBuilding]);
+  }, [areaPermits, selectedBuilding]);
   const selectedMatchSummary = useMemo(() => {
     if (!selectedBuilding || !matchedIds.has(selectedBuilding.id)) return "";
     return describeFilters(queryResult?.filters);
@@ -212,7 +216,7 @@ export default function App() {
         ) : (
           <CityScene
             buildings={buildings}
-            permits={permits}
+            permits={areaPermits}
             metadata={metadata}
             matchedIds={matchedIds}
             selectedBuilding={selectedBuilding}
@@ -433,7 +437,7 @@ export default function App() {
           onClear={handleClearManualFilters}
         />
 
-        <InsightsPanel buildings={buildings} permits={permits} />
+        <InsightsPanel buildings={buildings} permits={areaPermits} />
       </aside>
     </main>
   );
@@ -464,6 +468,21 @@ function addressKey(value = "") {
     .replace(/^#\S+\s+/, "")
     .replace(/\b(CALGARY|AB|CANADA)\b/g, "")
     .replace(/[^A-Z0-9]/g, "");
+}
+
+function permitInsideBounds(permit, bounds) {
+  if (!bounds?.sw || !bounds?.ne || !permit?.center) return true;
+  const [lat, lng] = permit.center;
+  const [south, west] = bounds.sw;
+  const [north, east] = bounds.ne;
+  const latPadding = Math.max((north - south) * 0.08, 0.00035);
+  const lngPadding = Math.max((east - west) * 0.08, 0.00035);
+  return (
+    lat >= south - latPadding &&
+    lat <= north + latPadding &&
+    lng >= west - lngPadding &&
+    lng <= east + lngPadding
+  );
 }
 
 function describeFilters(filters = []) {
