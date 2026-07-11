@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
 from app.services.map_data import get_buildings
+from app.core.config import settings
 from app.services.query_engine import QueryError, apply_filters, interpret_query
 
 router = APIRouter()
@@ -33,6 +34,16 @@ def query_map(payload: QueryRequest):
         "filters": interpretation["filters"],
         "matched_building_ids": matched_ids,
         "match_count": len(matched_ids),
+    }
+
+
+@router.get("/llm/status")
+def llm_status():
+    return {
+        "provider": "groq",
+        "configured": settings.llm_configured,
+        "model": settings.groq_model if settings.llm_configured else None,
+        "fallback": "deterministic-pattern-parser",
     }
 
 

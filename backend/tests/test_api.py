@@ -17,3 +17,12 @@ def test_query_filter_and_project_flow():
     assert filtered["match_count"] == query["match_count"]
     assert saved["name"] == "Commercial scan"
     assert len(listed["projects"]) >= 1
+
+
+def test_llm_status_does_not_expose_key():
+    with TestClient(app) as client:
+        status = client.get("/api/llm/status").json()
+
+    assert status["provider"] == "groq"
+    assert "key" not in status
+    assert "api_key" not in status

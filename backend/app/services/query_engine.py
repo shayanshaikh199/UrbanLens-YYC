@@ -158,13 +158,25 @@ def _parse_with_groq(text: str) -> list[dict] | None:  # pragma: no cover - depe
         completion = client.chat.completions.create(
             model=settings.groq_model,
             temperature=0,
+            response_format={"type": "json_object"},
             messages=[
                 {
                     "role": "system",
                     "content": (
-                        "Extract map filters from the user query. Return only JSON with a filters "
-                        "array. Allowed attributes: height_m, floors, zoning, land_use, "
-                        "assessed_value, address. Allowed operators: >, >=, <, <=, =, contains."
+                        "You parse natural-language queries for a Calgary 3D building map. "
+                        "Return only a JSON object with a 'filters' array. Each filter must have "
+                        "attribute, operator, value, and optional unit. Allowed attributes: "
+                        "height_m, floors, zoning, land_use, assessed_value, address. Allowed "
+                        "operators: >, >=, <, <=, =, contains. Convert feet to meters. Use "
+                        "land_use contains COMMERCIAL for commercial buildings. Use zoning "
+                        "contains for zoning codes such as DC or CC-X."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": (
+                        "Example: 'highlight buildings over 100 feet' -> "
+                        '{"filters":[{"attribute":"height_m","operator":">","value":30.48,"unit":"m"}]}'
                     ),
                 },
                 {"role": "user", "content": text},
