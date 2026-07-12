@@ -95,6 +95,7 @@ Do not commit `.env` files. For production, set `GROQ_API_KEY`, `DATABASE_URL`, 
 Backend:
 
 - Render can use `render.yaml`.
+- Railway can use `backend/Dockerfile`; set the Railway service root directory to `backend`.
 - Set `GROQ_API_KEY` as a secret environment variable.
 - Set `FRONTEND_ORIGINS` to the deployed frontend URL.
 - Use `/health` and `/api/status` as smoke checks after deployment.

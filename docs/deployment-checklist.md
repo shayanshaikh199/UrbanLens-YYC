@@ -2,6 +2,10 @@
 
 ## Backend
 
+- Railway deploy can use `backend/Dockerfile`.
+- Set Railway root directory to `backend`.
+- Leave the Railway build command blank when using the Dockerfile.
+- Leave the Railway start command blank when using the Dockerfile.
 - Deploy from `render.yaml` with `backend` as the service root.
 - Set `GROQ_API_KEY` as a secret environment variable.
 - Set `GROQ_MODEL` to `llama-3.3-70b-versatile`.
