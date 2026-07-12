@@ -19,35 +19,47 @@ export function TransitMarker({ stop, position }) {
           document.body.style.cursor = "";
         }}
       >
-        <cylinderGeometry args={[1.15, 1.15, 0.55, 32]} />
+        <cylinderGeometry args={[0.34, 0.34, 8.6, 18]} />
         <meshStandardMaterial
-          color={active ? "#9edbff" : "#5fb7ef"}
+          color={active ? "#b8e6ff" : "#6ecbff"}
+          depthTest={false}
+          depthWrite={false}
           emissive="#145c86"
-          emissiveIntensity={active ? 0.4 : 0.24}
+          emissiveIntensity={active ? 0.58 : 0.36}
           roughness={0.38}
         />
       </mesh>
-      <mesh position={[0, 0.62, 0]} castShadow>
-        <boxGeometry args={[2.25, 1.15, 2.25]} />
+      <mesh position={[0, 4.9, 0]} castShadow>
+        <boxGeometry args={[3.35, 1.55, 3.35]} />
         <meshStandardMaterial
           color={active ? "#ecf8ff" : "#d9f0ff"}
+          depthTest={false}
+          depthWrite={false}
           emissive="#1f6f9e"
-          emissiveIntensity={active ? 0.22 : 0.12}
+          emissiveIntensity={active ? 0.34 : 0.2}
           roughness={0.44}
         />
       </mesh>
-      <mesh position={[0, 1.35, 0]} rotation={[Math.PI / 2, 0, Math.PI / 4]}>
-        <ringGeometry args={[1.1, 1.42, 4]} />
-        <meshBasicMaterial color="#0f6fa5" transparent opacity={0.86} />
+      <mesh position={[0, 6.05, 0]} rotation={[Math.PI / 2, 0, Math.PI / 4]}>
+        <ringGeometry args={[1.65, 2.1, 4]} />
+        <meshBasicMaterial color="#20a8f2" depthTest={false} depthWrite={false} transparent opacity={0.92} />
       </mesh>
-      {active ? (
-        <Html position={[0, 3.35, 0]} center distanceFactor={18}>
-          <div className="transitLabel">
-            <strong>{stop.name}</strong>
-            <span>{stop.type}</span>
-          </div>
-        </Html>
-      ) : null}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4.35, 0]}>
+        <ringGeometry args={[2.35, 3.05, 32]} />
+        <meshBasicMaterial
+          color="#5ec7ff"
+          depthTest={false}
+          depthWrite={false}
+          transparent
+          opacity={active ? 0.76 : 0.48}
+        />
+      </mesh>
+      <Html position={[0, 8.25, 0]} center distanceFactor={18}>
+        <div className={active ? "transitLabel isActive" : "transitLabel"}>
+          <strong>{stop.name}</strong>
+          <span>{stop.type}</span>
+        </div>
+      </Html>
     </group>
   );
 }
