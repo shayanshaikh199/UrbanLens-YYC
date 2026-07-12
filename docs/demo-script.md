@@ -4,7 +4,7 @@ Use this as a short walkthrough for reviewing or recording the project.
 
 ## Two-Minute Flow
 
-1. Open UrbanLens-YYC and point out the Downtown Core / Stephen Ave focus area.
+1. Open `https://urban-lens-yyc.vercel.app` and point out the Downtown Core / Stephen Ave focus area.
 2. Toggle the permit and bus-stop layers off and on to show civic context.
 3. Run `show commercial buildings` from the natural-language query box.
 4. Point out the parsed filter, match count, highlighted buildings, and matched building list.

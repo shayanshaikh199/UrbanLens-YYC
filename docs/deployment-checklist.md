@@ -13,10 +13,10 @@ Live deployment:
 - Leave the Railway build command blank when using the Dockerfile.
 - Leave the Railway start command blank when using the Dockerfile.
 - Deploy from `render.yaml` with `backend` as the service root.
-- Set `GROQ_API_KEY` as a secret environment variable.
+- Set `GROQ_API_KEY` as a secret environment variable. Create it from [https://console.groq.com](https://console.groq.com) under **API Keys**.
 - Set `GROQ_MODEL` to `llama-3.3-70b-versatile`.
 - Set `DATABASE_URL` to the production database URL. SQLite is acceptable for a prototype; managed Postgres is better for a longer-lived deployment.
-- Set `FRONTEND_ORIGINS` to the deployed frontend origin.
+- Set `FRONTEND_ORIGINS` to `https://urban-lens-yyc.vercel.app`.
 
 Smoke checks:
 
@@ -33,7 +33,7 @@ POST /api/query
 ## Frontend
 
 - Deploy the `frontend` directory to Vercel.
-- Set `VITE_API_URL` to the deployed backend URL.
+- Set `VITE_API_URL` to `https://urbanlens-yyc-api-production.up.railway.app`.
 - Confirm the browser console has no errors on load.
 - Run a quick query and verify highlighted buildings appear.
 - Save and load a project with a test username.

@@ -105,6 +105,24 @@ The app runs at `http://localhost:5173`.
 
 ## Environment Variables
 
+### Groq API Key
+
+The LLM requirement is handled with Groq. To create the key:
+
+1. Go to [https://console.groq.com](https://console.groq.com).
+2. Sign in or create a free Groq account.
+3. Open **API Keys** from the Groq console.
+4. Click **Create API Key**.
+5. Copy the key once. Groq will not show the full key again.
+6. Put it in `backend/.env` for local development. Keep the key value private:
+
+```text
+GROQ_API_KEY=
+GROQ_MODEL=llama-3.3-70b-versatile
+```
+
+Paste your Groq key as the value of `GROQ_API_KEY` locally. For Railway, add the same `GROQ_API_KEY` and `GROQ_MODEL` values under the backend service **Variables** tab. Never commit the key.
+
 Backend variables are defined in `backend/.env.example`:
 
 ```text
@@ -122,7 +140,7 @@ Frontend variables are defined in `frontend/.env.example`:
 VITE_API_URL=http://localhost:8000
 ```
 
-Do not commit `.env` files. For production, set `GROQ_API_KEY`, `DATABASE_URL`, and `FRONTEND_ORIGINS` in the backend host, and set `VITE_API_URL` in the frontend host.
+Do not commit `.env` files. For production, set `GROQ_API_KEY`, `GROQ_MODEL`, `DATABASE_URL`, and `FRONTEND_ORIGINS` in Railway, and set `VITE_API_URL` in Vercel.
 
 ## Deployment
 
@@ -154,7 +172,7 @@ Built:
 
 ## Demo Workflow
 
-1. Open the frontend at `http://localhost:5173`.
+1. Open the deployed frontend at [https://urban-lens-yyc.vercel.app](https://urban-lens-yyc.vercel.app).
 2. Run a natural-language query from the bottom input, such as `show commercial buildings`.
 3. Review the match count, parsed filter summary, and highlighted buildings on the map.
 4. Use the matched building list to inspect addresses, zoning, height, and assessment values.

@@ -5,7 +5,7 @@ Use this file as the final handoff checklist before sending the MASIV submission
 ## What To Submit
 
 - Source code from this repository.
-- `README.md` with setup, environment, architecture, API, and demo notes.
+- `README.md` with setup, Groq API key instructions, environment variables, architecture, API, deployment links, and demo notes.
 - UML export: `docs/assets/uml-export.svg`.
 - Supporting visuals:
   - `docs/assets/architecture-overview.svg`
@@ -39,7 +39,7 @@ npm.cmd run build
 
 Manual demo checks:
 
-- Load the 3D map.
+- Load the deployed 3D map at `https://urban-lens-yyc.vercel.app`.
 - Run `show commercial buildings`.
 - Click a building and review height, zoning, use, and assessment value.
 - Toggle permit pins and click one permit.
