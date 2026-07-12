@@ -9,7 +9,7 @@ export function ManualFilterPanel({ loading, onApply, onClear }) {
   const [zoning, setZoning] = useState("Any");
   const [minHeight, setMinHeight] = useState("");
   const [minValue, setMinValue] = useState("");
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const filters = useMemo(
     () => buildFilters({ landUse, zoning, minHeight, minValue }),
@@ -32,12 +32,17 @@ export function ManualFilterPanel({ loading, onApply, onClear }) {
 
   return (
     <section className={open ? "panel collapsiblePanel isOpen" : "panel collapsiblePanel"}>
-      <button className="collapsibleHeader" type="button" onClick={() => setOpen((value) => !value)}>
+      <button
+        className="collapsibleHeader"
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        aria-expanded={open}
+      >
         <span>
           <SlidersHorizontal size={16} />
           Manual filters
         </span>
-        <strong>{hasFilters ? `${filters.length} active` : "Optional"}</strong>
+        <strong>{hasFilters ? `${filters.length} active` : open ? "Hide" : "Show"}</strong>
         <ChevronDown size={16} />
       </button>
       {open ? <form className="manualFilterForm" onSubmit={handleSubmit}>
