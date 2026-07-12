@@ -1,25 +1,41 @@
 import { Trash2, UserRound } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { filterSummary } from "../utils/filterText.js";
 
 export function ProjectPanel({ projects, loading, error, notice, username, onUsernameChange, onLoad, onDelete }) {
   const usernameMissing = !username.trim();
+  const [draftUsername, setDraftUsername] = useState(username);
+
+  useEffect(() => {
+    setDraftUsername(username);
+  }, [username]);
+
+  function handleUsernameSubmit(event) {
+    event.preventDefault();
+    const nextUsername = draftUsername.trim();
+    if (nextUsername.length < 2) return;
+    onUsernameChange(nextUsername);
+  }
 
   return (
     <section className="panel">
       <div className="panelHeader">
         <h2>Saved searches</h2>
       </div>
-      {usernameMissing ? (
-        <label className="projectUserInput">
+      <form className="projectUserInput" onSubmit={handleUsernameSubmit}>
+        <label>
           <UserRound size={15} />
           <input
-            value={username}
-            onChange={(event) => onUsernameChange(event.target.value)}
-            placeholder="Name for saved filters"
+            value={draftUsername}
+            onChange={(event) => setDraftUsername(event.target.value)}
+            placeholder="Enter username"
           />
         </label>
-      ) : null}
+        <button type="submit" disabled={draftUsername.trim().length < 2}>
+          Load
+        </button>
+      </form>
       {notice ? <p className={notice.startsWith("Saved") || notice.startsWith("Loaded") ? "formSuccess" : "formError"}>{notice}</p> : null}
       {error ? <p className="formError">{error}</p> : null}
       <div className="projectList">
