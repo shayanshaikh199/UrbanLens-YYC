@@ -22,7 +22,6 @@ export function TransitMarker({ stop, position }) {
         <cylinderGeometry args={[0.22, 0.22, 4.4, 12]} />
         <meshStandardMaterial
           color={active ? "#f4d6ff" : "#d6a6ee"}
-          depthTest={false}
           depthWrite={false}
           emissive="#4e2168"
           emissiveIntensity={active ? 0.36 : 0.2}
@@ -33,7 +32,6 @@ export function TransitMarker({ stop, position }) {
         <boxGeometry args={[2.15, 1.2, 1.15]} />
         <meshStandardMaterial
           color={active ? "#fff3c6" : "#f0c75f"}
-          depthTest={false}
           depthWrite={false}
           emissive="#7a5413"
           emissiveIntensity={active ? 0.28 : 0.16}
@@ -44,7 +42,6 @@ export function TransitMarker({ stop, position }) {
         <sphereGeometry args={[0.82, 20, 20]} />
         <meshStandardMaterial
           color={active ? "#f7dcff" : "#c778ee"}
-          depthTest={false}
           depthWrite={false}
           emissive="#67298b"
           emissiveIntensity={active ? 0.38 : 0.24}
@@ -55,13 +52,12 @@ export function TransitMarker({ stop, position }) {
         <ringGeometry args={[1.25, 1.7, 28]} />
         <meshBasicMaterial
           color="#d78fff"
-          depthTest={false}
           depthWrite={false}
           transparent
           opacity={active ? 0.6 : 0.36}
         />
       </mesh>
-      <Html position={[0, 4.85, 0]} center distanceFactor={24}>
+      <Html position={[0, 4.85, 0]} center distanceFactor={24} occlude>
         <div className={active ? "transitLabel isActive" : "transitLabel"}>
           <strong>BUS</strong>
           <span>{stop.type}</span>
