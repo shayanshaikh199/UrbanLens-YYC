@@ -308,6 +308,7 @@ export default function App() {
               <strong>{queryResult.match_count} matches</strong>
               <span>{queryResult.query || "Current filter"}</span>
               <button
+                className="dockClearMatchesButton"
                 type="button"
                 onClick={() => {
                   setQueryResult(null);
@@ -317,7 +318,8 @@ export default function App() {
                 }}
                 title="Clear matched buildings"
               >
-                Clear
+                <X size={14} />
+                <span>Clear matches</span>
               </button>
             </div>
           ) : null}

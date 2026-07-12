@@ -1613,8 +1613,7 @@ body {
   opacity: 0.45;
 }
 
-.dockMessage,
-.dockResult {
+.dockMessage {
   position: absolute;
   left: 54px;
   bottom: -26px;
@@ -1634,10 +1633,19 @@ body {
 }
 
 .dockResult {
-  display: flex;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 8px;
   min-width: 0;
+  gap: 10px;
+  margin-top: 2px;
+  padding: 8px 8px 8px 14px;
+  border: 1px solid rgba(224, 205, 160, 0.14);
+  border-radius: 9px;
+  background: rgba(255, 250, 240, 0.08);
+  color: rgba(255, 250, 240, 0.78);
+  font-size: 0.82rem;
 }
 
 .dockResult strong,
@@ -1649,6 +1657,27 @@ body {
 
 .dockResult strong {
   color: #d7bd86;
+}
+
+.dockClearMatchesButton {
+  display: inline-flex;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 250, 240, 0.16);
+  border-radius: 7px;
+  background: rgba(21, 20, 17, 0.42);
+  color: #fffaf0;
+  font-size: 0.76rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.dockClearMatchesButton:hover {
+  background: rgba(216, 199, 152, 0.18);
+  border-color: rgba(216, 199, 152, 0.42);
 }
 
 .saveNamePrompt {
