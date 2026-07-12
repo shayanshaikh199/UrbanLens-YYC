@@ -4,7 +4,7 @@ import { useState } from "react";
 export function PermitMarker({ permit, position, selected, onSelect }) {
   const [hovered, setHovered] = useState(false);
   const active = hovered || selected;
-  const color = selected ? "#ffffff" : hovered ? "#ffe08a" : statusColor(permit.status);
+  const color = selected ? "#ffffff" : hovered ? "#8fdcff" : "#3aa7e0";
   const status = permit.status && permit.status !== "UNKNOWN" ? permit.status : permit.permit_type;
 
   return (
@@ -48,15 +48,15 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
         <sphereGeometry args={[active ? 2.45 : 1.75, 24, 24]} />
         <meshStandardMaterial
           color={color}
-          emissive={selected ? "#ffffff" : "#5b4316"}
-          emissiveIntensity={active ? 0.42 : 0.24}
+          emissive={selected ? "#ffffff" : "#0a5d86"}
+          emissiveIntensity={active ? 0.44 : 0.26}
           roughness={0.48}
         />
       </mesh>
       {selected && (
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.1, 0]}>
           <ringGeometry args={[2.7, 3.35, 32]} />
-          <meshBasicMaterial color="#fff1b8" transparent opacity={0.72} />
+          <meshBasicMaterial color="#8fdcff" transparent opacity={0.72} />
         </mesh>
       )}
       {active && (
@@ -68,12 +68,4 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
       )}
     </group>
   );
-}
-
-function statusColor(status = "") {
-  const value = status.toUpperCase();
-  if (value.includes("ISSUED") || value.includes("RELEASED")) return "#7ee0a8";
-  if (value.includes("PENDING") || value.includes("REVIEW")) return "#ffd166";
-  if (value.includes("REFUSED") || value.includes("CANCELLED")) return "#c5cdd2";
-  return "#78dce3";
 }
