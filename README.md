@@ -220,4 +220,4 @@ Example filter response shape:
 Before final handoff:
 
 - use `docs/assets/uml-export.svg` as the UML export or convert it to PDF/PNG
-- prepare final ZIP package
+- submit `UrbanLens-YYC-Shayan-Shaikh.zip` or a shared drive link if email blocks ZIP attachments

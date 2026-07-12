@@ -119,9 +119,9 @@ sequenceDiagram
 ```mermaid
 flowchart LR
   Browser["User browser"] --> Vercel["Vercel React app"]
-  Vercel --> Render["Render FastAPI service"]
-  Render --> SQLite["SQLite projects DB"]
-  Render --> Cache["Cached Calgary JSON"]
-  Render -. refresh .-> Calgary["City of Calgary Open Data"]
-  Render -. optional .-> Groq["Groq LLM API"]
+  Vercel --> Railway["Railway FastAPI service"]
+  Railway --> SQLite["SQLite projects DB"]
+  Railway --> Cache["Cached Calgary JSON"]
+  Railway -. refresh .-> Calgary["City of Calgary Open Data"]
+  Railway -. optional .-> Groq["Groq LLM API"]
 ```
