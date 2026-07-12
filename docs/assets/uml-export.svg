@@ -49,7 +49,7 @@
     <text class="body" x="18" y="159">footprint: tuple[]</text>
     <text class="body" x="18" y="187">height_m: float</text>
     <text class="body" x="18" y="215">zoning: string</text>
-    <text class="body" x="18" y="243">assessed_value: int</text>
+    <text class="body" x="18" y="243">assessed_value: int | null</text>
   </g>
 
   <g transform="translate(110 485)">

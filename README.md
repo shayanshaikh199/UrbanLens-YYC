@@ -36,6 +36,14 @@ The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
 
 ![UrbanLens-YYC architecture overview](docs/assets/architecture-overview.svg)
 
+## Product Screenshots
+
+![UrbanLens-YYC 3D map overview](docs/assets/screenshot-map-overview.png)
+
+![UrbanLens-YYC selected building details](docs/assets/screenshot-building-details.png)
+
+![UrbanLens-YYC query results](docs/assets/screenshot-query-results.png)
+
 ## Local Setup
 
 ### Backend
@@ -103,6 +111,7 @@ Built:
 
 - FastAPI backend with health, map data, query, filter, and project endpoints
 - cached Calgary building, permit, and OpenStreetMap road datasets
+- parcel-matched Calgary assessment values with unknown values shown when no parcel match is available
 - deterministic query fallback for height, zoning, land use, value, and superlatives
 - SQLite-backed username/project persistence
 - React + Three.js frontend with 3D buildings, permit pins, bus stops, query controls, matched results, manual filters, saved projects, and downtown insights
@@ -111,9 +120,9 @@ Built:
 ## Demo Workflow
 
 1. Open the frontend at `http://localhost:5173`.
-2. Run a natural-language query from the input or quick query buttons, such as `show commercial buildings`.
+2. Run a natural-language query from the bottom input, such as `show commercial buildings`.
 3. Review the match count, parsed filter summary, and highlighted buildings on the map.
-4. Use the matched building list to inspect addresses, zoning, height, and assessed values.
+4. Use the matched building list to inspect addresses, zoning, height, and assessment values.
 5. Click a building or permit marker to update the selected details panel.
 6. Save the current query as a named project under a username.
 7. Load the saved project to reapply its filters and restore the highlighted results.
@@ -155,7 +164,7 @@ Example filter response shape:
 
 `GET /api/status` is the fastest deployment smoke check. It returns the active map area, building count, permit count, data source, and whether the Groq LLM path is configured without exposing secrets.
 
-Next:
+Before final handoff:
 
 - deploy backend and frontend
 - use `docs/assets/uml-export.svg` as the UML export or convert it to PDF/PNG

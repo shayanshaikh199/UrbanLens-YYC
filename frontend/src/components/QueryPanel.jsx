@@ -7,7 +7,7 @@ const QUICK_QUERIES = [
   { label: "Commercial", query: "show commercial buildings" },
   { label: "Tallest", query: "show the tallest buildings" },
   { label: "DC zoning", query: "show buildings in DC zoning" },
-  { label: "High value", query: "show buildings with assessed value over 10000000" },
+  { label: "High value", query: "show buildings with assessment value over 10000000" },
   { label: "Mixed use", query: "show mixed use buildings" }
 ];
 

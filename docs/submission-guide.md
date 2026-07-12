@@ -10,6 +10,9 @@ Use this file as the final handoff checklist before sending the MASIV submission
 - Supporting visuals:
   - `docs/assets/architecture-overview.svg`
   - `docs/assets/feature-overview.svg`
+  - `docs/assets/screenshot-map-overview.png`
+  - `docs/assets/screenshot-building-details.png`
+  - `docs/assets/screenshot-query-results.png`
 - Public frontend URL.
 - Public backend URL or API status URL.
 - Optional 2-3 minute walkthrough video.
@@ -35,7 +38,7 @@ Manual demo checks:
 
 - Load the 3D map.
 - Run `show commercial buildings`.
-- Click a building and review height, zoning, use, and assessed value.
+- Click a building and review height, zoning, use, and assessment value.
 - Toggle permit pins and click one permit.
 - Toggle bus stops.
 - Move the sun slider from day to night.
@@ -61,4 +64,4 @@ UrbanLens-YYC-Shayan-Shaikh.zip
 
 ## Short Reviewer Pitch
 
-UrbanLens-YYC is a full-stack urban intelligence prototype for Downtown Core / Stephen Ave. It combines Calgary open-data building footprints, property attributes, building permits, road context, bus stop markers, project persistence, and LLM-powered natural-language filtering in a Three.js dashboard.
+UrbanLens-YYC is a full-stack urban intelligence prototype for Downtown Core / Stephen Ave. It combines Calgary open-data building footprints, parcel-matched assessment values, building permits, road context, bus stop markers, project persistence, and LLM-powered natural-language filtering in a Three.js dashboard.

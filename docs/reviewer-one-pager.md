@@ -2,6 +2,8 @@
 
 ![UrbanLens-YYC feature overview](assets/feature-overview.svg)
 
+![UrbanLens-YYC 3D map overview](assets/screenshot-map-overview.png)
+
 ## What It Is
 
 UrbanLens-YYC is a full-stack 3D urban analysis dashboard focused on Downtown Core / Stephen Ave in Calgary. It combines public city datasets, interactive 3D visualization, natural-language filtering, and project persistence into one working prototype.
@@ -18,7 +20,7 @@ UrbanLens-YYC is a full-stack 3D urban analysis dashboard focused on Downtown Co
 
 1. Load the 3D Downtown Core / Stephen Ave study area.
 2. Run `show commercial buildings` or `show buildings over 50 m`.
-3. Click a highlighted building to inspect height, floors, zoning, land use, and assessed value.
+3. Click a highlighted building to inspect height, floors, zoning, land use, and assessment value.
 4. Toggle permit pins and inspect a permit record.
 5. Toggle bus stops for civic context.
 6. Move the sun slider from morning to night to show lighting and shadows.
@@ -37,4 +39,5 @@ UrbanLens-YYC is a full-stack 3D urban analysis dashboard focused on Downtown Co
 - UML source: `docs/uml.md`
 - UML export: `docs/assets/uml-export.svg`
 - Architecture visual: `docs/assets/architecture-overview.svg`
+- Product screenshots: `docs/assets/screenshot-map-overview.png`, `docs/assets/screenshot-building-details.png`, `docs/assets/screenshot-query-results.png`
 - Submission checklist: `docs/submission-guide.md`

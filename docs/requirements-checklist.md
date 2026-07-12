@@ -18,8 +18,8 @@ This checklist maps the assignment requirements to the current UrbanLens-YYC imp
 | --- | --- | --- |
 | Fetch Calgary map data for at least 3-4 blocks | Done | Downtown Core / Stephen Ave bounds in Calgary data client |
 | Use public open data | Done | City of Calgary building footprints, assessments, and permits |
-| Process building footprints for frontend display | Done | Normalized footprint, center, height, zoning, land use, value data |
-| Include useful metadata | Done | Address, height, floors, zoning, land use, assessed value |
+| Process building footprints for frontend display | Done | Normalized footprint, center, height, zoning, land use, and assessment data |
+| Include useful metadata | Done | Address, height, floors, zoning, land use, parcel-matched assessment value when available |
 
 ## 3D Visualization
 
@@ -35,7 +35,7 @@ This checklist maps the assignment requirements to the current UrbanLens-YYC imp
 | --- | --- | --- |
 | Clicking a building highlights it | Done | Selected and matched building materials in `BuildingMesh` |
 | Details panel with fetched data | Done | `DataPanel` shows selected building details |
-| Every building has data points | Done | Normalization fills core metadata for loaded buildings |
+| Every building has data points | Done | Normalization fills core metadata; assessment values are shown only when a parcel match exists |
 
 ## Live City Data Layer
 
@@ -52,7 +52,7 @@ This checklist maps the assignment requirements to the current UrbanLens-YYC imp
 
 | Requirement | Status | Implementation |
 | --- | --- | --- |
-| Natural-language text input | Done | `QueryPanel` |
+| Natural-language text input | Done | Bottom map query dock |
 | Backend sends query to LLM for structured filter | Done | Groq JSON parsing path |
 | Backend validates and applies filter | Done | `validate_filters` and `apply_filters` |
 | Frontend highlights matching buildings | Done | `matched_building_ids` drive scene highlighting |

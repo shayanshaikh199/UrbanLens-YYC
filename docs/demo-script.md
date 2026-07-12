@@ -8,7 +8,7 @@ Use this as a short walkthrough for reviewing or recording the project.
 2. Toggle the permit and bus-stop layers off and on to show civic context.
 3. Run `show commercial buildings` from the natural-language query box.
 4. Point out the parsed filter, match count, highlighted buildings, and matched building list.
-5. Click a highlighted building and show address, height, zoning, land use, assessed value, and related permits.
+5. Click a highlighted building and show address, height, zoning, land use, assessment value, and related permits.
 6. Click a permit marker and show permit type, status, estimated project cost, issued date, and contractor.
 7. Apply a manual filter such as commercial buildings over 20 m.
 8. Save the current filter as a project, load it again, then delete it.

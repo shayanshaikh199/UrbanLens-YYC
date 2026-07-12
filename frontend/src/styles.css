@@ -1493,7 +1493,6 @@ body {
   color: #d7bd86;
   font-size: 0.68rem;
   font-weight: 850;
-  text-transform: uppercase;
 }
 
 .mapIdentity strong {
@@ -2399,7 +2398,6 @@ select:focus-visible {
   padding: 14px 16px;
 }
 
-.mapIdentity span,
 .zoningLegend > span,
 .selectionBadge,
 .summaryHeader span,
@@ -2409,6 +2407,17 @@ select:focus-visible {
   color: rgba(255, 255, 255, 0.66);
   letter-spacing: 0.2em;
   text-transform: uppercase;
+}
+
+.mapIdentity span {
+  color: rgba(255, 255, 255, 0.66);
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.drawerHeader .eyebrow {
+  letter-spacing: 0.08em;
+  text-transform: none;
 }
 
 .mapIdentity strong {

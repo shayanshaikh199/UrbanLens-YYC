@@ -46,7 +46,7 @@ Preferred approach:
 - Use Calgary Open Data building footprints from `cchr-krqg.geojson`.
 - Use Calgary Open Data current year property assessments from `4bsw-nn7w.json`.
 - Use building footprint elevation fields for height when available, especially `rooftop_elev_z - grd_elev_min_z`.
-- Join footprints to assessments with a centroid/proximity strategy, then normalize address, zoning/land-use designation, and assessed value.
+- Join footprints to assessments only when the building center falls inside an assessment parcel, then normalize address, zoning/land-use designation, and assessment value.
 - Use Calgary permit data from `c2es-76ed` near the same center point.
 - Keep a cached JSON copy of normalized buildings so the deployed demo does not depend on live public API latency.
 
@@ -78,7 +78,7 @@ Initial endpoints:
 
 - `GET /health`
 - `GET /api/map/buildings`
-  - returns normalized buildings with footprint coordinates, height, address, zoning/use, assessed value if available, and source metadata
+  - returns normalized buildings with footprint coordinates, height, address, zoning/use, assessment value if available, and source metadata
 - `GET /api/map/permits`
   - returns permit markers near the configured map center
 - `POST /api/query`
@@ -133,21 +133,11 @@ Runtime models:
   - `value`
   - `unit`
 
-## First Build Sequence
+## Build Sequence
 
 ### 1. Connect GitHub and Branch
 
-Blocked until we have either:
-
-- the repository URL, such as `https://github.com/<owner>/UrbanLens-YYC`, and the existing branch name, or
-- a working GitHub auth session that can access the repo.
-
-Local state right now:
-
-- folder is an empty Git repository
-- current branch is `master`
-- no remote is configured
-- local GitHub CLI token for `shayanshaikh199` is invalid
+Completed. The working branch is `feature/project-foundation`.
 
 ### 2. Scaffold the App
 
@@ -199,10 +189,6 @@ Local state right now:
 - Deploy backend and frontend on free services.
 - Create final ZIP.
 
-## Immediate Next Step
+## Current Submission Focus
 
-Once the GitHub repo/branch access is fixed, start with the scaffold and backend data pipeline. The project lives or dies on reliable data normalization, so the first real code milestone should be:
-
-> `GET /api/map/buildings` and `GET /api/map/permits` returning clean, documented JSON for one chosen Calgary area.
-
-After that, the Three.js map becomes a rendering problem instead of a research problem.
+The main code path is complete. The remaining pre-submission work is deployment, final smoke testing, and packaging the repo without local secrets or generated dependency folders.

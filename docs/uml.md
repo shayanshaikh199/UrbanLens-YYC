@@ -29,7 +29,7 @@ classDiagram
     int floors
     string zoning
     string land_use
-    int assessed_value
+    int|null assessed_value
   }
 
   class Permit {
