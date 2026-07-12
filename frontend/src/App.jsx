@@ -425,7 +425,7 @@ export default function App() {
         <div className="metricGrid">
           <Metric icon={<Building2 size={16} />} label="Buildings" value={buildings.length} />
           <Metric icon={<Layers size={16} />} label="Permit pins" value={`${visiblePermitCount} shown`} />
-          <Metric icon={<MapPinned size={16} />} label="Transit stops" value={transitStops.length} />
+          <Metric icon={<MapPinned size={16} />} label="Bus stops" value={transitStops.length} />
           <Metric icon={<Eye size={16} />} label="Matches" value={queryResult?.match_count ?? 0} />
         </div>
 
@@ -462,7 +462,7 @@ export default function App() {
             </button>
           </div>
           <div className="toggleRow">
-            <span>CTrain stops</span>
+            <span>Bus stops</span>
             <button
               className={showTransit ? "toggle isOn" : "toggle"}
               onClick={() => setShowTransit((value) => !value)}

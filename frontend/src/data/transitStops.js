@@ -1,30 +1,30 @@
 export const transitStops = [
   {
-    id: "ctrain-6-st-sw",
-    name: "6 Street SW",
-    type: "CTrain station",
-    routes: "Blue Line / Red Line",
-    center: [51.04657, -114.07603]
+    id: "bus-8-ave-5-st-sw",
+    name: "8 Ave at 5 St SW",
+    type: "Bus stop",
+    routes: "Downtown local routes",
+    center: [51.04568, -114.07503]
   },
   {
-    id: "ctrain-4-st-sw",
-    name: "4 Street SW",
-    type: "CTrain station",
-    routes: "Blue Line / Red Line",
-    center: [51.04658, -114.07207]
+    id: "bus-8-ave-3-st-sw",
+    name: "8 Ave at 3 St SW",
+    type: "Bus stop",
+    routes: "Downtown local routes",
+    center: [51.04566, -114.0711]
   },
   {
-    id: "ctrain-3-st-sw",
-    name: "3 Street SW",
-    type: "CTrain station",
-    routes: "Blue Line / Red Line",
-    center: [51.04658, -114.06968]
+    id: "bus-stephen-centre-st",
+    name: "Stephen Ave at Centre St",
+    type: "Bus stop",
+    routes: "Centre Street routes",
+    center: [51.04564, -114.06392]
   },
   {
-    id: "ctrain-1-st-sw",
-    name: "1 Street SW",
-    type: "CTrain station",
-    routes: "Blue Line / Red Line",
-    center: [51.04656, -114.06596]
+    id: "bus-9-ave-1-st-sw",
+    name: "9 Ave at 1 St SW",
+    type: "Bus stop",
+    routes: "Downtown local routes",
+    center: [51.04408, -114.06562]
   }
 ];

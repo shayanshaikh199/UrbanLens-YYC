@@ -1,4 +1,4 @@
-import { Line, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useMemo } from "react";
 import * as THREE from "three";
@@ -57,14 +57,6 @@ export function CityScene({
       })
       .slice(0, 45);
   }, [permits, selectedPermit?.id, showPermits]);
-  const transitLinePoints = useMemo(
-    () =>
-      transitStops.map((stop) => {
-        const [x, z] = latLngToScene(stop.center, origin);
-        return [x, 12, z];
-      }),
-    [origin, transitStops]
-  );
 
   return (
     <Canvas
@@ -126,20 +118,9 @@ export function CityScene({
 
       {showTransit ? (
         <group renderOrder={12}>
-          {transitLinePoints.length > 1 ? (
-            <Line
-              points={transitLinePoints}
-              color="#35c7ff"
-              lineWidth={7}
-              transparent
-              opacity={0.9}
-              depthTest={false}
-              depthWrite={false}
-            />
-          ) : null}
           {transitStops.map((stop) => {
             const [x, z] = latLngToScene(stop.center, origin);
-            return <TransitMarker key={stop.id} stop={stop} position={new THREE.Vector3(x, 4.35, z)} />;
+            return <TransitMarker key={stop.id} stop={stop} position={new THREE.Vector3(x, 2.4, z)} />;
           })}
         </group>
       ) : null}
