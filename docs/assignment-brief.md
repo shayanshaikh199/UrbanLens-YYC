@@ -6,7 +6,7 @@ Source PDF: `MASIV_InternTest_2026.pdf`
 
 Build and launch a web-based 3D city dashboard for Calgary that demonstrates backend development, data persistence, frontend visualization, and LLM-assisted map querying.
 
-Working product name: **UrbanLensYYC**.
+Working product name: **UrbanLens-YYC**.
 
 ## Submission Constraints
 

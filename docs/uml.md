@@ -1,4 +1,4 @@
-# UrbanLensYYC UML
+# UrbanLens-YYC UML
 
 ## Class / Data Model
 
@@ -41,6 +41,14 @@ classDiagram
     int estimated_project_cost
   }
 
+  class BusStop {
+    string id
+    string name
+    tuple center
+    string type
+    string routes
+  }
+
   class Filter {
     string attribute
     string operator
@@ -52,6 +60,7 @@ classDiagram
   Project "*" --> "*" Filter
   Building "*" --> "*" Filter : matched by
   Permit --> Building : nearby city activity
+  BusStop --> Building : transit context
 ```
 
 ## Query Sequence

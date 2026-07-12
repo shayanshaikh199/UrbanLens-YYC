@@ -1,6 +1,6 @@
 # MASIV Requirements Checklist
 
-This checklist maps the assignment requirements to the current UrbanLensYYC implementation.
+This checklist maps the assignment requirements to the current UrbanLens-YYC implementation.
 
 ## Core App
 
@@ -46,6 +46,7 @@ This checklist maps the assignment requirements to the current UrbanLensYYC impl
 | Render permits as 3D markers or pins | Done | `PermitMarker` in the Three.js scene |
 | Toggle permit layer | Done | Permit layer toggle in the control rail |
 | Clicking a marker shows details | Done | Selected permit details in `DataPanel` |
+| Add extra civic context | Extra | Toggleable bus stop markers in the 3D scene |
 
 ## LLM Querying
 
@@ -73,9 +74,9 @@ This checklist maps the assignment requirements to the current UrbanLensYYC impl
 | --- | --- | --- |
 | Source code | Done | Repo contains backend, frontend, docs, deployment config |
 | README setup instructions | Mostly done | README has local setup and deployment notes; final public URLs still need filling in |
-| UML diagram | Partially done | Mermaid UML exists in `docs/uml.md`; export to PDF/PNG before final ZIP |
+| UML diagram | Done | Mermaid UML exists in `docs/uml.md`; static SVG export exists at `docs/assets/uml-export.svg` |
 | Hosted public app link | Pending | Backend/frontend configs exist, but final URLs need to be deployed and recorded |
-| ZIP package | Pending | Create final ZIP after deployment URLs and exported UML are ready |
+| ZIP package | Pending | Create final ZIP after deployment URLs are ready |
 | Optional walkthrough video | Optional | Recommended if time allows |
 
 ## Optional Bonus
@@ -86,9 +87,8 @@ This checklist maps the assignment requirements to the current UrbanLensYYC impl
 
 ## Final Pre-Submission Checklist
 
-- Export UML from `docs/uml.md` as a PNG or PDF.
 - Deploy backend and frontend.
 - Add deployed URLs to `README.md`.
 - Run backend tests and frontend build one final time.
-- Smoke test query, manual filter, building click, permit click, save, load, and delete.
+- Smoke test query, manual filter, building click, permit click, bus stop toggle, save, load, and delete.
 - Create the final ZIP package without `.env`, `.venv`, `node_modules`, local database files, or caches.

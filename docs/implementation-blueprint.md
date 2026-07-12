@@ -1,11 +1,11 @@
-# UrbanLensYYC Implementation Blueprint
+# UrbanLens-YYC Implementation Blueprint
 
 ## Recommended Architecture
 
 Use a small monorepo with a Python API and React/Three.js client:
 
 ```text
-UrbanLensYYC/
+UrbanLens-YYC/
   backend/
     app/
       api/
@@ -139,7 +139,7 @@ Runtime models:
 
 Blocked until we have either:
 
-- the repository URL, such as `https://github.com/<owner>/UrbanLensYYC`, and the existing branch name, or
+- the repository URL, such as `https://github.com/<owner>/UrbanLens-YYC`, and the existing branch name, or
 - a working GitHub auth session that can access the repo.
 
 Local state right now:

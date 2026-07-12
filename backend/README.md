@@ -1,4 +1,4 @@
-# UrbanLensYYC Backend
+# UrbanLens-YYC Backend
 
 FastAPI service for Calgary building data, permit markers, LLM query parsing, and project persistence.
 

@@ -28,7 +28,7 @@ class CalgaryDataError(RuntimeError):
 def fetch_json(dataset: str, params: dict[str, str | int]) -> dict | list:
     query = urlencode(params)
     url = f"{BASE_URL}/{dataset}?{query}"
-    request = Request(url, headers={"User-Agent": "UrbanLensYYC/0.1"})
+    request = Request(url, headers={"User-Agent": "UrbanLens-YYC/0.1"})
 
     try:
         with urlopen(request, timeout=30) as response:

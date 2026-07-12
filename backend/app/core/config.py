@@ -10,7 +10,7 @@ load_dotenv(BACKEND_ROOT / ".env")
 
 @dataclass(frozen=True)
 class Settings:
-    app_name: str = "UrbanLensYYC API"
+    app_name: str = "UrbanLens-YYC API"
     environment: str = "development"
     frontend_origins_raw: str = os.getenv(
         "FRONTEND_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"

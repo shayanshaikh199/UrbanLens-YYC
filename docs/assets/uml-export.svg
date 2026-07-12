@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" role="img" aria-labelledby="title desc">
+  <title id="title">UrbanLens-YYC UML Export</title>
+  <desc id="desc">A static UML-style export showing major data classes and relationships.</desc>
+  <rect width="1180" height="760" fill="#ffffff"/>
+  <style>
+    .title{font-family:Inter,Segoe UI,Arial,sans-serif;font-size:34px;font-weight:850;fill:#151512}
+    .box{fill:#fbfaf6;stroke:#151512;stroke-width:2;rx:8}
+    .head{fill:#151512}
+    .headText{font-family:Inter,Segoe UI,Arial,sans-serif;font-size:20px;font-weight:850;fill:#fffaf0}
+    .body{font-family:Consolas,Menlo,monospace;font-size:16px;fill:#222}
+    .rel{stroke:#151512;stroke-width:2;fill:none;marker-end:url(#arrow)}
+    .note{font-family:Inter,Segoe UI,Arial,sans-serif;font-size:18px;font-weight:650;fill:#4b5551}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M1,1 L9,5 L1,9 Z" fill="#151512"/>
+    </marker>
+  </defs>
+  <text x="50" y="60" class="title">UrbanLens-YYC UML Overview</text>
+  <text x="50" y="94" class="note">Static export of the data model and primary relationships used by the prototype.</text>
+
+  <g transform="translate(60 145)">
+    <rect class="box" width="235" height="145"/>
+    <rect class="head" width="235" height="44" rx="8"/>
+    <text class="headText" x="18" y="29">User</text>
+    <text class="body" x="18" y="75">id: int</text>
+    <text class="body" x="18" y="103">username: string</text>
+    <text class="body" x="18" y="131">created_at: datetime</text>
+  </g>
+
+  <g transform="translate(390 145)">
+    <rect class="box" width="265" height="190"/>
+    <rect class="head" width="265" height="44" rx="8"/>
+    <text class="headText" x="18" y="29">Project</text>
+    <text class="body" x="18" y="75">id: int</text>
+    <text class="body" x="18" y="103">user_id: int</text>
+    <text class="body" x="18" y="131">name: string</text>
+    <text class="body" x="18" y="159">query: string</text>
+    <text class="body" x="18" y="187">filters: json</text>
+  </g>
+
+  <g transform="translate(770 120)">
+    <rect class="box" width="320" height="260"/>
+    <rect class="head" width="320" height="44" rx="8"/>
+    <text class="headText" x="18" y="29">Building</text>
+    <text class="body" x="18" y="75">id: string</text>
+    <text class="body" x="18" y="103">address: string</text>
+    <text class="body" x="18" y="131">center: tuple</text>
+    <text class="body" x="18" y="159">footprint: tuple[]</text>
+    <text class="body" x="18" y="187">height_m: float</text>
+    <text class="body" x="18" y="215">zoning: string</text>
+    <text class="body" x="18" y="243">assessed_value: int</text>
+  </g>
+
+  <g transform="translate(110 485)">
+    <rect class="box" width="300" height="190"/>
+    <rect class="head" width="300" height="44" rx="8"/>
+    <text class="headText" x="18" y="29">Permit</text>
+    <text class="body" x="18" y="75">id: string</text>
+    <text class="body" x="18" y="103">address: string</text>
+    <text class="body" x="18" y="131">permit_type: string</text>
+    <text class="body" x="18" y="159">status: string</text>
+    <text class="body" x="18" y="187">estimated_cost: int</text>
+  </g>
+
+  <g transform="translate(510 495)">
+    <rect class="box" width="250" height="150"/>
+    <rect class="head" width="250" height="44" rx="8"/>
+    <text class="headText" x="18" y="29">Filter</text>
+    <text class="body" x="18" y="75">attribute: string</text>
+    <text class="body" x="18" y="103">operator: string</text>
+    <text class="body" x="18" y="131">value: string</text>
+  </g>
+
+  <g transform="translate(860 500)">
+    <rect class="box" width="235" height="135"/>
+    <rect class="head" width="235" height="44" rx="8"/>
+    <text class="headText" x="18" y="29">BusStop</text>
+    <text class="body" x="18" y="75">id: string</text>
+    <text class="body" x="18" y="103">name: string</text>
+    <text class="body" x="18" y="131">center: tuple</text>
+  </g>
+
+  <path class="rel" d="M295 218 L390 218"/>
+  <text class="note" x="314" y="205">1..*</text>
+  <path class="rel" d="M655 240 C715 240 725 240 770 240"/>
+  <text class="note" x="682" y="225">filters match</text>
+  <path class="rel" d="M640 335 L640 495"/>
+  <text class="note" x="657" y="420">saved filters</text>
+  <path class="rel" d="M410 575 C520 470 620 410 770 330"/>
+  <text class="note" x="475" y="500">nearby activity</text>
+  <path class="rel" d="M860 560 C785 515 780 445 860 380"/>
+  <text class="note" x="780" y="475">civic layer</text>
+</svg>

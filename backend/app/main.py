@@ -20,7 +20,7 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title=settings.app_name,
         version="0.1.0",
-        description="Calgary 3D map data API for UrbanLensYYC.",
+        description="Calgary 3D map data API for UrbanLens-YYC.",
         lifespan=lifespan,
     )
 

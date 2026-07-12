@@ -1,1 +1,1 @@
-"""UrbanLensYYC backend package."""
+"""UrbanLens-YYC backend package."""

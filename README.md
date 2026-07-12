@@ -1,6 +1,8 @@
-# UrbanLensYYC
+# UrbanLens-YYC
 
-UrbanLensYYC is a full-stack 3D Calgary city dashboard for the MASIV Fall 2026 intern test.
+UrbanLens-YYC is a full-stack 3D Calgary city dashboard for the MASIV Fall 2026 intern test.
+
+![UrbanLens-YYC feature overview](docs/assets/feature-overview.svg)
 
 The target product is an interactive React + Three.js map of several Calgary blocks with:
 
@@ -8,6 +10,7 @@ The target product is an interactive React + Three.js map of several Calgary blo
 - clickable building details
 - Calgary building permit markers
 - cached OpenStreetMap road centerlines
+- bus stop context markers
 - natural-language LLM filtering
 - manual building filters
 - username-based project save/load
@@ -22,9 +25,16 @@ The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
 - [Assignment brief](docs/assignment-brief.md)
 - [Implementation blueprint](docs/implementation-blueprint.md)
 - [Requirements checklist](docs/requirements-checklist.md)
+- [Reviewer one-pager](docs/reviewer-one-pager.md)
 - [Demo script](docs/demo-script.md)
 - [UML diagrams](docs/uml.md)
+- [Static UML export](docs/assets/uml-export.svg)
+- [Submission guide](docs/submission-guide.md)
 - [Deployment checklist](docs/deployment-checklist.md)
+
+## Architecture
+
+![UrbanLens-YYC architecture overview](docs/assets/architecture-overview.svg)
 
 ## Local Setup
 
@@ -56,7 +66,7 @@ The app runs at `http://localhost:5173`.
 Backend variables are defined in `backend/.env.example`:
 
 ```text
-APP_NAME=UrbanLensYYC API
+APP_NAME=UrbanLens-YYC API
 ENVIRONMENT=development
 FRONTEND_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 DATABASE_URL=sqlite:///./urbanlens.db
@@ -95,7 +105,7 @@ Built:
 - cached Calgary building, permit, and OpenStreetMap road datasets
 - deterministic query fallback for height, zoning, land use, value, and superlatives
 - SQLite-backed username/project persistence
-- React + Three.js frontend with 3D buildings, permit pins, query controls, matched results, manual filters, saved projects, and downtown insights
+- React + Three.js frontend with 3D buildings, permit pins, bus stops, query controls, matched results, manual filters, saved projects, and downtown insights
 - optional 24-hour sun study with day/night lighting and shadows
 
 ## Demo Workflow
@@ -148,5 +158,5 @@ Example filter response shape:
 Next:
 
 - deploy backend and frontend
-- export UML to PDF/PNG for final submission
+- use `docs/assets/uml-export.svg` as the UML export or convert it to PDF/PNG
 - prepare final ZIP package
