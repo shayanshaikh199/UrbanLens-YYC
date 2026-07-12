@@ -1,63 +1,92 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="620" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="700" viewBox="0 0 1180 700" role="img" aria-labelledby="title desc">
   <title id="title">UrbanLens-YYC Feature Overview</title>
   <desc id="desc">A feature board showing the main UrbanLens-YYC capabilities.</desc>
-  <rect width="1120" height="620" fill="#fbfaf6"/>
+  <rect width="1180" height="700" fill="#fbfaf6"/>
   <style>
     .h{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#151512;font-weight:850}
-    .p{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#4b5551;font-size:18px;font-weight:600}
+    .p{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#4b5551;font-size:17px;font-weight:600}
     .card{fill:#ffffff;stroke:#d8d1c1;stroke-width:2;rx:14}
     .chip{fill:#151512;rx:20}
-    .chipText{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#fffaf0;font-size:14px;font-weight:800}
+    .chipText{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#fffaf0;font-size:15px;font-weight:850}
   </style>
-  <text x="58" y="72" class="h" font-size="36">UrbanLens-YYC Submission Highlights</text>
-  <text x="58" y="108" class="p">A compact, full-stack urban design dashboard built for the MASIV Fall 2026 intern test.</text>
 
-  <g transform="translate(58 160)">
-    <rect class="card" width="310" height="155"/>
+  <text x="70" y="76" class="h" font-size="34">UrbanLens-YYC Submission Highlights</text>
+  <text x="70" y="112" class="p">A compact, full-stack urban design dashboard built for the MASIV Fall 2026 intern test.</text>
+
+  <g transform="translate(70 160)">
+    <rect class="card" width="320" height="170"/>
     <circle cx="55" cy="55" r="24" fill="#d8c798"/>
-    <text x="95" y="52" class="h" font-size="23">3D Calgary Blocks</text>
-    <text x="30" y="98" class="p">Extruded building footprints with height, zoning, use, and value details.</text>
+    <text x="95" y="53" class="h" font-size="23">3D Calgary Blocks</text>
+    <text x="30" y="102" class="p">
+      <tspan x="30" dy="0">Extruded building footprints</tspan>
+      <tspan x="30" dy="25">with height, zoning, land use,</tspan>
+      <tspan x="30" dy="25">and assessed value details.</tspan>
+    </text>
   </g>
-  <g transform="translate(405 160)">
-    <rect class="card" width="310" height="155"/>
+
+  <g transform="translate(430 160)">
+    <rect class="card" width="320" height="170"/>
     <circle cx="55" cy="55" r="24" fill="#3aa7e0"/>
-    <text x="95" y="52" class="h" font-size="23">Civic Data Layers</text>
-    <text x="30" y="98" class="p">Permit pins, road centerlines, and bus-stop markers for context.</text>
+    <text x="95" y="53" class="h" font-size="23">Civic Data Layers</text>
+    <text x="30" y="102" class="p">
+      <tspan x="30" dy="0">Permit pins, road centerlines,</tspan>
+      <tspan x="30" dy="25">and bus-stop markers for</tspan>
+      <tspan x="30" dy="25">downtown context.</tspan>
+    </text>
   </g>
-  <g transform="translate(752 160)">
-    <rect class="card" width="310" height="155"/>
+
+  <g transform="translate(790 160)">
+    <rect class="card" width="320" height="170"/>
     <circle cx="55" cy="55" r="24" fill="#c778ee"/>
-    <text x="95" y="52" class="h" font-size="23">LLM Filtering</text>
-    <text x="30" y="98" class="p">Natural-language prompts turn into validated building filters.</text>
+    <text x="95" y="53" class="h" font-size="23">LLM Filtering</text>
+    <text x="30" y="102" class="p">
+      <tspan x="30" dy="0">Natural-language prompts</tspan>
+      <tspan x="30" dy="25">become validated building</tspan>
+      <tspan x="30" dy="25">filters and map highlights.</tspan>
+    </text>
   </g>
 
-  <g transform="translate(58 360)">
-    <rect class="card" width="310" height="155"/>
+  <g transform="translate(70 375)">
+    <rect class="card" width="320" height="170"/>
     <circle cx="55" cy="55" r="24" fill="#7ca69c"/>
-    <text x="95" y="52" class="h" font-size="23">Saved Analyses</text>
-    <text x="30" y="98" class="p">Username-based project saves, loads, and deletes backed by SQLite.</text>
-  </g>
-  <g transform="translate(405 360)">
-    <rect class="card" width="310" height="155"/>
-    <circle cx="55" cy="55" r="24" fill="#f0c75f"/>
-    <text x="95" y="52" class="h" font-size="23">Sun + Shadows</text>
-    <text x="30" y="98" class="p">24-hour lighting slider with day, sunset, night, and shadows.</text>
-  </g>
-  <g transform="translate(752 360)">
-    <rect class="card" width="310" height="155"/>
-    <circle cx="55" cy="55" r="24" fill="#111512"/>
-    <text x="95" y="52" class="h" font-size="23">Submission Ready</text>
-    <text x="30" y="98" class="p">README, UML, demo script, deployment checklist, and tests.</text>
+    <text x="95" y="53" class="h" font-size="23">Saved Analyses</text>
+    <text x="30" y="102" class="p">
+      <tspan x="30" dy="0">Username-based project</tspan>
+      <tspan x="30" dy="25">saves, loads, and deletes</tspan>
+      <tspan x="30" dy="25">backed by SQLite.</tspan>
+    </text>
   </g>
 
-  <rect class="chip" x="58" y="555" width="170" height="38"/>
-  <text class="chipText" x="82" y="579">FastAPI</text>
-  <rect class="chip" x="244" y="555" width="170" height="38"/>
-  <text class="chipText" x="278" y="579">React</text>
-  <rect class="chip" x="430" y="555" width="170" height="38"/>
-  <text class="chipText" x="461" y="579">Three.js</text>
-  <rect class="chip" x="616" y="555" width="170" height="38"/>
-  <text class="chipText" x="660" y="579">Groq</text>
-  <rect class="chip" x="802" y="555" width="170" height="38"/>
-  <text class="chipText" x="842" y="579">SQLite</text>
+  <g transform="translate(430 375)">
+    <rect class="card" width="320" height="170"/>
+    <circle cx="55" cy="55" r="24" fill="#f0c75f"/>
+    <text x="95" y="53" class="h" font-size="23">Sun + Shadows</text>
+    <text x="30" y="102" class="p">
+      <tspan x="30" dy="0">24-hour lighting slider with</tspan>
+      <tspan x="30" dy="25">day, sunset, night, and</tspan>
+      <tspan x="30" dy="25">building shadows.</tspan>
+    </text>
+  </g>
+
+  <g transform="translate(790 375)">
+    <rect class="card" width="320" height="170"/>
+    <circle cx="55" cy="55" r="24" fill="#111512"/>
+    <text x="95" y="53" class="h" font-size="23">Submission Ready</text>
+    <text x="30" y="102" class="p">
+      <tspan x="30" dy="0">README, UML export, demo</tspan>
+      <tspan x="30" dy="25">script, deployment checklist,</tspan>
+      <tspan x="30" dy="25">and final submission guide.</tspan>
+    </text>
+  </g>
+
+  <rect class="chip" x="135" y="610" width="160" height="42"/>
+  <text class="chipText" x="187" y="637" text-anchor="middle">FastAPI</text>
+  <rect class="chip" x="335" y="610" width="160" height="42"/>
+  <text class="chipText" x="415" y="637" text-anchor="middle">React</text>
+  <rect class="chip" x="535" y="610" width="160" height="42"/>
+  <text class="chipText" x="615" y="637" text-anchor="middle">Three.js</text>
+  <rect class="chip" x="735" y="610" width="160" height="42"/>
+  <text class="chipText" x="815" y="637" text-anchor="middle">Groq</text>
+  <rect class="chip" x="935" y="610" width="160" height="42"/>
+  <text class="chipText" x="1015" y="637" text-anchor="middle">SQLite</text>
 </svg>
