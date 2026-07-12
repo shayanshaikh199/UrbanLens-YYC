@@ -7,6 +7,7 @@ import { latLngToScene } from "../utils/geo.js";
 import { BuildingMesh } from "./BuildingMesh.jsx";
 import { PermitMarker } from "./PermitMarker.jsx";
 import { RoadLayer } from "./RoadLayer.jsx";
+import { TransitMarker } from "./TransitMarker.jsx";
 
 export function CityScene({
   buildings,
@@ -17,6 +18,8 @@ export function CityScene({
   selectedPermit,
   showPermits,
   showRoads,
+  showTransit,
+  transitStops = [],
   sunHour,
   shadowsEnabled,
   onClearSelection,
@@ -99,6 +102,13 @@ export function CityScene({
       </mesh>
 
       {showRoads ? <RoadLayer origin={origin} /> : null}
+
+      {showTransit
+        ? transitStops.map((stop) => {
+            const [x, z] = latLngToScene(stop.center, origin);
+            return <TransitMarker key={stop.id} stop={stop} position={new THREE.Vector3(x, 1.25, z)} />;
+          })
+        : null}
 
       <group>
         {buildings.map((building) => (

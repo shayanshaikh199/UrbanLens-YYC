@@ -2117,7 +2117,7 @@ body {
 }
 
 .toolsDrawer .metricGrid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 7px;
 }
 
@@ -2809,4 +2809,30 @@ select:focus-visible {
   background: rgba(0, 0, 0, 0.68);
   color: #ffffff;
   box-shadow: none;
+}
+
+.transitLabel {
+  display: grid;
+  gap: 2px;
+  min-width: 128px;
+  padding: 8px 10px;
+  border: 1px solid rgba(158, 219, 255, 0.34);
+  border-radius: 4px;
+  background: rgba(8, 22, 31, 0.86);
+  color: #f2fbff;
+  font-size: 0.76rem;
+  line-height: 1.2;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.transitLabel strong {
+  font-weight: 850;
+}
+
+.transitLabel span {
+  color: rgba(242, 251, 255, 0.72);
+  font-size: 0.64rem;
+  font-weight: 750;
+  text-transform: uppercase;
 }

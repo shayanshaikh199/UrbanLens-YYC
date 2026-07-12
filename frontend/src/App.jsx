@@ -1,4 +1,17 @@
-import { Bookmark, Building2, Database, Eye, Layers, Loader2, Menu, Save, Search, Send, X } from "lucide-react";
+import {
+  Bookmark,
+  Building2,
+  Database,
+  Eye,
+  Layers,
+  Loader2,
+  MapPinned,
+  Menu,
+  Save,
+  Search,
+  Send,
+  X
+} from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { CityScene } from "./components/CityScene.jsx";
@@ -8,6 +21,7 @@ import { ManualFilterPanel } from "./components/ManualFilterPanel.jsx";
 import { ProjectPanel } from "./components/ProjectPanel.jsx";
 import { ResultsPanel } from "./components/ResultsPanel.jsx";
 import { SunStudyPanel } from "./components/SunStudyPanel.jsx";
+import { transitStops } from "./data/transitStops.js";
 import { useMapData } from "./hooks/useMapData.js";
 import { useProjects } from "./hooks/useProjects.js";
 import { filterBuildings, runQuery } from "./services/api.js";
@@ -18,6 +32,7 @@ export default function App() {
   const [selectedPermit, setSelectedPermit] = useState(null);
   const [showPermits, setShowPermits] = useState(true);
   const [showRoads, setShowRoads] = useState(true);
+  const [showTransit, setShowTransit] = useState(true);
   const [sunHour, setSunHour] = useState(14);
   const [toolsOpen, setToolsOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
@@ -223,6 +238,8 @@ export default function App() {
             selectedPermit={selectedPermit}
             showPermits={showPermits}
             showRoads={showRoads}
+            showTransit={showTransit}
+            transitStops={transitStops}
             sunHour={sunHour}
             shadowsEnabled
             onClearSelection={() => {
@@ -408,6 +425,7 @@ export default function App() {
         <div className="metricGrid">
           <Metric icon={<Building2 size={16} />} label="Buildings" value={buildings.length} />
           <Metric icon={<Layers size={16} />} label="Permit pins" value={`${visiblePermitCount} shown`} />
+          <Metric icon={<MapPinned size={16} />} label="Transit stops" value={transitStops.length} />
           <Metric icon={<Eye size={16} />} label="Matches" value={queryResult?.match_count ?? 0} />
         </div>
 
@@ -439,6 +457,16 @@ export default function App() {
               className={showPermits ? "toggle isOn" : "toggle"}
               onClick={() => setShowPermits((value) => !value)}
               aria-pressed={showPermits}
+            >
+              <span />
+            </button>
+          </div>
+          <div className="toggleRow">
+            <span>CTrain stops</span>
+            <button
+              className={showTransit ? "toggle isOn" : "toggle"}
+              onClick={() => setShowTransit((value) => !value)}
+              aria-pressed={showTransit}
             >
               <span />
             </button>

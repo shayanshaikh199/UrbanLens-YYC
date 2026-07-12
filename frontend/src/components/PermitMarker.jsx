@@ -25,11 +25,11 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
           onSelect(permit);
         }}
       >
-        <cylinderGeometry args={[0.18, 0.18, 5.2, 10]} />
-        <meshStandardMaterial color="#f4f1e8" emissive="#27251f" emissiveIntensity={0.12} roughness={0.58} />
+        <cylinderGeometry args={[0.32, 0.32, 6.6, 12]} />
+        <meshStandardMaterial color="#fff7de" emissive="#55441f" emissiveIntensity={0.18} roughness={0.5} />
       </mesh>
       <mesh
-        position={[0, 3.8, 0]}
+        position={[0, 4.65, 0]}
         castShadow
         onPointerOver={(event) => {
           event.stopPropagation();
@@ -45,22 +45,22 @@ export function PermitMarker({ permit, position, selected, onSelect }) {
           onSelect(permit);
         }}
       >
-        <sphereGeometry args={[active ? 1.42 : 1.04, 20, 20]} />
+        <sphereGeometry args={[active ? 2.45 : 1.75, 24, 24]} />
         <meshStandardMaterial
           color={color}
-          emissive={selected ? "#ffffff" : "#2e2b20"}
-          emissiveIntensity={active ? 0.28 : 0.14}
+          emissive={selected ? "#ffffff" : "#5b4316"}
+          emissiveIntensity={active ? 0.42 : 0.24}
           roughness={0.48}
         />
       </mesh>
       {selected && (
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.1, 0]}>
-          <ringGeometry args={[1.85, 2.35, 28]} />
-          <meshBasicMaterial color="#ffffff" transparent opacity={0.52} />
+          <ringGeometry args={[2.7, 3.35, 32]} />
+          <meshBasicMaterial color="#fff1b8" transparent opacity={0.72} />
         </mesh>
       )}
       {active && (
-        <Html position={[0, 7, 0]} center distanceFactor={18}>
+        <Html position={[0, 8.4, 0]} center distanceFactor={18}>
           <button className={selected ? "pinLabel isSelected" : "pinLabel"} onClick={() => onSelect(permit)}>
             {status}
           </button>
