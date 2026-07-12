@@ -2190,6 +2190,10 @@ body {
   overflow: hidden;
 }
 
+.collapsiblePanel.isOpen {
+  overflow: visible;
+}
+
 .collapsibleHeader {
   display: grid;
   width: 100%;
@@ -2230,7 +2234,16 @@ body {
 }
 
 .collapsiblePanel .manualFilterForm {
-  padding: 0 12px 12px;
+  padding: 0 12px 14px;
+}
+
+.toolsDrawer .collapsiblePanel.isOpen {
+  min-height: 228px;
+}
+
+.toolsDrawer .collapsiblePanel.isOpen .manualFilterForm {
+  display: grid;
+  min-height: 164px;
 }
 
 .projectUserInput {
