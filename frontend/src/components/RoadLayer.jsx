@@ -23,6 +23,9 @@ const LABEL_NAMES = new Set([
   "Centre Street South"
 ]);
 
+const ROAD_Y = 0.85;
+const LABEL_Y = 1.35;
+
 export function RoadLayer({ origin }) {
   const roads = useMemo(
     () =>
@@ -32,7 +35,7 @@ export function RoadLayer({ origin }) {
           style: ROAD_STYLE[road.kind] ?? ROAD_STYLE.residential,
           points: road.path.map((point) => {
             const [x, z] = latLngToScene(point, origin);
-            return [x, 0.22, z];
+            return [x, ROAD_Y, z];
           })
         }))
         .filter((road) => road.points.length > 1),
@@ -59,6 +62,8 @@ export function RoadLayer({ origin }) {
           transparent
           opacity={road.style.opacity}
           depthWrite={false}
+          depthTest
+          renderOrder={4}
         />
       ))}
       {labels.map((road) => (
@@ -72,7 +77,7 @@ function RoadLabel({ road }) {
   const middle = road.points[Math.floor(road.points.length / 2)];
 
   return (
-    <Html position={[middle[0], 0.78, middle[2]]} center distanceFactor={44}>
+    <Html position={[middle[0], LABEL_Y, middle[2]]} center distanceFactor={44}>
       <span className="roadLabel">{shortName(road.name)}</span>
     </Html>
   );
