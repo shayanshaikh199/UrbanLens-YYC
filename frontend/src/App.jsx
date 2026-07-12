@@ -186,7 +186,7 @@ export default function App() {
       <section className="mapStage" aria-label="3D Calgary map">
         <div className="mapTopBar">
           <div className="mapIdentity">
-            <span>UrbanLensYYC</span>
+            <span>UrbanLens-YYC</span>
             <strong>Downtown Core / Stephen Ave</strong>
           </div>
           <div className="mapQuickStats" aria-label="Map summary">
@@ -392,7 +392,7 @@ export default function App() {
       <aside className="toolsDrawer" aria-label="UrbanLens controls" aria-hidden={!toolsOpen}>
         <header className="drawerHeader">
           <div>
-            <p className="eyebrow">UrbanLensYYC</p>
+            <p className="eyebrow">UrbanLens-YYC</p>
             <h1>Map tools</h1>
           </div>
           <div className="drawerHeaderActions">
