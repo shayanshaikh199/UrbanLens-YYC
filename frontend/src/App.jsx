@@ -12,7 +12,7 @@ import {
   Send,
   X
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { CityScene } from "./components/CityScene.jsx";
 import { DataPanel } from "./components/DataPanel.jsx";
@@ -25,6 +25,8 @@ import { transitStops } from "./data/transitStops.js";
 import { useMapData } from "./hooks/useMapData.js";
 import { useProjects } from "./hooks/useProjects.js";
 import { filterBuildings, runQuery } from "./services/api.js";
+
+const USERNAME_STORAGE_KEY = "urbanlens-yyc-username";
 
 export default function App() {
   const { buildings, permits, metadata, loading, error, refresh } = useMapData();
@@ -42,9 +44,22 @@ export default function App() {
   const [queryResult, setQueryResult] = useState(null);
   const [queryLoading, setQueryLoading] = useState(false);
   const [queryError, setQueryError] = useState("");
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(() => {
+    if (typeof window === "undefined") return "";
+    return window.localStorage.getItem(USERNAME_STORAGE_KEY) || "";
+  });
   const [projectNotice, setProjectNotice] = useState("");
   const projects = useProjects(username);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const cleanUsername = username.trim();
+    if (cleanUsername) {
+      window.localStorage.setItem(USERNAME_STORAGE_KEY, cleanUsername);
+    } else {
+      window.localStorage.removeItem(USERNAME_STORAGE_KEY);
+    }
+  }, [username]);
 
   const matchedIds = useMemo(
     () => new Set(queryResult?.matched_building_ids ?? []),
