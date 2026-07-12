@@ -1,5 +1,11 @@
 # Deployment Checklist
 
+Live deployment:
+
+- Frontend: `https://urban-lens-yyc.vercel.app`
+- Backend: `https://urbanlens-yyc-api-production.up.railway.app`
+- API status: `https://urbanlens-yyc-api-production.up.railway.app/api/status`
+
 ## Backend
 
 - Railway deploy can use `backend/Dockerfile`.

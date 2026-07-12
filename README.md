@@ -20,11 +20,33 @@ The target product is an interactive React + Three.js map of several Calgary blo
 
 The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
 
+## Live Demo
+
+- Frontend: [https://urban-lens-yyc.vercel.app](https://urban-lens-yyc.vercel.app)
+- Backend API: [https://urbanlens-yyc-api-production.up.railway.app](https://urbanlens-yyc-api-production.up.railway.app)
+- API status: [https://urbanlens-yyc-api-production.up.railway.app/api/status](https://urbanlens-yyc-api-production.up.railway.app/api/status)
+
+## Repository Map
+
+```text
+backend/                  FastAPI app, data normalization, SQLite persistence, tests
+frontend/                 React, Three.js scene, map controls, saved search UI
+docs/assets/              UML export, architecture visual, product screenshots
+docs/assignment-brief.md  Parsed assignment requirements used for implementation
+docs/requirements-checklist.md
+docs/screenshots.md       Labeled screenshot index for reviewers
+docs/architecture-decisions.md
+docs/future-improvements.md
+```
+
 ## Planning Docs
 
 - [Assignment brief](docs/assignment-brief.md)
 - [Implementation blueprint](docs/implementation-blueprint.md)
 - [Requirements checklist](docs/requirements-checklist.md)
+- [Architecture decisions](docs/architecture-decisions.md)
+- [Screenshots guide](docs/screenshots.md)
+- [Future improvements](docs/future-improvements.md)
 - [Reviewer one-pager](docs/reviewer-one-pager.md)
 - [Demo script](docs/demo-script.md)
 - [UML diagrams](docs/uml.md)
@@ -38,9 +60,21 @@ The current map area is **Downtown Core / Stephen Ave, Calgary AB**.
 
 ## Product Screenshots
 
+### 1. 3D Map Overview
+
+Shows the Downtown Core / Stephen Ave study area, 93 extruded buildings, permit pins, zoning legend, sun slider, and natural-language query dock.
+
 ![UrbanLens-YYC 3D map overview](docs/assets/screenshot-map-overview.png)
 
+### 2. Building Inspection
+
+Shows selected-building highlighting, height in metres and feet, floors, land use, zoning, assessment value, and related permits.
+
 ![UrbanLens-YYC selected building details](docs/assets/screenshot-building-details.png)
+
+### 3. Query Results
+
+Shows a natural-language query result with matched-building outlines, match count, and a clear action to reset highlights.
 
 ![UrbanLens-YYC query results](docs/assets/screenshot-query-results.png)
 
@@ -97,13 +131,13 @@ Backend:
 - Render can use `render.yaml`.
 - Railway can use `backend/Dockerfile`; set the Railway service root directory to `backend`.
 - Set `GROQ_API_KEY` as a secret environment variable.
-- Set `FRONTEND_ORIGINS` to the deployed frontend URL.
+- Set `FRONTEND_ORIGINS` to `https://urban-lens-yyc.vercel.app`.
 - Use `/health` and `/api/status` as smoke checks after deployment.
 
 Frontend:
 
 - Vercel can use `frontend/vercel.json`.
-- Set `VITE_API_URL` to the deployed backend URL.
+- Set `VITE_API_URL` to `https://urbanlens-yyc-api-production.up.railway.app`.
 - After deployment, run a query and load/save a project to confirm frontend-backend connectivity.
 
 ## Current Status
@@ -167,6 +201,5 @@ Example filter response shape:
 
 Before final handoff:
 
-- deploy backend and frontend
 - use `docs/assets/uml-export.svg` as the UML export or convert it to PDF/PNG
 - prepare final ZIP package

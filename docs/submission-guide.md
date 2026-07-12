@@ -13,6 +13,9 @@ Use this file as the final handoff checklist before sending the MASIV submission
   - `docs/assets/screenshot-map-overview.png`
   - `docs/assets/screenshot-building-details.png`
   - `docs/assets/screenshot-query-results.png`
+- Screenshot guide: `docs/screenshots.md`.
+- Architecture decisions: `docs/architecture-decisions.md`.
+- Future improvements: `docs/future-improvements.md`.
 - Public frontend URL.
 - Public backend URL or API status URL.
 - Optional 2-3 minute walkthrough video.
@@ -61,6 +64,25 @@ Good ZIP name:
 ```text
 UrbanLens-YYC-Shayan-Shaikh.zip
 ```
+
+Recommended ZIP contents:
+
+- `backend/`
+- `frontend/`
+- `docs/`
+- `README.md`
+- `render.yaml`
+- `.gitignore`
+
+Exclude local/generated files:
+
+- `.tmp/`
+- `.env`
+- `.venv/`
+- `node_modules/`
+- `dist/`
+- local `.db` files
+- `.git/`
 
 ## Short Reviewer Pitch
 

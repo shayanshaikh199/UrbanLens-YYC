@@ -73,10 +73,10 @@ This checklist maps the assignment requirements to the current UrbanLens-YYC imp
 | Requirement | Status | Notes |
 | --- | --- | --- |
 | Source code | Done | Repo contains backend, frontend, docs, deployment config |
-| README setup instructions | Mostly done | README has local setup and deployment notes; final public URLs still need filling in |
+| README setup instructions | Done | README has local setup, environment variables, deployment notes, live links, and demo workflow |
 | UML diagram | Done | Mermaid UML exists in `docs/uml.md`; static SVG export exists at `docs/assets/uml-export.svg` |
-| Hosted public app link | Pending | Backend/frontend configs exist, but final URLs need to be deployed and recorded |
-| ZIP package | Pending | Create final ZIP after deployment URLs are ready |
+| Hosted public app link | Done | Vercel frontend and Railway backend are linked in the README |
+| ZIP package | Ready | `docs/submission-guide.md` lists exactly what to include/exclude |
 | Optional walkthrough video | Optional | Recommended if time allows |
 
 ## Optional Bonus
@@ -84,11 +84,12 @@ This checklist maps the assignment requirements to the current UrbanLens-YYC imp
 | Requirement | Status | Implementation |
 | --- | --- | --- |
 | Sunlight or shadow study | Done | 24-hour sun study controls Three.js lighting, night mode, and building shadows |
+| Extra civic context layer | Done | Toggleable bus stops and road centerlines |
+| Saved-project delete flow | Done | Saved searches can be removed from the project panel |
+| Public deployment docs | Done | Railway/Vercel deployment details live in README and deployment checklist |
 
 ## Final Pre-Submission Checklist
 
-- Deploy backend and frontend.
-- Add deployed URLs to `README.md`.
 - Run backend tests and frontend build one final time.
-- Smoke test query, manual filter, building click, permit click, bus stop toggle, save, load, and delete.
+- Smoke test query, manual filter, building click, permit click, bus stop toggle, save, load, and delete on the deployed frontend.
 - Create the final ZIP package without `.env`, `.venv`, `node_modules`, local database files, or caches.

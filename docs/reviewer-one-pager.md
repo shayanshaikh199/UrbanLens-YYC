@@ -40,4 +40,7 @@ UrbanLens-YYC is a full-stack 3D urban analysis dashboard focused on Downtown Co
 - UML export: `docs/assets/uml-export.svg`
 - Architecture visual: `docs/assets/architecture-overview.svg`
 - Product screenshots: `docs/assets/screenshot-map-overview.png`, `docs/assets/screenshot-building-details.png`, `docs/assets/screenshot-query-results.png`
+- Screenshot guide: `docs/screenshots.md`
+- Architecture decisions: `docs/architecture-decisions.md`
+- Future improvements: `docs/future-improvements.md`
 - Submission checklist: `docs/submission-guide.md`
