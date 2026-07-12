@@ -541,7 +541,7 @@ function describeFilter(filter) {
 
 function fieldLabel(attribute) {
   const labels = {
-    assessed_value: "Assessed value",
+    assessed_value: "Assessment value",
     height_m: "Height",
     land_use: "Land use"
   };

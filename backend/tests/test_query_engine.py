@@ -27,6 +27,14 @@ def test_apply_filters_matches_numeric_comparison():
     assert matched == ["b"]
 
 
+def test_apply_filters_ignores_unknown_numeric_values():
+    buildings = [*BUILDINGS, {"id": "c", "height_m": 30, "zoning": "DC", "land_use": "COMMERCIAL", "assessed_value": None}]
+
+    matched = apply_filters(buildings, [{"attribute": "assessed_value", "operator": ">", "value": 50}])
+
+    assert matched == ["a", "b"]
+
+
 def test_superlative_returns_top_match_order():
     result = interpret_query("show the tallest buildings")
     matched = apply_filters(BUILDINGS, result["filters"])

@@ -23,7 +23,7 @@ export function describeFilter(filter) {
 
 export function labelFor(attribute) {
   const labels = {
-    assessed_value: "assessed value",
+    assessed_value: "assessment value",
     floors: "floors",
     height_m: "height",
     land_use: "land use",

@@ -15,7 +15,7 @@ export function InsightsPanel({ buildings, permits }) {
       <div className="insightGrid">
         <Insight label="Commercial share" value={`${insights.commercialShare}%`} />
         <Insight label="Avg height" value={`${insights.averageHeight} m`} />
-        <Insight label="Median value" value={currency(insights.medianValue)} />
+        <Insight label="Median assessment" value={currency(insights.medianValue)} />
       </div>
       <div className="insightList">
         <InsightRow label="Top land use" value={insights.topLandUse} />

@@ -2,9 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-import math
 import random
-import re
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -14,7 +12,6 @@ from app.services import calgary_client
 from app.services.geometry import (
     bounds_for,
     centroid_from_lng_lat,
-    distance_degrees,
     lat_lng_ring,
     outer_ring,
 )
@@ -22,11 +19,6 @@ from app.services.sample_data import AREA_NAME, CENTER, sample_buildings, sample
 
 BUILDINGS_CACHE = settings.cache_dir / "buildings.json"
 PERMITS_CACHE = settings.cache_dir / "permits.json"
-
-MAX_ASSESSMENT_JOIN_DISTANCE = 0.0007
-MIN_REASONABLE_ASSESSMENT_RATIO = 0.35
-MAX_REASONABLE_ASSESSMENT_RATIO = 5.0
-
 
 class MapDataError(RuntimeError):
     pass
@@ -72,7 +64,7 @@ def normalize_buildings(footprints: list[dict], assessments: list[dict]) -> dict
     rng = random.Random(20260710)
     buildings = []
     matched = 0
-    synthetic = 0
+    unmatched = 0
 
     for index, feature in enumerate(footprints):
         geometry = feature.get("geometry") or {}
@@ -84,32 +76,22 @@ def normalize_buildings(footprints: list[dict], assessments: list[dict]) -> dict
         center = centroid_from_lng_lat(ring)
         height_m = _height_from_properties(properties)
         floors = max(1, round(height_m / 3.4))
-        footprint_area_sqm = _footprint_area_sqm(ring)
-        estimated_value = _estimated_assessed_value(footprint_area_sqm, floors, properties)
-        nearest = _nearest_assessment(center, assessment_index)
+        assessment_match = _matching_assessment(center, assessment_index)
 
-        if nearest and _assessment_is_plausible(nearest["assessed_value"], estimated_value):
+        if assessment_match:
             matched += 1
-            address = nearest["address"]
-            assessed_value = nearest["assessed_value"]
-            zoning = nearest["zoning"]
-            land_use = nearest["land_use"]
+            address = assessment_match["address"]
+            assessed_value = assessment_match["assessed_value"]
+            zoning = assessment_match["zoning"]
+            land_use = assessment_match["land_use"]
+            join_method = assessment_match["join"]
         else:
-            synthetic += 1
-            assessed_value = _jitter_assessed_value(estimated_value, rng)
-            if nearest:
-                address = nearest["address"]
-                zoning = nearest["zoning"]
-                land_use = nearest["land_use"]
-                join_method = "assessment-centroid-size-checked"
-            else:
-                address = _fallback_address(rng)
-                zoning = rng.choice(["CC-X", "CC-MH", "CC-MHX", "CC-COR", "C-COR1", "DC"])
-                land_use = rng.choice(["COMMERCIAL", "RESIDENTIAL", "MIXED USE"])
-                join_method = "synthetic-size-estimate"
-
-        if nearest and _assessment_is_plausible(nearest["assessed_value"], estimated_value):
-            join_method = "assessment-centroid"
+            unmatched += 1
+            address = _fallback_address(rng)
+            assessed_value = None
+            zoning = rng.choice(["CC-X", "CC-MH", "CC-MHX", "CC-COR", "C-COR1", "DC"])
+            land_use = rng.choice(["COMMERCIAL", "RESIDENTIAL", "MIXED USE"])
+            join_method = "no-assessment-match"
 
         building_id_seed = str(properties.get("struct_id") or properties.get("globalid") or index)
         buildings.append(
@@ -127,7 +109,6 @@ def normalize_buildings(footprints: list[dict], assessments: list[dict]) -> dict
                 "properties": {
                     "struct_id": properties.get("struct_id"),
                     "stage": properties.get("stage"),
-                    "footprint_area_sqm": round(footprint_area_sqm, 1),
                     "join": join_method,
                 },
             }
@@ -147,8 +128,8 @@ def normalize_buildings(footprints: list[dict], assessments: list[dict]) -> dict
             "count": len(buildings),
             "notes": [
                 "Footprints and heights come from Calgary building footprints.",
-                "Assessment fields are joined by nearest centroid and sanity-checked against building size.",
-                f"{matched} buildings use direct assessment joins; {synthetic} use size-based estimates.",
+                "Assessment values come directly from Calgary assessment records when the building is inside an assessment parcel.",
+                f"{matched} buildings use actual assessment records; {unmatched} have no assessment match.",
             ],
         },
         "buildings": buildings,
@@ -210,7 +191,7 @@ def _assessment_index(assessments: list[dict]) -> list[dict[str, Any]]:
     deduped: dict[str, dict[str, Any]] = {}
 
     for assessment in assessments:
-        address = _strip_unit(_clean_text(assessment.get("address")))
+        address = _clean_text(assessment.get("address"))
         if not address:
             continue
 
@@ -218,76 +199,41 @@ def _assessment_index(assessments: list[dict]) -> list[dict[str, Any]]:
         if not ring:
             continue
 
-        if address not in deduped:
-            deduped[address] = {
+        key = _assessment_geometry_key(ring)
+        if key not in deduped:
+            deduped[key] = {
                 "address": address,
                 "center": centroid_from_lng_lat(ring),
+                "ring": ring,
                 "assessed_value": 0,
                 "zoning": _clean_text(assessment.get("land_use_designation")) or "UNKNOWN",
                 "land_use": _land_use(assessment.get("assessment_class_description")),
             }
 
-        deduped[address]["assessed_value"] += _parse_int(assessment.get("assessed_value")) or 0
+        deduped[key]["assessed_value"] += _parse_int(assessment.get("assessed_value")) or 0
 
     return list(deduped.values())
 
 
-def _nearest_assessment(center: tuple[float, float], assessments: list[dict]) -> dict[str, Any] | None:
-    best = None
-    best_distance = float("inf")
+def _matching_assessment(center: tuple[float, float], assessments: list[dict]) -> dict[str, Any] | None:
     for assessment in assessments:
-        distance = distance_degrees(center, assessment["center"])
-        if distance < best_distance:
-            best = assessment
-            best_distance = distance
+        if _point_in_lng_lat_ring(center, assessment["ring"]):
+            return {**assessment, "join": "assessment-parcel"}
 
-    if best and best_distance <= MAX_ASSESSMENT_JOIN_DISTANCE:
-        return best
     return None
 
 
-def _footprint_area_sqm(ring: list[tuple[float, float]]) -> float:
-    if len(ring) < 4:
-        return 120.0
-
-    average_lat = sum(lat for _, lat in ring) / len(ring)
-    meters_per_lng = 111_320 * math.cos(math.radians(average_lat))
-    points = [(lng * meters_per_lng, lat * 110_540) for lng, lat in ring]
-    area = 0.0
-    for index, (x1, y1) in enumerate(points):
-        x2, y2 = points[(index + 1) % len(points)]
-        area += x1 * y2 - x2 * y1
-    return max(abs(area) / 2, 35.0)
-
-
-def _estimated_assessed_value(
-    footprint_area_sqm: float, floors: int, properties: dict[str, Any]
-) -> int:
-    usable_area = min(max(footprint_area_sqm, 45.0), 4_500.0)
-    gross_floor_area = usable_area * max(floors, 1)
-    stage = _clean_text(properties.get("stage"))
-    rate = 4_200 if "COMMERCIAL" in stage else 3_600
-    if floors >= 20:
-        rate *= 1.18
-    elif floors <= 3:
-        rate *= 0.82
-
-    value = gross_floor_area * rate
-    minimum = floors * 325_000
-    return int(round(min(max(value, minimum), 950_000_000) / 1_000) * 1_000)
-
-
-def _assessment_is_plausible(assessed_value: int, estimated_value: int) -> bool:
-    if assessed_value <= 0:
-        return False
-    lower_bound = max(100_000, estimated_value * MIN_REASONABLE_ASSESSMENT_RATIO)
-    upper_bound = min(1_200_000_000, estimated_value * MAX_REASONABLE_ASSESSMENT_RATIO)
-    return lower_bound <= assessed_value <= upper_bound
-
-
-def _jitter_assessed_value(value: int, rng: random.Random) -> int:
-    adjusted = value * rng.uniform(0.88, 1.12)
-    return int(round(adjusted / 1_000) * 1_000)
+def _point_in_lng_lat_ring(point: tuple[float, float], ring: list[tuple[float, float]]) -> bool:
+    lat, lng = point
+    inside = False
+    for index, (lng_a, lat_a) in enumerate(ring):
+        lng_b, lat_b = ring[index - 1]
+        intersects = (lat_a > lat) != (lat_b > lat) and (
+            lng < (lng_b - lng_a) * (lat - lat_a) / ((lat_b - lat_a) or 1e-12) + lng_a
+        )
+        if intersects:
+            inside = not inside
+    return inside
 
 
 def _height_from_properties(properties: dict[str, Any]) -> float:
@@ -330,9 +276,8 @@ def _land_use(raw: Any) -> str:
     return "MIXED USE"
 
 
-def _strip_unit(address: str) -> str:
-    match = re.match(r"^\d+\s+(\d+\s+.+)$", address)
-    return match.group(1).strip() if match else address
+def _assessment_geometry_key(ring: list[tuple[float, float]]) -> str:
+    return "|".join(f"{lng:.7f},{lat:.7f}" for lng, lat in ring)
 
 
 def _clean_text(value: Any) -> str:

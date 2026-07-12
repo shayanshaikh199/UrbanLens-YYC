@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "calgary-open-data",
-    "generated_at": "2026-07-11T23:47:57.336811+00:00",
+    "generated_at": "2026-07-12T02:47:28.207186+00:00",
     "area_name": "Downtown Core / Stephen Ave, Calgary AB",
     "center": [
       51.0458,
@@ -9,12 +9,12 @@
     ],
     "bounds": {
       "sw": [
-        51.0398707,
-        -114.0798391
+        51.0398415,
+        -114.0806375
       ],
       "ne": [
-        51.0520478,
-        -114.0625735
+        51.0513751,
+        -114.0619518
       ]
     },
     "count": 100,
@@ -41,324 +41,290 @@
       }
     },
     {
-      "id": "permit_593d3d04af",
-      "address": "227 11 AV SW",
+      "id": "permit_b13d34740b",
+      "address": "#600 215 9 AV SW",
       "center": [
-        51.0423492,
-        -114.0673609
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "HOLD - PRESCREEN REVIEW",
-      "estimated_project_cost": 116,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2026-04168",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_5a36356c8c",
-      "address": "#202 736 6 AV SW",
-      "center": [
-        51.0480113,
-        -114.0782371
+        51.0445791,
+        -114.0666209
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "PENDING PLANS REVIEW ASSIGNMENT",
-      "estimated_project_cost": 1200000,
+      "estimated_project_cost": 202500,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2025-10734",
+        "permit_number": "BP2025-04851",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_75ed74ab35",
-      "address": "#200 1110 7 ST SW",
+      "id": "permit_1638427d0b",
+      "address": "#245 777 8 AV SW",
       "center": [
-        51.0427,
-        -114.0787588
+        51.045845,
+        -114.0784067
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "APPLICATION RECEIVED",
+      "status": "REFUSED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-15794",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_2b3effe430",
+      "address": "#1205 825 8 AV SW",
+      "center": [
+        51.0459099,
+        -114.0804635
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "REFUSED",
+      "estimated_project_cost": 350000,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-12764",
+        "issued_date": null,
+        "contractor": "WESTBOW SYSTEMS"
+      }
+    },
+    {
+      "id": "permit_ef402e956e",
+      "address": "#2350 350 7 AV SW",
+      "center": [
+        51.0468024,
+        -114.0698009
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "PENDING PLANS REVIEW ASSIGNMENT",
+      "estimated_project_cost": 567000,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-17764",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_0227aaa6e8",
+      "address": "#2300 777 8 AV SW",
+      "center": [
+        51.045845,
+        -114.0784067
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "REFUSED",
+      "estimated_project_cost": 5000,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-08487",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_d60afe6908",
+      "address": "823 8 AV SW",
+      "center": [
+        51.0459099,
+        -114.0804635
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "PENDING PLANS REVIEW ASSIGNMENT",
+      "estimated_project_cost": 7000000,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-21410",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_974199feb7",
+      "address": "#100 1202 1 ST SW",
+      "center": [
+        51.0413281,
+        -114.0656365
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "REFUSED",
       "estimated_project_cost": 1000,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2025-23876",
+        "permit_number": "BP2025-12661",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_b737b27f89",
-      "address": "101 6 AV SW",
+      "id": "permit_75900413dd",
+      "address": "#201P 724 6 AV SW",
       "center": [
-        51.0473316,
-        -114.0633154
+        51.0479746,
+        -114.0776244
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "REFUSED",
-      "estimated_project_cost": 200000,
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2025-14259",
+        "permit_number": "BP2025-11689",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_d9d593f808",
-      "address": "#645 635 8 AV SW",
+      "id": "permit_1c2b39c970",
+      "address": "361 10 AV SW",
       "center": [
-        51.0457519,
-        -114.0758385
+        51.0434126,
+        -114.0706283
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "HOLD - PENDING PLANS REVIEW",
+      "estimated_project_cost": 132,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-12518",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_89d89bdb76",
+      "address": "381 2 AV SW",
+      "center": [
+        51.0509015,
+        -114.069863
+      ],
+      "permit_type": "DEMOLITION",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2024-08769",
+        "issued_date": null,
+        "contractor": "STUART OLSON CONSTRUCTION"
+      }
+    },
+    {
+      "id": "permit_f970980036",
+      "address": "#200 525 11 AV SW",
+      "center": [
+        51.0425322,
+        -114.0728103
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "PENDING PLANS REVIEW ASSIGNMENT",
+      "estimated_project_cost": 2000000,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-04325",
+        "issued_date": null,
+        "contractor": "BRENTON CONSTRUCTION"
+      }
+    },
+    {
+      "id": "permit_f88c4c222b",
+      "address": "340 13 AV SW",
+      "center": [
+        51.0410964,
+        -114.0684697
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2024-25266",
+        "issued_date": null,
+        "contractor": "SERVICEMASTER"
+      }
+    },
+    {
+      "id": "permit_53b54c4bff",
+      "address": "409 8 AV SW",
+      "center": [
+        51.045657,
+        -114.0711697
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-20604",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_82a5cff490",
+      "address": "525 8 AV SW",
+      "center": [
+        51.0456814,
+        -114.0724405
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "PENDING PRESCREEN REVIEW",
+      "estimated_project_cost": 8716,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2026-06987",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_9442a53d6b",
+      "address": "#3900 225 6 AV SW",
+      "center": [
+        51.0474112,
+        -114.0661331
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "PENDING PLANS REVIEW ASSIGNMENT",
+      "estimated_project_cost": 427875,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-17198",
+        "issued_date": null,
+        "contractor": "ELLISDON CONSTRUCTION SERVICES"
+      }
+    },
+    {
+      "id": "permit_77b31c1414",
+      "address": "275 2 ST SW",
+      "center": [
+        51.0509567,
+        -114.0677375
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "REFUSED",
       "estimated_project_cost": 80000,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2026-07777",
+        "permit_number": "BP2024-24868",
         "issued_date": null,
-        "contractor": "NCI CONSTRUCTION"
+        "contractor": null
       }
     },
     {
-      "id": "permit_d0d05294bb",
-      "address": "530 12 AV SW",
+      "id": "permit_632f73261b",
+      "address": "1206 1 ST SE",
       "center": [
-        51.0418244,
-        -114.0731692
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-10598",
-        "issued_date": null,
-        "contractor": "DURWEST CONSTRUCTION SYSTEMS ALBERTA"
-      }
-    },
-    {
-      "id": "permit_683bfa9204",
-      "address": "#400 530 8 AV SW",
-      "center": [
-        51.0459598,
-        -114.0729462
+        51.0404483,
+        -114.0666262
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "PENDING PRESCREEN REVIEW",
-      "estimated_project_cost": 880000,
+      "estimated_project_cost": 125000,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2026-06961",
-        "issued_date": null,
-        "contractor": "PERSIMMON CONTRACTING"
-      }
-    },
-    {
-      "id": "permit_65f4d9e875",
-      "address": "#400 530 8 AV SW",
-      "center": [
-        51.0459598,
-        -114.0729462
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PRESCREEN REVIEW",
-      "estimated_project_cost": 490000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2026-06983",
-        "issued_date": null,
-        "contractor": "PERSIMMON CONTRACTING"
-      }
-    },
-    {
-      "id": "permit_2d9e31f65e",
-      "address": "#400 530 8 AV SW",
-      "center": [
-        51.0459598,
-        -114.0729462
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PLANS REVIEW ASSIGNMENT",
-      "estimated_project_cost": 90000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2026-06984",
-        "issued_date": null,
-        "contractor": "PERSIMMON CONTRACTING"
-      }
-    },
-    {
-      "id": "permit_6477d65aa4",
-      "address": "#710 1122 4 ST SW",
-      "center": [
-        51.0418794,
-        -114.0712994
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PLANS REVIEW ASSIGNMENT",
-      "estimated_project_cost": 105000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-14242",
-        "issued_date": null,
-        "contractor": "NCI CONSTRUCTION"
-      }
-    },
-    {
-      "id": "permit_581408e466",
-      "address": "#2100 400 4 AV SW",
-      "center": [
-        51.0497059,
-        -114.0709318
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "APPLICATION RECEIVED",
-      "estimated_project_cost": 1000000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-23998",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_9e3ff24ec2",
-      "address": "#304 535 10 AV SW",
-      "center": [
-        51.0435037,
-        -114.0735566
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "REFUSED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-10128",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_6d005ae346",
-      "address": "1209 6 ST SW",
-      "center": [
-        51.0415393,
-        -114.0768167
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PLANS REVIEW ASSIGNMENT",
-      "estimated_project_cost": 150000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2026-06991",
-        "issued_date": null,
-        "contractor": "TAYLOR CONSTRUCTION"
-      }
-    },
-    {
-      "id": "permit_8ca40b29a8",
-      "address": "#1700 400 4 AV SW",
-      "center": [
-        51.0497059,
-        -114.0709318
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "APPLICATION RECEIVED",
-      "estimated_project_cost": 2400000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-23996",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_62b3e81592",
-      "address": "111 5 AV SW",
-      "center": [
-        51.0482845,
-        -114.0641168
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-04684",
-        "issued_date": null,
-        "contractor": "BUILDING WORKS / MOLD SQUAD"
-      }
-    },
-    {
-      "id": "permit_4f7bcd2cd4",
-      "address": "755 5 AV SW",
-      "center": [
-        51.0486795,
-        -114.0774476
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PLANS REVIEW ASSIGNMENT",
-      "estimated_project_cost": 24000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2026-06951",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_f74e34d9d4",
-      "address": "#601 326 11 AV SW",
-      "center": [
-        51.0426675,
-        -114.0689012
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PRESCREEN REVIEW",
-      "estimated_project_cost": 16000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2026-07184",
-        "issued_date": null,
-        "contractor": "KLM CONTRACTING"
-      }
-    },
-    {
-      "id": "permit_3f8130ce15",
-      "address": "#408 323 10 AV SW",
-      "center": [
-        51.0433641,
-        -114.0690139
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "REFUSED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-13593",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_63d3bad1d8",
-      "address": "622 11 AV SW",
-      "center": [
-        51.0428352,
-        -114.0753874
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2024-03448",
+        "permit_number": "BP2025-17399",
         "issued_date": null,
         "contractor": null
       }
@@ -517,23 +483,6 @@
       }
     },
     {
-      "id": "permit_42feb66ce2",
-      "address": "150 9 AV SW",
-      "center": [
-        51.0447824,
-        -114.0647877
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-21155",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
       "id": "permit_0db0bfce07",
       "address": "#1000 517 10 AV SW",
       "center": [
@@ -568,330 +517,415 @@
       }
     },
     {
-      "id": "permit_996b86d35b",
-      "address": "#910 304 8 AV SW",
+      "id": "permit_0f8310c87c",
+      "address": "323 6 AV SW",
       "center": [
-        51.0458091,
-        -114.068193
+        51.0471678,
+        -114.0700817
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2013-01462",
-        "issued_date": null,
-        "contractor": "LIGNUM INTERIORS"
-      }
-    },
-    {
-      "id": "permit_ebd57c0ff0",
-      "address": "#1700 555 4 AV SW",
-      "center": [
-        51.0494965,
-        -114.0733122
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-12160",
+        "permit_number": "BP2019-12738",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_e9b33dc9f6",
-      "address": "#2030 635 8 AV SW",
+      "id": "permit_67c7deb341",
+      "address": "#610 333 11 AV SW",
       "center": [
-        51.0457519,
-        -114.0758385
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PLANS REVIEW ASSIGNMENT",
-      "estimated_project_cost": 175000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2025-09746",
-        "issued_date": null,
-        "contractor": "NCI CONSTRUCTION"
-      }
-    },
-    {
-      "id": "permit_79c3b80a3b",
-      "address": "#700 400 3 AV SW",
-      "center": [
-        51.0506331,
-        -114.0705912
+        51.0424239,
+        -114.0696627
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2001-13775",
+        "permit_number": "BP2022-11672",
         "issued_date": null,
-        "contractor": "COUGAR CONTRACTORS"
+        "contractor": "ETON-WEST CONSTRUCTION"
       }
     },
     {
-      "id": "permit_7c27e9fb16",
-      "address": "112 8 AV SW",
+      "id": "permit_beccc95026",
+      "address": "#200 717 7 AV SW",
       "center": [
-        51.045682,
-        -114.0637661
+        51.0467782,
+        -114.0772206
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2000-05887",
+        "permit_number": "BP2008-11998",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_ba54c523fc",
-      "address": "225 6 AV SW",
+      "id": "permit_053d5e1364",
+      "address": "#4300 888 3 ST SW",
       "center": [
-        51.0474112,
-        -114.066036
+        51.044915,
+        -114.0695003
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2014-06945",
+        "permit_number": "BP2022-09303",
         "issued_date": null,
-        "contractor": null
+        "contractor": "PRIME PROJECTS"
       }
     },
     {
-      "id": "permit_9876e676e8",
-      "address": "628 11 AV SW",
+      "id": "permit_39d017ee18",
+      "address": "520 5 AV SW",
       "center": [
-        51.0428421,
-        -114.0756319
+        51.0487963,
+        -114.0724634
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2000-08865",
+        "permit_number": "BP2022-19700",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_29e59638a9",
+      "id": "permit_7ea58f046b",
+      "address": "#3200 400 4 AV SW",
+      "center": [
+        51.0497059,
+        -114.0709318
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2012-09693",
+        "issued_date": null,
+        "contractor": "LABBE-LEECH INTERIORS"
+      }
+    },
+    {
+      "id": "permit_57dbb12bd2",
+      "address": "415 8 AV SW",
+      "center": [
+        51.0456614,
+        -114.0713582
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2000-01213",
+        "issued_date": null,
+        "contractor": "SOUNDTEX INTERIORS"
+      }
+    },
+    {
+      "id": "permit_545365b3d0",
+      "address": "#187 317 7 AV SW",
+      "center": [
+        51.045881,
+        -114.070084
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2006-11463",
+        "issued_date": null,
+        "contractor": "ALTER INDUSTRIES"
+      }
+    },
+    {
+      "id": "permit_b17d7b9341",
+      "address": "#2700 530 8 AV SW",
+      "center": [
+        51.0459598,
+        -114.0729462
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2022-19125",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_2ddc97a0a5",
+      "address": "#1400 140 10 AV SE",
+      "center": [
+        51.043404,
+        -114.0619518
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2009-13117",
+        "issued_date": null,
+        "contractor": "PRIME PROJECTS"
+      }
+    },
+    {
+      "id": "permit_f01a78517c",
+      "address": "215 2 ST SW",
+      "center": [
+        51.0508983,
+        -114.0677474
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2022-02926",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_678427abce",
+      "address": "#2000 335 8 AV SW",
+      "center": [
+        51.0456289,
+        -114.0700243
+      ],
+      "permit_type": "DEMOLITION",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2009-13200",
+        "issued_date": null,
+        "contractor": "PRIME PROJECTS"
+      }
+    },
+    {
+      "id": "permit_02098baa45",
+      "address": "#202 226 8 AV SW",
+      "center": [
+        51.0457701,
+        -114.0668868
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2015-05608",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_884320b78b",
+      "address": "831 7 AV SW",
+      "center": [
+        51.0468673,
+        -114.0803969
+      ],
+      "permit_type": "DEMOLITION",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2007-18477",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_da280242a5",
+      "address": "#1000 237 4 AV SW",
+      "center": [
+        51.049312,
+        -114.066943
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2021-18454",
+        "issued_date": null,
+        "contractor": "MAGNUS INTERIORS"
+      }
+    },
+    {
+      "id": "permit_557d970dfd",
+      "address": "#2300 700 2 ST SW",
+      "center": [
+        51.0464845,
+        -114.0674556
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2003-06684",
+        "issued_date": null,
+        "contractor": "MTEC CORPORATE CONSTRUCTION"
+      }
+    },
+    {
+      "id": "permit_bae1885935",
+      "address": "411 8 AV SW",
+      "center": [
+        51.0456614,
+        -114.0713582
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2001-07736",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_66d18901f9",
       "address": "450 1 ST SW",
       "center": [
         51.0485761,
         -114.0646414
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "COMPLETED",
+      "estimated_project_cost": 510000,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2002-04742",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_4edae8c660",
+      "address": "#233 225 7 AV SW",
+      "center": [
+        51.0464845,
+        -114.0674556
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2016-10794",
+        "permit_number": "BP2022-11848",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_82a5cff490",
-      "address": "525 8 AV SW",
+      "id": "permit_2db396054d",
+      "address": "209 10 AV SW",
       "center": [
-        51.0456814,
-        -114.0724405
+        51.0430873,
+        -114.0658299
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "PENDING PRESCREEN REVIEW",
-      "estimated_project_cost": 8716,
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2026-06987",
+        "permit_number": "BP2021-10828",
         "issued_date": null,
-        "contractor": null
+        "contractor": "HARRISON PIERCE HOMES"
       }
     },
     {
-      "id": "permit_21b97999b4",
-      "address": "802 11 AV SW",
+      "id": "permit_7068499c52",
+      "address": "#241 751 3 ST SW",
       "center": [
-        51.0429661,
-        -114.0793756
+        51.0462419,
+        -114.0705818
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "REFUSED",
-      "estimated_project_cost": 20,
+      "estimated_project_cost": 140000,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2020-10899",
+        "permit_number": "BP2010-15047",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_6f5c698a2a",
-      "address": "#2100 205 5 AV SW",
+      "id": "permit_ea73eb00df",
+      "address": "#2400 700 2 ST SW",
       "center": [
-        51.0483406,
-        -114.0659275
+        51.0464845,
+        -114.0674556
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2013-00022",
+        "permit_number": "BP2020-08403",
         "issued_date": null,
-        "contractor": "E & P ENTERPRISES"
+        "contractor": "ARGUSON PROJECTS"
       }
     },
     {
-      "id": "permit_d0e4f13d66",
-      "address": "#300 435 4 AV SW",
+      "id": "permit_a53f142c00",
+      "address": "228 8 AV SW",
       "center": [
-        51.0494333,
-        -114.0709892
+        51.0457755,
+        -114.0669634
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2010-01016",
+        "permit_number": "BP2008-13563",
         "issued_date": null,
-        "contractor": "ABM GENERAL CONTRACTING"
+        "contractor": "CREATE"
       }
     },
     {
-      "id": "permit_db571f1e57",
-      "address": "#4300 888 3 ST SW",
+      "id": "permit_0b2b73ee0b",
+      "address": "115 9 AV SE",
       "center": [
-        51.0455744,
-        -114.0687534
+        51.044498,
+        -114.0637457
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2022-09313",
-        "issued_date": null,
-        "contractor": "PRIME PROJECTS"
-      }
-    },
-    {
-      "id": "permit_9994ab68ee",
-      "address": "#4300 888 3 ST SW",
-      "center": [
-        51.0455978,
-        -114.0695511
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-09310",
-        "issued_date": null,
-        "contractor": "PRIME PROJECTS"
-      }
-    },
-    {
-      "id": "permit_ef085a26c7",
-      "address": "1213 4 ST SW",
-      "center": [
-        51.0411802,
-        -114.0716778
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "COMPLETED",
-      "estimated_project_cost": 38460291,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2006-03251",
-        "issued_date": null,
-        "contractor": "ELLISDON CONSTRUCTION"
-      }
-    },
-    {
-      "id": "permit_0fbe09b67b",
-      "address": "#10 630 8 AV SW",
-      "center": [
-        51.0460076,
-        -114.0757829
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2008-09626",
+        "permit_number": "BP2002-00214",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_db77227b2c",
-      "address": "1221 2 ST SW",
-      "center": [
-        51.0410964,
-        -114.0684697
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2001-06183",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_8e8808628c",
-      "address": "208 BARCLAY PR SW",
-      "center": [
-        51.0520478,
-        -114.0697412
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2007-08348",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_b63f6b6041",
-      "address": "#300 744 4 AV SW",
-      "center": [
-        51.0499121,
-        -114.0782474
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2012-03532",
-        "issued_date": null,
-        "contractor": "STRATEGIC MAINTENANCE"
-      }
-    },
-    {
-      "id": "permit_18a357e2da",
+      "id": "permit_ed15678e4c",
       "address": "#4300 888 3 ST SW",
       "center": [
         51.0455854,
@@ -902,519 +936,128 @@
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2022-09307",
+        "permit_number": "BP2022-09312",
         "issued_date": null,
         "contractor": "PRIME PROJECTS"
       }
     },
     {
-      "id": "permit_8ce59c11f9",
-      "address": "225 13 AV SW",
+      "id": "permit_01add08f8d",
+      "address": "1213 4 ST SW",
       "center": [
-        51.0404792,
-        -114.0676038
+        51.0411802,
+        -114.0716778
       ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "COMPLETED",
-      "estimated_project_cost": 38354200,
+      "permit_type": "DEMOLITION",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2006-18614",
+        "permit_number": "BP2008-12810",
+        "issued_date": null,
+        "contractor": "ELLISDON CAPITAL INC.."
+      }
+    },
+    {
+      "id": "permit_be1ce782b0",
+      "address": "645 7 AV SW",
+      "center": [
+        51.0467176,
+        -114.0757385
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2000-05833",
+        "issued_date": null,
+        "contractor": "WILLOW SPRING CONSTRUCTION"
+      }
+    },
+    {
+      "id": "permit_4304190ea6",
+      "address": "1207 1 ST SW",
+      "center": [
+        51.0411724,
+        -114.0659733
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2001-04575",
         "issued_date": null,
         "contractor": null
       }
     },
     {
-      "id": "permit_00a9853cd9",
-      "address": "#2110 237 4 AV SW",
-      "center": [
-        51.049312,
-        -114.066943
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2021-21255",
-        "issued_date": null,
-        "contractor": "PERSIMMON CONTRACTING"
-      }
-    },
-    {
-      "id": "permit_41f32211b6",
-      "address": "640 10 AV SW",
-      "center": [
-        51.0438001,
-        -114.0762141
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2018-10945",
-        "issued_date": null,
-        "contractor": "CASTELLO MANAGEMENT"
-      }
-    },
-    {
-      "id": "permit_920eb69266",
-      "address": "#1800 250 2 ST SW",
-      "center": [
-        51.0505158,
-        -114.0661907
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2015-06557",
-        "issued_date": null,
-        "contractor": "MAGNUS INTERIORS"
-      }
-    },
-    {
-      "id": "permit_ca42069e0b",
-      "address": "585 8 AV SW",
-      "center": [
-        51.0457033,
-        -114.0733905
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2021-14267",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_21183ce041",
-      "address": "#1800 525 8 AV SW",
-      "center": [
-        51.0456814,
-        -114.0724405
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-00364",
-        "issued_date": null,
-        "contractor": "PRIME PROJECTS"
-      }
-    },
-    {
-      "id": "permit_866468ebfc",
-      "address": "#202 510 8 AV SW",
-      "center": [
-        51.045939,
-        -114.0721322
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2010-12598",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_c3f66e4f30",
-      "address": "#300 250 5 ST SW",
+      "id": "permit_02bb33718f",
+      "address": "520 3 AV SW",
       "center": [
         51.0513751,
         -114.0725558
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
+      "status": "COMPLETED",
+      "estimated_project_cost": 208000000,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2010-06481",
+        "permit_number": "BP2006-17173",
         "issued_date": null,
-        "contractor": null
+        "contractor": "PCL CONSTRUCTION MANAGEMENT"
       }
     },
     {
-      "id": "permit_d65a27f630",
-      "address": "506 4 ST SW",
+      "id": "permit_b60387887d",
+      "address": "#1000 207 9 AV SW",
       "center": [
-        51.0480062,
-        -114.0713231
+        51.0445791,
+        -114.0666209
       ],
       "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2018-12616",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_8e822f9431",
-      "address": "#1900 205 5 AV SW",
-      "center": [
-        51.0483406,
-        -114.0659275
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-07055",
+        "permit_number": "BP2023-00452",
         "issued_date": null,
         "contractor": "LABBE-LEECH INTERIORS"
       }
     },
     {
-      "id": "permit_96d2c93f2c",
-      "address": "#1500 500 4 AV SW",
+      "id": "permit_4ea5a0072b",
+      "address": "835 7 AV SW",
       "center": [
-        51.0497345,
-        -114.0719967
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2000-11028",
-        "issued_date": null,
-        "contractor": "CALCON CONSTRUCTION"
-      }
-    },
-    {
-      "id": "permit_d954f36969",
-      "address": "640 8 AV SW",
-      "center": [
-        51.0460349,
-        -114.0759977
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2016-13634",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_5df020e340",
-      "address": "#1010 330 5 AV SW",
-      "center": [
-        51.0486995,
-        -114.0691429
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-11721",
-        "issued_date": null,
-        "contractor": "COUGAR CONTRACTORS"
-      }
-    },
-    {
-      "id": "permit_a2b605c6ec",
-      "address": "#4300 888 3 ST SW",
-      "center": [
-        51.0449257,
-        -114.069876
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-09360",
-        "issued_date": null,
-        "contractor": "PRIME PROJECTS"
-      }
-    },
-    {
-      "id": "permit_7accb3f145",
-      "address": "#900 635 8 AV SW",
-      "center": [
-        51.0457519,
-        -114.0758385
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2011-11993",
-        "issued_date": null,
-        "contractor": "COUGAR CONTRACTORS"
-      }
-    },
-    {
-      "id": "permit_b77c9df0f6",
-      "address": "608 7 ST SW",
-      "center": [
-        51.0475429,
-        -114.0785112
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "REFUSED",
-      "estimated_project_cost": 3200,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2011-09606",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_6bd47902b1",
-      "address": "#404 510 8 AV SW",
-      "center": [
-        51.0459461,
-        -114.072455
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-18459",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_cd09fd82dc",
-      "address": "#2300 707 8 AV SW",
-      "center": [
-        51.0458147,
-        -114.0773968
+        51.0468622,
+        -114.0806375
       ],
       "permit_type": "DEMOLITION",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2011-07740",
+        "permit_number": "BP2007-18479",
         "issued_date": null,
-        "contractor": "COUGAR CONTRACTORS"
+        "contractor": null
       }
     },
     {
-      "id": "permit_dfc82d2ae8",
-      "address": "#100 727 7 AV SW",
+      "id": "permit_a75940a2d4",
+      "address": "505 2 ST SW",
       "center": [
-        51.0467782,
-        -114.0772206
+        51.0483116,
+        -114.0679249
       ],
       "permit_type": "DEMOLITION",
       "status": "CANCELLED",
       "estimated_project_cost": null,
       "source": "calgary-open-data",
       "properties": {
-        "permit_number": "BP2004-07394",
+        "permit_number": "BP2000-07475",
         "issued_date": null,
         "contractor": null
-      }
-    },
-    {
-      "id": "permit_616afbffa9",
-      "address": "788 12 AV SW",
-      "center": [
-        51.0419959,
-        -114.0785863
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "COMPLETED",
-      "estimated_project_cost": 29772000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2006-13086",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_1fae6727e6",
-      "address": "#185 401 9 AV SW",
-      "center": [
-        51.0446756,
-        -114.0707828
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "COMPLETED",
-      "estimated_project_cost": 65000,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2006-05390",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_b3eda97b95",
-      "address": "#102 617 11 AV SW",
-      "center": [
-        51.0426022,
-        -114.0751865
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2012-01197",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_65a2d04e14",
-      "address": "#220 396 11 AV SW",
-      "center": [
-        51.0427201,
-        -114.0710763
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2021-06103",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_4f279100ee",
-      "address": "815 10 AV SW",
-      "center": [
-        51.0436764,
-        -114.0798391
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2022-14212",
-        "issued_date": null,
-        "contractor": "FIRST GENERAL SERVICES"
-      }
-    },
-    {
-      "id": "permit_55d8bff9d8",
-      "address": "#2400 801 6 AV SW",
-      "center": [
-        51.047771,
-        -114.0793419
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2005-05759",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_ab6534deb3",
-      "address": "135 10 AV SW",
-      "center": [
-        51.043213,
-        -114.0641414
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2004-04269",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_b060ee634b",
-      "address": "#910 500 4 AV SW",
-      "center": [
-        51.0497345,
-        -114.0719967
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2023-02625",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_280417fe74",
-      "address": "510 CENTRE ST SE",
-      "center": [
-        51.0480288,
-        -114.0625735
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2007-14238",
-        "issued_date": null,
-        "contractor": null
-      }
-    },
-    {
-      "id": "permit_a68ff44330",
-      "address": "400 3 AV SW",
-      "center": [
-        51.0506331,
-        -114.0705912
-      ],
-      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2019-06658",
-        "issued_date": null,
-        "contractor": "LIGNUM INTERIORS"
-      }
-    },
-    {
-      "id": "permit_8e16cafee0",
-      "address": "540 12 AV SW",
-      "center": [
-        51.0418371,
-        -114.0736521
-      ],
-      "permit_type": "DEMOLITION",
-      "status": "CANCELLED",
-      "estimated_project_cost": null,
-      "source": "calgary-open-data",
-      "properties": {
-        "permit_number": "BP2002-16719",
-        "issued_date": null,
-        "contractor": "GRAHAM CONSTRUCTION & ENGINEERING"
       }
     },
     {
@@ -1622,6 +1265,23 @@
       }
     },
     {
+      "id": "permit_904ff0a3f9",
+      "address": "#550 308 4 AV SW",
+      "center": [
+        51.049608,
+        -114.0682276
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "PENDING PRESCREEN REVIEW",
+      "estimated_project_cost": 166050,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2026-06611",
+        "issued_date": null,
+        "contractor": "MAGNUS INTERIORS"
+      }
+    },
+    {
       "id": "permit_5b5f593597",
       "address": "628 9 AV SW",
       "center": [
@@ -1721,6 +1381,346 @@
         "permit_number": "BP2000-09149",
         "issued_date": null,
         "contractor": "LIGNUM INTERIORS"
+      }
+    },
+    {
+      "id": "permit_8fc5804204",
+      "address": "334 14 AV SW",
+      "center": [
+        51.0398415,
+        -114.0702431
+      ],
+      "permit_type": "DEMOLITION",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2013-14868",
+        "issued_date": null,
+        "contractor": "GROUND SHAKERS EXCAVATING"
+      }
+    },
+    {
+      "id": "permit_1257d72423",
+      "address": "608 1 ST SW",
+      "center": [
+        51.0470851,
+        -114.064888
+      ],
+      "permit_type": "DEMOLITION",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2003-16041",
+        "issued_date": null,
+        "contractor": "TEKTON CONSTRUCTION"
+      }
+    },
+    {
+      "id": "permit_2087f8e1b1",
+      "address": "638 6 AV SW",
+      "center": [
+        51.0479176,
+        -114.0759373
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2003-15015",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_8f7d7f45f3",
+      "address": "228 7 AV SW",
+      "center": [
+        51.0467261,
+        -114.0671874
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2004-09009",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_d6297fb6bf",
+      "address": "809 7 ST SW",
+      "center": [
+        51.0458703,
+        -114.0791478
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2005-15332",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_17c8a77162",
+      "address": "321 6 AV SW",
+      "center": [
+        51.0474887,
+        -114.0693768
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2002-13335",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_3053a8adc9",
+      "address": "607 11 AV SW",
+      "center": [
+        51.0425816,
+        -114.0745055
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2004-03777",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_6c86c468b2",
+      "address": "400 3 AV SW",
+      "center": [
+        51.0506331,
+        -114.0705912
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2000-10846",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_31478bc701",
+      "address": "#4300 888 3 ST SW",
+      "center": [
+        51.0452353,
+        -114.0681787
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2022-09305",
+        "issued_date": null,
+        "contractor": "PRIME PROJECTS"
+      }
+    },
+    {
+      "id": "permit_8da131ce91",
+      "address": "605 5 AV SW",
+      "center": [
+        51.0485852,
+        -114.0745104
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2023-21376",
+        "issued_date": null,
+        "contractor": "BOTTING AND ASSOCIATES ALBERTA"
+      }
+    },
+    {
+      "id": "permit_136a68ccf3",
+      "address": "#101 620 8 AV SW",
+      "center": [
+        51.0460183,
+        -114.0749405
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2022-07276",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_0c59cbf8fd",
+      "address": "425 1 ST SW",
+      "center": [
+        51.0490567,
+        -114.065451
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2000-13308",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_cf94d23510",
+      "address": "#300 150 13 AV SW",
+      "center": [
+        51.0413348,
+        -114.0648785
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2021-02605",
+        "issued_date": null,
+        "contractor": "PERSIMMON CONTRACTING"
+      }
+    },
+    {
+      "id": "permit_e7a2d6fc9b",
+      "address": "1117 1 ST SW",
+      "center": [
+        51.041959,
+        -114.0659454
+      ],
+      "permit_type": "RESIDENTIAL IMPROVEMENT PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2023-18341",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_09f4911a4a",
+      "address": "#1800 140 10 AV SE",
+      "center": [
+        51.043404,
+        -114.0619518
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2013-07748",
+        "issued_date": null,
+        "contractor": "CANEM SYSTEMS"
+      }
+    },
+    {
+      "id": "permit_23db12d3ec",
+      "address": "#100 700 6 AV SW",
+      "center": [
+        51.0479472,
+        -114.0766469
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2022-18592",
+        "issued_date": null,
+        "contractor": "VENTURA CONTRACTING"
+      }
+    },
+    {
+      "id": "permit_9041b6b129",
+      "address": "#200 444 7 AV SW",
+      "center": [
+        51.0468334,
+        -114.0709062
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2014-16592",
+        "issued_date": null,
+        "contractor": "TRUE CONSTRUCTION"
+      }
+    },
+    {
+      "id": "permit_c248c9411c",
+      "address": "#300 414 3 ST SW",
+      "center": [
+        51.0493761,
+        -114.0691118
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "PENDING PLANS REVIEW ASSIGNMENT",
+      "estimated_project_cost": 30000,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2025-16673",
+        "issued_date": null,
+        "contractor": null
+      }
+    },
+    {
+      "id": "permit_f3ff332758",
+      "address": "#1900 421 7 AV SW",
+      "center": [
+        51.0462419,
+        -114.0705818
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2020-00975",
+        "issued_date": null,
+        "contractor": "COUGAR CONTRACTORS"
+      }
+    },
+    {
+      "id": "permit_b35e283180",
+      "address": "#241W 150 6 AV SW",
+      "center": [
+        51.0482845,
+        -114.0641168
+      ],
+      "permit_type": "COMMERCIAL / MULTI FAMILY PROJECT",
+      "status": "CANCELLED",
+      "estimated_project_cost": null,
+      "source": "calgary-open-data",
+      "properties": {
+        "permit_number": "BP2022-00504",
+        "issued_date": null,
+        "contractor": null
       }
     }
   ]

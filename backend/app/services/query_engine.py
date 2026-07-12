@@ -87,6 +87,8 @@ def _matches_filter(building: dict, item: dict) -> bool:
         raise QueryError(f"Unsupported operator: {op}")
 
     field = building.get(attribute)
+    if field is None and op != "contains":
+        return False
     if op == "contains":
         return OPERATORS[op](field, value)
 

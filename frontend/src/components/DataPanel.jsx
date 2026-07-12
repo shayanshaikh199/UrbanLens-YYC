@@ -14,7 +14,7 @@ export function DataPanel({ building, permit, relatedPermits = [], matchSummary 
         <dl className="detailList">
           <Row label="Address" value={building.address} />
           <Row label="Zoning" value={building.zoning} />
-          <Row label="Assessed" value={currency(building.assessed_value)} />
+          <Row label="Assessment" value={currency(building.assessed_value)} />
         </dl>
         {matchSummary ? (
           <div className="matchReason">
